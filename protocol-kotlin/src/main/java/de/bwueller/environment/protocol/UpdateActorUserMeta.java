@@ -3,8 +3,8 @@
 
 package de.bwueller.environment.protocol;
 
-public final class UpdateActorUserMetaOuterClass {
-  private UpdateActorUserMetaOuterClass() {}
+public final class UpdateActorUserMeta {
+  private UpdateActorUserMeta() {}
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistryLite registry) {
   }
@@ -14,8 +14,8 @@ public final class UpdateActorUserMetaOuterClass {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  public interface UpdateActorUserMetaOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:UpdateActorUserMeta)
+  public interface UpdateActorUserMetaRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:UpdateActorUserMetaRequest)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -34,12 +34,12 @@ public final class UpdateActorUserMetaOuterClass {
     /**
      * <code>repeated .Meta meta = 2;</code>
      */
-    java.util.List<de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta> 
+    java.util.List<de.bwueller.environment.protocol.UpdateActorUserMeta.Meta> 
         getMetaList();
     /**
      * <code>repeated .Meta meta = 2;</code>
      */
-    de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta getMeta(int index);
+    de.bwueller.environment.protocol.UpdateActorUserMeta.Meta getMeta(int index);
     /**
      * <code>repeated .Meta meta = 2;</code>
      */
@@ -47,26 +47,26 @@ public final class UpdateActorUserMetaOuterClass {
     /**
      * <code>repeated .Meta meta = 2;</code>
      */
-    java.util.List<? extends de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.MetaOrBuilder> 
+    java.util.List<? extends de.bwueller.environment.protocol.UpdateActorUserMeta.MetaOrBuilder> 
         getMetaOrBuilderList();
     /**
      * <code>repeated .Meta meta = 2;</code>
      */
-    de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.MetaOrBuilder getMetaOrBuilder(
+    de.bwueller.environment.protocol.UpdateActorUserMeta.MetaOrBuilder getMetaOrBuilder(
         int index);
   }
   /**
-   * Protobuf type {@code UpdateActorUserMeta}
+   * Protobuf type {@code UpdateActorUserMetaRequest}
    */
-  public  static final class UpdateActorUserMeta extends
+  public  static final class UpdateActorUserMetaRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:UpdateActorUserMeta)
-      UpdateActorUserMetaOrBuilder {
-    // Use UpdateActorUserMeta.newBuilder() to construct.
-    private UpdateActorUserMeta(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      // @@protoc_insertion_point(message_implements:UpdateActorUserMetaRequest)
+      UpdateActorUserMetaRequestOrBuilder {
+    // Use UpdateActorUserMetaRequest.newBuilder() to construct.
+    private UpdateActorUserMetaRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private UpdateActorUserMeta() {
+    private UpdateActorUserMetaRequest() {
       meta_ = java.util.Collections.emptyList();
     }
 
@@ -75,7 +75,7 @@ public final class UpdateActorUserMetaOuterClass {
     getUnknownFields() {
       return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
-    private UpdateActorUserMeta(
+    private UpdateActorUserMetaRequest(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -110,11 +110,11 @@ public final class UpdateActorUserMetaOuterClass {
             }
             case 18: {
               if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-                meta_ = new java.util.ArrayList<de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta>();
+                meta_ = new java.util.ArrayList<de.bwueller.environment.protocol.UpdateActorUserMeta.Meta>();
                 mutable_bitField0_ |= 0x00000002;
               }
               meta_.add(
-                  input.readMessage(de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta.parser(), extensionRegistry));
+                  input.readMessage(de.bwueller.environment.protocol.UpdateActorUserMeta.Meta.parser(), extensionRegistry));
               break;
             }
           }
@@ -133,14 +133,14 @@ public final class UpdateActorUserMetaOuterClass {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.internal_static_UpdateActorUserMeta_descriptor;
+      return de.bwueller.environment.protocol.UpdateActorUserMeta.internal_static_UpdateActorUserMetaRequest_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.internal_static_UpdateActorUserMeta_fieldAccessorTable
+      return de.bwueller.environment.protocol.UpdateActorUserMeta.internal_static_UpdateActorUserMetaRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta.class, de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta.Builder.class);
+              de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest.class, de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest.Builder.class);
     }
 
     private int bitField0_;
@@ -166,17 +166,17 @@ public final class UpdateActorUserMetaOuterClass {
     }
 
     public static final int META_FIELD_NUMBER = 2;
-    private java.util.List<de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta> meta_;
+    private java.util.List<de.bwueller.environment.protocol.UpdateActorUserMeta.Meta> meta_;
     /**
      * <code>repeated .Meta meta = 2;</code>
      */
-    public java.util.List<de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta> getMetaList() {
+    public java.util.List<de.bwueller.environment.protocol.UpdateActorUserMeta.Meta> getMetaList() {
       return meta_;
     }
     /**
      * <code>repeated .Meta meta = 2;</code>
      */
-    public java.util.List<? extends de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.MetaOrBuilder> 
+    public java.util.List<? extends de.bwueller.environment.protocol.UpdateActorUserMeta.MetaOrBuilder> 
         getMetaOrBuilderList() {
       return meta_;
     }
@@ -189,13 +189,13 @@ public final class UpdateActorUserMetaOuterClass {
     /**
      * <code>repeated .Meta meta = 2;</code>
      */
-    public de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta getMeta(int index) {
+    public de.bwueller.environment.protocol.UpdateActorUserMeta.Meta getMeta(int index) {
       return meta_.get(index);
     }
     /**
      * <code>repeated .Meta meta = 2;</code>
      */
-    public de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.MetaOrBuilder getMetaOrBuilder(
+    public de.bwueller.environment.protocol.UpdateActorUserMeta.MetaOrBuilder getMetaOrBuilder(
         int index) {
       return meta_.get(index);
     }
@@ -243,10 +243,10 @@ public final class UpdateActorUserMetaOuterClass {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta)) {
+      if (!(obj instanceof de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest)) {
         return super.equals(obj);
       }
-      de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta other = (de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta) obj;
+      de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest other = (de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest) obj;
 
       boolean result = true;
       result = result && (hasIdentifier() == other.hasIdentifier());
@@ -279,58 +279,58 @@ public final class UpdateActorUserMetaOuterClass {
       return hash;
     }
 
-    public static de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta parseFrom(
+    public static de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta parseFrom(
+    public static de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta parseFrom(byte[] data)
+    public static de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta parseFrom(
+    public static de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta parseFrom(java.io.InputStream input)
+    public static de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta parseFrom(
+    public static de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta parseDelimitedFrom(java.io.InputStream input)
+    public static de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta parseDelimitedFrom(
+    public static de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta parseFrom(
+    public static de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta parseFrom(
+    public static de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -342,7 +342,7 @@ public final class UpdateActorUserMetaOuterClass {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta prototype) {
+    public static Builder newBuilder(de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -357,25 +357,25 @@ public final class UpdateActorUserMetaOuterClass {
       return builder;
     }
     /**
-     * Protobuf type {@code UpdateActorUserMeta}
+     * Protobuf type {@code UpdateActorUserMetaRequest}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:UpdateActorUserMeta)
-        de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMetaOrBuilder {
+        // @@protoc_insertion_point(builder_implements:UpdateActorUserMetaRequest)
+        de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.internal_static_UpdateActorUserMeta_descriptor;
+        return de.bwueller.environment.protocol.UpdateActorUserMeta.internal_static_UpdateActorUserMetaRequest_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.internal_static_UpdateActorUserMeta_fieldAccessorTable
+        return de.bwueller.environment.protocol.UpdateActorUserMeta.internal_static_UpdateActorUserMetaRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta.class, de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta.Builder.class);
+                de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest.class, de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest.Builder.class);
       }
 
-      // Construct using de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta.newBuilder()
+      // Construct using de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -410,23 +410,23 @@ public final class UpdateActorUserMetaOuterClass {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.internal_static_UpdateActorUserMeta_descriptor;
+        return de.bwueller.environment.protocol.UpdateActorUserMeta.internal_static_UpdateActorUserMetaRequest_descriptor;
       }
 
-      public de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta getDefaultInstanceForType() {
-        return de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta.getDefaultInstance();
+      public de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest getDefaultInstanceForType() {
+        return de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest.getDefaultInstance();
       }
 
-      public de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta build() {
-        de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta result = buildPartial();
+      public de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest build() {
+        de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta buildPartial() {
-        de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta result = new de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta(this);
+      public de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest buildPartial() {
+        de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest result = new de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (identifierBuilder_ == null) {
@@ -475,16 +475,16 @@ public final class UpdateActorUserMetaOuterClass {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta) {
-          return mergeFrom((de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta)other);
+        if (other instanceof de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest) {
+          return mergeFrom((de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta other) {
-        if (other == de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta.getDefaultInstance()) return this;
+      public Builder mergeFrom(de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest other) {
+        if (other == de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest.getDefaultInstance()) return this;
         if (other.hasIdentifier()) {
           mergeIdentifier(other.getIdentifier());
         }
@@ -526,11 +526,11 @@ public final class UpdateActorUserMetaOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta parsedMessage = null;
+        de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta) e.getUnfinishedMessage();
+          parsedMessage = (de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -658,22 +658,22 @@ public final class UpdateActorUserMetaOuterClass {
         return identifierBuilder_;
       }
 
-      private java.util.List<de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta> meta_ =
+      private java.util.List<de.bwueller.environment.protocol.UpdateActorUserMeta.Meta> meta_ =
         java.util.Collections.emptyList();
       private void ensureMetaIsMutable() {
         if (!((bitField0_ & 0x00000002) == 0x00000002)) {
-          meta_ = new java.util.ArrayList<de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta>(meta_);
+          meta_ = new java.util.ArrayList<de.bwueller.environment.protocol.UpdateActorUserMeta.Meta>(meta_);
           bitField0_ |= 0x00000002;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta, de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta.Builder, de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.MetaOrBuilder> metaBuilder_;
+          de.bwueller.environment.protocol.UpdateActorUserMeta.Meta, de.bwueller.environment.protocol.UpdateActorUserMeta.Meta.Builder, de.bwueller.environment.protocol.UpdateActorUserMeta.MetaOrBuilder> metaBuilder_;
 
       /**
        * <code>repeated .Meta meta = 2;</code>
        */
-      public java.util.List<de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta> getMetaList() {
+      public java.util.List<de.bwueller.environment.protocol.UpdateActorUserMeta.Meta> getMetaList() {
         if (metaBuilder_ == null) {
           return java.util.Collections.unmodifiableList(meta_);
         } else {
@@ -693,7 +693,7 @@ public final class UpdateActorUserMetaOuterClass {
       /**
        * <code>repeated .Meta meta = 2;</code>
        */
-      public de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta getMeta(int index) {
+      public de.bwueller.environment.protocol.UpdateActorUserMeta.Meta getMeta(int index) {
         if (metaBuilder_ == null) {
           return meta_.get(index);
         } else {
@@ -704,7 +704,7 @@ public final class UpdateActorUserMetaOuterClass {
        * <code>repeated .Meta meta = 2;</code>
        */
       public Builder setMeta(
-          int index, de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta value) {
+          int index, de.bwueller.environment.protocol.UpdateActorUserMeta.Meta value) {
         if (metaBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -721,7 +721,7 @@ public final class UpdateActorUserMetaOuterClass {
        * <code>repeated .Meta meta = 2;</code>
        */
       public Builder setMeta(
-          int index, de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta.Builder builderForValue) {
+          int index, de.bwueller.environment.protocol.UpdateActorUserMeta.Meta.Builder builderForValue) {
         if (metaBuilder_ == null) {
           ensureMetaIsMutable();
           meta_.set(index, builderForValue.build());
@@ -734,7 +734,7 @@ public final class UpdateActorUserMetaOuterClass {
       /**
        * <code>repeated .Meta meta = 2;</code>
        */
-      public Builder addMeta(de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta value) {
+      public Builder addMeta(de.bwueller.environment.protocol.UpdateActorUserMeta.Meta value) {
         if (metaBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -751,7 +751,7 @@ public final class UpdateActorUserMetaOuterClass {
        * <code>repeated .Meta meta = 2;</code>
        */
       public Builder addMeta(
-          int index, de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta value) {
+          int index, de.bwueller.environment.protocol.UpdateActorUserMeta.Meta value) {
         if (metaBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -768,7 +768,7 @@ public final class UpdateActorUserMetaOuterClass {
        * <code>repeated .Meta meta = 2;</code>
        */
       public Builder addMeta(
-          de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta.Builder builderForValue) {
+          de.bwueller.environment.protocol.UpdateActorUserMeta.Meta.Builder builderForValue) {
         if (metaBuilder_ == null) {
           ensureMetaIsMutable();
           meta_.add(builderForValue.build());
@@ -782,7 +782,7 @@ public final class UpdateActorUserMetaOuterClass {
        * <code>repeated .Meta meta = 2;</code>
        */
       public Builder addMeta(
-          int index, de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta.Builder builderForValue) {
+          int index, de.bwueller.environment.protocol.UpdateActorUserMeta.Meta.Builder builderForValue) {
         if (metaBuilder_ == null) {
           ensureMetaIsMutable();
           meta_.add(index, builderForValue.build());
@@ -796,7 +796,7 @@ public final class UpdateActorUserMetaOuterClass {
        * <code>repeated .Meta meta = 2;</code>
        */
       public Builder addAllMeta(
-          java.lang.Iterable<? extends de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta> values) {
+          java.lang.Iterable<? extends de.bwueller.environment.protocol.UpdateActorUserMeta.Meta> values) {
         if (metaBuilder_ == null) {
           ensureMetaIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -836,14 +836,14 @@ public final class UpdateActorUserMetaOuterClass {
       /**
        * <code>repeated .Meta meta = 2;</code>
        */
-      public de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta.Builder getMetaBuilder(
+      public de.bwueller.environment.protocol.UpdateActorUserMeta.Meta.Builder getMetaBuilder(
           int index) {
         return getMetaFieldBuilder().getBuilder(index);
       }
       /**
        * <code>repeated .Meta meta = 2;</code>
        */
-      public de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.MetaOrBuilder getMetaOrBuilder(
+      public de.bwueller.environment.protocol.UpdateActorUserMeta.MetaOrBuilder getMetaOrBuilder(
           int index) {
         if (metaBuilder_ == null) {
           return meta_.get(index);  } else {
@@ -853,7 +853,7 @@ public final class UpdateActorUserMetaOuterClass {
       /**
        * <code>repeated .Meta meta = 2;</code>
        */
-      public java.util.List<? extends de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.MetaOrBuilder> 
+      public java.util.List<? extends de.bwueller.environment.protocol.UpdateActorUserMeta.MetaOrBuilder> 
            getMetaOrBuilderList() {
         if (metaBuilder_ != null) {
           return metaBuilder_.getMessageOrBuilderList();
@@ -864,31 +864,31 @@ public final class UpdateActorUserMetaOuterClass {
       /**
        * <code>repeated .Meta meta = 2;</code>
        */
-      public de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta.Builder addMetaBuilder() {
+      public de.bwueller.environment.protocol.UpdateActorUserMeta.Meta.Builder addMetaBuilder() {
         return getMetaFieldBuilder().addBuilder(
-            de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta.getDefaultInstance());
+            de.bwueller.environment.protocol.UpdateActorUserMeta.Meta.getDefaultInstance());
       }
       /**
        * <code>repeated .Meta meta = 2;</code>
        */
-      public de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta.Builder addMetaBuilder(
+      public de.bwueller.environment.protocol.UpdateActorUserMeta.Meta.Builder addMetaBuilder(
           int index) {
         return getMetaFieldBuilder().addBuilder(
-            index, de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta.getDefaultInstance());
+            index, de.bwueller.environment.protocol.UpdateActorUserMeta.Meta.getDefaultInstance());
       }
       /**
        * <code>repeated .Meta meta = 2;</code>
        */
-      public java.util.List<de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta.Builder> 
+      public java.util.List<de.bwueller.environment.protocol.UpdateActorUserMeta.Meta.Builder> 
            getMetaBuilderList() {
         return getMetaFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta, de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta.Builder, de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.MetaOrBuilder> 
+          de.bwueller.environment.protocol.UpdateActorUserMeta.Meta, de.bwueller.environment.protocol.UpdateActorUserMeta.Meta.Builder, de.bwueller.environment.protocol.UpdateActorUserMeta.MetaOrBuilder> 
           getMetaFieldBuilder() {
         if (metaBuilder_ == null) {
           metaBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta, de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta.Builder, de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.MetaOrBuilder>(
+              de.bwueller.environment.protocol.UpdateActorUserMeta.Meta, de.bwueller.environment.protocol.UpdateActorUserMeta.Meta.Builder, de.bwueller.environment.protocol.UpdateActorUserMeta.MetaOrBuilder>(
                   meta_,
                   ((bitField0_ & 0x00000002) == 0x00000002),
                   getParentForChildren(),
@@ -908,39 +908,39 @@ public final class UpdateActorUserMetaOuterClass {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:UpdateActorUserMeta)
+      // @@protoc_insertion_point(builder_scope:UpdateActorUserMetaRequest)
     }
 
-    // @@protoc_insertion_point(class_scope:UpdateActorUserMeta)
-    private static final de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:UpdateActorUserMetaRequest)
+    private static final de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta();
+      DEFAULT_INSTANCE = new de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest();
     }
 
-    public static de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta getDefaultInstance() {
+    public static de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<UpdateActorUserMeta>
-        PARSER = new com.google.protobuf.AbstractParser<UpdateActorUserMeta>() {
-      public UpdateActorUserMeta parsePartialFrom(
+    private static final com.google.protobuf.Parser<UpdateActorUserMetaRequest>
+        PARSER = new com.google.protobuf.AbstractParser<UpdateActorUserMetaRequest>() {
+      public UpdateActorUserMetaRequest parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-          return new UpdateActorUserMeta(input, extensionRegistry);
+          return new UpdateActorUserMetaRequest(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<UpdateActorUserMeta> parser() {
+    public static com.google.protobuf.Parser<UpdateActorUserMetaRequest> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<UpdateActorUserMeta> getParserForType() {
+    public com.google.protobuf.Parser<UpdateActorUserMetaRequest> getParserForType() {
       return PARSER;
     }
 
-    public de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.UpdateActorUserMeta getDefaultInstanceForType() {
+    public de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1030,14 +1030,14 @@ public final class UpdateActorUserMetaOuterClass {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.internal_static_Meta_descriptor;
+      return de.bwueller.environment.protocol.UpdateActorUserMeta.internal_static_Meta_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.internal_static_Meta_fieldAccessorTable
+      return de.bwueller.environment.protocol.UpdateActorUserMeta.internal_static_Meta_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta.class, de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta.Builder.class);
+              de.bwueller.environment.protocol.UpdateActorUserMeta.Meta.class, de.bwueller.environment.protocol.UpdateActorUserMeta.Meta.Builder.class);
     }
 
     public static final int IDENTIFIER_FIELD_NUMBER = 1;
@@ -1125,10 +1125,10 @@ public final class UpdateActorUserMetaOuterClass {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta)) {
+      if (!(obj instanceof de.bwueller.environment.protocol.UpdateActorUserMeta.Meta)) {
         return super.equals(obj);
       }
-      de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta other = (de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta) obj;
+      de.bwueller.environment.protocol.UpdateActorUserMeta.Meta other = (de.bwueller.environment.protocol.UpdateActorUserMeta.Meta) obj;
 
       boolean result = true;
       result = result && (getIdentifier()
@@ -1154,58 +1154,58 @@ public final class UpdateActorUserMetaOuterClass {
       return hash;
     }
 
-    public static de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta parseFrom(
+    public static de.bwueller.environment.protocol.UpdateActorUserMeta.Meta parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta parseFrom(
+    public static de.bwueller.environment.protocol.UpdateActorUserMeta.Meta parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta parseFrom(byte[] data)
+    public static de.bwueller.environment.protocol.UpdateActorUserMeta.Meta parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta parseFrom(
+    public static de.bwueller.environment.protocol.UpdateActorUserMeta.Meta parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta parseFrom(java.io.InputStream input)
+    public static de.bwueller.environment.protocol.UpdateActorUserMeta.Meta parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta parseFrom(
+    public static de.bwueller.environment.protocol.UpdateActorUserMeta.Meta parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta parseDelimitedFrom(java.io.InputStream input)
+    public static de.bwueller.environment.protocol.UpdateActorUserMeta.Meta parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta parseDelimitedFrom(
+    public static de.bwueller.environment.protocol.UpdateActorUserMeta.Meta parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta parseFrom(
+    public static de.bwueller.environment.protocol.UpdateActorUserMeta.Meta parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta parseFrom(
+    public static de.bwueller.environment.protocol.UpdateActorUserMeta.Meta parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1217,7 +1217,7 @@ public final class UpdateActorUserMetaOuterClass {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta prototype) {
+    public static Builder newBuilder(de.bwueller.environment.protocol.UpdateActorUserMeta.Meta prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -1237,20 +1237,20 @@ public final class UpdateActorUserMetaOuterClass {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:Meta)
-        de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.MetaOrBuilder {
+        de.bwueller.environment.protocol.UpdateActorUserMeta.MetaOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.internal_static_Meta_descriptor;
+        return de.bwueller.environment.protocol.UpdateActorUserMeta.internal_static_Meta_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.internal_static_Meta_fieldAccessorTable
+        return de.bwueller.environment.protocol.UpdateActorUserMeta.internal_static_Meta_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta.class, de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta.Builder.class);
+                de.bwueller.environment.protocol.UpdateActorUserMeta.Meta.class, de.bwueller.environment.protocol.UpdateActorUserMeta.Meta.Builder.class);
       }
 
-      // Construct using de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta.newBuilder()
+      // Construct using de.bwueller.environment.protocol.UpdateActorUserMeta.Meta.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1276,23 +1276,23 @@ public final class UpdateActorUserMetaOuterClass {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.internal_static_Meta_descriptor;
+        return de.bwueller.environment.protocol.UpdateActorUserMeta.internal_static_Meta_descriptor;
       }
 
-      public de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta getDefaultInstanceForType() {
-        return de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta.getDefaultInstance();
+      public de.bwueller.environment.protocol.UpdateActorUserMeta.Meta getDefaultInstanceForType() {
+        return de.bwueller.environment.protocol.UpdateActorUserMeta.Meta.getDefaultInstance();
       }
 
-      public de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta build() {
-        de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta result = buildPartial();
+      public de.bwueller.environment.protocol.UpdateActorUserMeta.Meta build() {
+        de.bwueller.environment.protocol.UpdateActorUserMeta.Meta result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta buildPartial() {
-        de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta result = new de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta(this);
+      public de.bwueller.environment.protocol.UpdateActorUserMeta.Meta buildPartial() {
+        de.bwueller.environment.protocol.UpdateActorUserMeta.Meta result = new de.bwueller.environment.protocol.UpdateActorUserMeta.Meta(this);
         result.identifier_ = identifier_;
         result.value_ = value_;
         onBuilt();
@@ -1326,16 +1326,16 @@ public final class UpdateActorUserMetaOuterClass {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta) {
-          return mergeFrom((de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta)other);
+        if (other instanceof de.bwueller.environment.protocol.UpdateActorUserMeta.Meta) {
+          return mergeFrom((de.bwueller.environment.protocol.UpdateActorUserMeta.Meta)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta other) {
-        if (other == de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta.getDefaultInstance()) return this;
+      public Builder mergeFrom(de.bwueller.environment.protocol.UpdateActorUserMeta.Meta other) {
+        if (other == de.bwueller.environment.protocol.UpdateActorUserMeta.Meta.getDefaultInstance()) return this;
         if (other.getIdentifier() != 0) {
           setIdentifier(other.getIdentifier());
         }
@@ -1355,11 +1355,11 @@ public final class UpdateActorUserMetaOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta parsedMessage = null;
+        de.bwueller.environment.protocol.UpdateActorUserMeta.Meta parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta) e.getUnfinishedMessage();
+          parsedMessage = (de.bwueller.environment.protocol.UpdateActorUserMeta.Meta) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1478,12 +1478,12 @@ public final class UpdateActorUserMetaOuterClass {
     }
 
     // @@protoc_insertion_point(class_scope:Meta)
-    private static final de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta DEFAULT_INSTANCE;
+    private static final de.bwueller.environment.protocol.UpdateActorUserMeta.Meta DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta();
+      DEFAULT_INSTANCE = new de.bwueller.environment.protocol.UpdateActorUserMeta.Meta();
     }
 
-    public static de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta getDefaultInstance() {
+    public static de.bwueller.environment.protocol.UpdateActorUserMeta.Meta getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1506,17 +1506,17 @@ public final class UpdateActorUserMetaOuterClass {
       return PARSER;
     }
 
-    public de.bwueller.environment.protocol.UpdateActorUserMetaOuterClass.Meta getDefaultInstanceForType() {
+    public de.bwueller.environment.protocol.UpdateActorUserMeta.Meta getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_UpdateActorUserMeta_descriptor;
+    internal_static_UpdateActorUserMetaRequest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_UpdateActorUserMeta_fieldAccessorTable;
+      internal_static_UpdateActorUserMetaRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Meta_descriptor;
   private static final 
@@ -1532,11 +1532,11 @@ public final class UpdateActorUserMetaOuterClass {
   static {
     java.lang.String[] descriptorData = {
       "\n\034update_actor_user_meta.proto\032\rgeneral." +
-      "proto\"E\n\023UpdateActorUserMeta\022\031\n\nidentifi" +
-      "er\030\001 \001(\0132\005.UUID\022\023\n\004meta\030\002 \003(\0132\005.Meta\")\n\004" +
-      "Meta\022\022\n\nidentifier\030\001 \001(\005\022\r\n\005value\030\002 \001(\tB" +
-      "\"\n de.bwueller.environment.protocolb\006pro" +
-      "to3"
+      "proto\"L\n\032UpdateActorUserMetaRequest\022\031\n\ni" +
+      "dentifier\030\001 \001(\0132\005.UUID\022\023\n\004meta\030\002 \003(\0132\005.M" +
+      "eta\")\n\004Meta\022\022\n\nidentifier\030\001 \001(\005\022\r\n\005value" +
+      "\030\002 \001(\tB\"\n de.bwueller.environment.protoc" +
+      "olb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1551,11 +1551,11 @@ public final class UpdateActorUserMetaOuterClass {
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           de.bwueller.environment.protocol.General.getDescriptor(),
         }, assigner);
-    internal_static_UpdateActorUserMeta_descriptor =
+    internal_static_UpdateActorUserMetaRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_UpdateActorUserMeta_fieldAccessorTable = new
+    internal_static_UpdateActorUserMetaRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_UpdateActorUserMeta_descriptor,
+        internal_static_UpdateActorUserMetaRequest_descriptor,
         new java.lang.String[] { "Identifier", "Meta", });
     internal_static_Meta_descriptor =
       getDescriptor().getMessageTypes().get(1);
