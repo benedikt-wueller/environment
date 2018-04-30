@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+import "../general.proto";
+
+message UpdateUserStatusRequest {
+    string user = 1;
+    UUID identifier = 2;
+    Status status = 3;
+
+    enum Status {
+        CONNECTED = 0;
+        DISCONNECTED = 1;
+    }
+}
