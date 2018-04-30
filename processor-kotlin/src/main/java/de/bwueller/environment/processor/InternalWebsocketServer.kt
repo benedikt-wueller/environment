@@ -12,11 +12,7 @@ import java.lang.Exception
 import java.net.InetSocketAddress
 import java.nio.ByteBuffer
 
-// TODO: implement logger
-
 class InternalWebsocketServer(private val serverPort: Int) : WebSocketServer(InetSocketAddress(serverPort)) {
-
-    private val actorManager = ActorManager()
 
     init {
         start()
@@ -38,8 +34,8 @@ class InternalWebsocketServer(private val serverPort: Int) : WebSocketServer(Ine
         // Pass packet to the corresponding handlers.
         when (packet) {
             is RegisterActor.RegisterActorRequest -> actorManager.handleRegisterActorRequest(packet, socket)
-            is RegisterActorUser.RegisterActorUserRequest -> actorManager.handleRegisterUserRequest(packet, socket)
-            is UnregisterActorUser.UnregisterActorUserRequest -> actorManager.handleUnregisterUserRequest(packet, socket)
+            is RegisterActorUser.RegisterActorUserRequest -> userManager.handleRegisterUserRequest(packet, socket)
+            is UnregisterActorUser.UnregisterActorUserRequest -> userManager.handleUnregisterUserRequest(packet, socket)
         }
     }
 
