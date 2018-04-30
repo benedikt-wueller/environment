@@ -1,6 +1,5 @@
 package de.bwueller.environment.processor
 
-import de.bwueller.environment.processor.actor.ActorManager
 import de.bwueller.environment.protocol.*
 import org.java_websocket.WebSocket
 import org.java_websocket.handshake.ClientHandshake

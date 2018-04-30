@@ -1,6 +1,5 @@
 package de.bwueller.environment.processor
 
-import de.bwueller.environment.processor.actor.ActorManager
 import de.bwueller.environment.protocol.RegisterActor
 import de.bwueller.environment.protocol.RegisterActorUser
 import de.bwueller.environment.protocol.UnregisterActorUser
