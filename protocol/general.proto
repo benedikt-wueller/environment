@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+option java_package = "de.bwueller.environment.protocol";
+
 message UUID {
     bytes value = 1;
 }
