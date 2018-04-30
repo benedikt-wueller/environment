@@ -1,33 +1,34 @@
 package de.bwueller.environment.protocol
 
 import com.google.protobuf.GeneratedMessageV3
-import de.bwueller.environment.protocol.*
 
 /* NOPE. */
 
 fun deserializePacket(bytes: ByteArray): GeneratedMessageV3? {
     val type = if (bytes.isNotEmpty()) bytes[0] else return null
-    val data = bytes.copyOfRange(1, bytes.size - 1)
+    val data = if (bytes.size >= 2) bytes.copyOfRange(1, bytes.size - 1) else ByteArray(0)
 
-    when (type) {
-        0.toByte() -> return RegisterActor.RegisterActorRequest.parseFrom(data)
-        1.toByte() -> return RegisterActor.RegisterActorResponse.parseFrom(data)
-        2.toByte() -> return RegisterActorUser.RegisterActorUserRequest.parseFrom(data)
-        3.toByte() -> return RegisterActorUser.RegisterActorUserResponse.parseFrom(data)
-        4.toByte() -> return UnregisterActorUser.UnregisterActorUserRequest.parseFrom(data)
-        5.toByte() -> return ConnectUser.ConnectUserRequest.parseFrom(data)
-        6.toByte() -> return ConnectUser.ConnectUserResponse.parseFrom(data)
-        7.toByte() -> return UpdateUserStatus.UpdateUserStatusRequest.parseFrom(data)
-        8.toByte() -> return UpdateActorUserMeta.UpdateActorUserMetaRequest.parseFrom(data)
-        9.toByte() -> return PlaySound.PlaySoundRequest.parseFrom(data)
-        10.toByte() -> return PlaySound.PlaySoundResponse.parseFrom(data)
-        11.toByte() -> return StopSound.StopSoundRequest.parseFrom(data)
-        12.toByte() -> return StopSound.StopSoundResponse.parseFrom(data)
-        13.toByte() -> return UpdateSoundVolume.UpdateSoundVolumeRequest.parseFrom(data)
-        14.toByte() -> return UpdateSoundVolume.UpdateSoundVolumeResponse.parseFrom(data)
-        15.toByte() -> return UpdateSoundRate.UpdateSoundRateRequest.parseFrom(data)
-        16.toByte() -> return UpdateSoundRate.UpdateSoundRateResponse.parseFrom(data)
-    }
+    try {
+        when (type) {
+            0.toByte() -> return RegisterActor.RegisterActorRequest.parseFrom(data)
+            1.toByte() -> return RegisterActor.RegisterActorResponse.parseFrom(data)
+            2.toByte() -> return RegisterActorUser.RegisterActorUserRequest.parseFrom(data)
+            3.toByte() -> return RegisterActorUser.RegisterActorUserResponse.parseFrom(data)
+            4.toByte() -> return UnregisterActorUser.UnregisterActorUserRequest.parseFrom(data)
+            5.toByte() -> return ConnectUser.ConnectUserRequest.parseFrom(data)
+            6.toByte() -> return ConnectUser.ConnectUserResponse.parseFrom(data)
+            7.toByte() -> return UpdateUserStatus.UpdateUserStatusRequest.parseFrom(data)
+            8.toByte() -> return UpdateActorUserMeta.UpdateActorUserMetaRequest.parseFrom(data)
+            9.toByte() -> return PlaySound.PlaySoundRequest.parseFrom(data)
+            10.toByte() -> return PlaySound.PlaySoundResponse.parseFrom(data)
+            11.toByte() -> return StopSound.StopSoundRequest.parseFrom(data)
+            12.toByte() -> return StopSound.StopSoundResponse.parseFrom(data)
+            13.toByte() -> return UpdateSoundVolume.UpdateSoundVolumeRequest.parseFrom(data)
+            14.toByte() -> return UpdateSoundVolume.UpdateSoundVolumeResponse.parseFrom(data)
+            15.toByte() -> return UpdateSoundRate.UpdateSoundRateRequest.parseFrom(data)
+            16.toByte() -> return UpdateSoundRate.UpdateSoundRateResponse.parseFrom(data)
+        }
+    } catch (ex: Exception) {}
 
     return null
 }
