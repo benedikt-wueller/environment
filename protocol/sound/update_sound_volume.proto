@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+import "../general.proto";
+
+message UpdateSoundVolumeRequest {
+    UUID sound = 1; // Sound identifier.
+    double volume = 2;
+    uint32 duration = 3;
+}
+
+message UpdateSoundVolumeResponse {
+    UUID sound = 1;
+    double volume = 2;
+}

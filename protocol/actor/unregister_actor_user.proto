@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+import "../general.proto";
+
+message UnregisterActorUserRequest {
+    UUID identifier = 1; // Unique user identifier.
+}

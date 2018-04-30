@@ -1,0 +1,5 @@
+syntax = "proto3";
+
+message UUID {
+    bytes value = 1;
+}
