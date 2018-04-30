@@ -1,8 +1,10 @@
 package de.bwueller.environment.processor.user
 
 import de.bwueller.environment.processor.actorManager
+import de.bwueller.environment.protocol.ConnectUser
 import de.bwueller.environment.protocol.RegisterActorUser
 import de.bwueller.environment.protocol.UnregisterActorUser
+import de.bwueller.environment.protocol.serializePacket
 import org.java_websocket.WebSocket
 import java.util.*
 
@@ -44,6 +46,54 @@ class UserManager {
         println("User ${user.name} has been removed.")
     }
 
+    @Synchronized
+    fun disconnectUser(socket: WebSocket) {
+        val user = socketUsers.remove(socket) ?: return
+        user.socket = null
+        tryRemoveUser(user)
+    }
+
+    @Synchronized
+    fun handleConnectUserRequest(packet: ConnectUser.ConnectUserRequest, socket: WebSocket) {
+        val userName = packet.user
+        val key = packet.key
+
+        val builder = ConnectUser.ConnectUserResponse.newBuilder()
+        builder.user = userName
+
+        if (users.containsKey(userName)) {
+            val user = users[userName]!!
+
+            if (user.key == key) {
+                if (user.socket === null) {
+                    // The user is allowed to connect.
+                    builder.status = ConnectUser.ConnectUserResponse.Status.SUC_CONNECTED
+
+                    // Set socket for user.
+                    socketUsers[socket] = user
+                    user.socket = socket
+                } else {
+                    // The user is already connected with another WebSocket connection. Set error status.
+                    builder.status = ConnectUser.ConnectUserResponse.Status.ERR_ALREADY_CONNECTED
+                }
+            } else {
+                // The key is incorrect. Set error status.
+                builder.status = ConnectUser.ConnectUserResponse.Status.ERR_NOT_FOUND
+            }
+        } else {
+            // The user could not be found. Set error status.
+            builder.status = ConnectUser.ConnectUserResponse.Status.ERR_NOT_FOUND
+        }
+
+        socket.send(serializePacket(builder.build()))
+
+        if (builder.status === ConnectUser.ConnectUserResponse.Status.SUC_CONNECTED) {
+            println("User $userName has been accepted.")
+        } else {
+            println("User $userName has been rejected.")
+        }
+    }
+
     fun handleRegisterUserRequest(packet: RegisterActorUser.RegisterActorUserRequest, socket: WebSocket) {
         val actor = actorManager.getActor(socket) ?: return
         val userName = packet.user
@@ -79,4 +129,6 @@ class UserManager {
             }
         }
     }
+
+    fun isUserSocket(socket: WebSocket) = socketUsers.containsKey(socket)
 }

@@ -46,14 +46,6 @@ class ActorManager {
     }
 
     /**
-     * Returns whether this WebSocket connection is tied to an actor.
-     *
-     * @param socket the WebSocket to check.
-     * @return whether an actor has been found.
-     */
-    fun isActorSocket(socket: WebSocket) = socketActors.containsKey(socket)
-
-    /**
      * Handles the request to unregister an actor. Typically called when a WebSocket connection to an actor is closed.
      *
      * @param socket the WebSocket to close the actor for.
@@ -70,6 +62,8 @@ class ActorManager {
 
         println("Actor ${actor.name}(${actor.uuid}) has been unregistered.")
     }
+
+    fun isActorSocket(socket: WebSocket) = socketActors.containsKey(socket)
 
     fun getActor(socket: WebSocket) = socketActors[socket]
 }
