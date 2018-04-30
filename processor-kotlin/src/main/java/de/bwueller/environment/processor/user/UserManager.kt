@@ -1,10 +1,7 @@
 package de.bwueller.environment.processor.user
 
 import de.bwueller.environment.processor.actorManager
-import de.bwueller.environment.protocol.ConnectUser
-import de.bwueller.environment.protocol.RegisterActorUser
-import de.bwueller.environment.protocol.UnregisterActorUser
-import de.bwueller.environment.protocol.serializePacket
+import de.bwueller.environment.protocol.*
 import org.java_websocket.WebSocket
 import java.util.*
 
@@ -50,6 +47,13 @@ class UserManager {
     fun disconnectUser(socket: WebSocket) {
         val user = socketUsers.remove(socket) ?: return
         user.socket = null
+
+        // Send update to actor.
+        val actorBuilder = UpdateUserStatus.UpdateUserStatusRequest.newBuilder()
+        actorBuilder.user = user.name
+        actorBuilder.status = UpdateUserStatus.UpdateUserStatusRequest.Status.DISCONNECTED
+        user.actor.socket.send(serializePacket(actorBuilder.build()))
+
         tryRemoveUser(user)
     }
 
@@ -72,6 +76,12 @@ class UserManager {
                     // Set socket for user.
                     socketUsers[socket] = user
                     user.socket = socket
+
+                    // Send update to actor.
+                    val actorBuilder = UpdateUserStatus.UpdateUserStatusRequest.newBuilder()
+                    actorBuilder.user = user.name
+                    actorBuilder.status = UpdateUserStatus.UpdateUserStatusRequest.Status.CONNECTED
+                    user.actor.socket.send(serializePacket(actorBuilder.build()))
                 } else {
                     // The user is already connected with another WebSocket connection. Set error status.
                     builder.status = ConnectUser.ConnectUserResponse.Status.ERR_ALREADY_CONNECTED
