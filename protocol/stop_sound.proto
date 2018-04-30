@@ -5,11 +5,11 @@ option java_package = "de.bwueller.environment.protocol";
 import "general.proto";
 
 message StopSoundRequest {
-    UUID sound = 1; // Sound identifier.
+    string sound = 1; // Sound identifier.
     uint32 delay = 2;
     uint32 duration = 3;
 }
 
 message StopSoundResponse {
-    UUID sound = 1;
+    string sound = 1;
 }

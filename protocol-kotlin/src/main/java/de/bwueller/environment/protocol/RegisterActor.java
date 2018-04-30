@@ -33,16 +33,24 @@ public final class RegisterActor {
      * Data is sent to the user when connecting to the processor.
      * </pre>
      *
-     * <code>repeated string meta = 2;</code>
+     * <code>repeated .Meta meta = 2;</code>
      */
-    java.util.List<java.lang.String>
+    java.util.List<de.bwueller.environment.protocol.General.Meta> 
         getMetaList();
     /**
      * <pre>
      * Data is sent to the user when connecting to the processor.
      * </pre>
      *
-     * <code>repeated string meta = 2;</code>
+     * <code>repeated .Meta meta = 2;</code>
+     */
+    de.bwueller.environment.protocol.General.Meta getMeta(int index);
+    /**
+     * <pre>
+     * Data is sent to the user when connecting to the processor.
+     * </pre>
+     *
+     * <code>repeated .Meta meta = 2;</code>
      */
     int getMetaCount();
     /**
@@ -50,18 +58,19 @@ public final class RegisterActor {
      * Data is sent to the user when connecting to the processor.
      * </pre>
      *
-     * <code>repeated string meta = 2;</code>
+     * <code>repeated .Meta meta = 2;</code>
      */
-    java.lang.String getMeta(int index);
+    java.util.List<? extends de.bwueller.environment.protocol.General.MetaOrBuilder> 
+        getMetaOrBuilderList();
     /**
      * <pre>
      * Data is sent to the user when connecting to the processor.
      * </pre>
      *
-     * <code>repeated string meta = 2;</code>
+     * <code>repeated .Meta meta = 2;</code>
      */
-    com.google.protobuf.ByteString
-        getMetaBytes(int index);
+    de.bwueller.environment.protocol.General.MetaOrBuilder getMetaOrBuilder(
+        int index);
   }
   /**
    * Protobuf type {@code RegisterActorRequest}
@@ -76,7 +85,7 @@ public final class RegisterActor {
     }
     private RegisterActorRequest() {
       name_ = "";
-      meta_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      meta_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -111,12 +120,12 @@ public final class RegisterActor {
               break;
             }
             case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
               if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-                meta_ = new com.google.protobuf.LazyStringArrayList();
+                meta_ = new java.util.ArrayList<de.bwueller.environment.protocol.General.Meta>();
                 mutable_bitField0_ |= 0x00000002;
               }
-              meta_.add(s);
+              meta_.add(
+                  input.readMessage(de.bwueller.environment.protocol.General.Meta.parser(), extensionRegistry));
               break;
             }
           }
@@ -128,7 +137,7 @@ public final class RegisterActor {
             e).setUnfinishedMessage(this);
       } finally {
         if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-          meta_ = meta_.getUnmodifiableView();
+          meta_ = java.util.Collections.unmodifiableList(meta_);
         }
         makeExtensionsImmutable();
       }
@@ -181,16 +190,15 @@ public final class RegisterActor {
     }
 
     public static final int META_FIELD_NUMBER = 2;
-    private com.google.protobuf.LazyStringList meta_;
+    private java.util.List<de.bwueller.environment.protocol.General.Meta> meta_;
     /**
      * <pre>
      * Data is sent to the user when connecting to the processor.
      * </pre>
      *
-     * <code>repeated string meta = 2;</code>
+     * <code>repeated .Meta meta = 2;</code>
      */
-    public com.google.protobuf.ProtocolStringList
-        getMetaList() {
+    public java.util.List<de.bwueller.environment.protocol.General.Meta> getMetaList() {
       return meta_;
     }
     /**
@@ -198,7 +206,18 @@ public final class RegisterActor {
      * Data is sent to the user when connecting to the processor.
      * </pre>
      *
-     * <code>repeated string meta = 2;</code>
+     * <code>repeated .Meta meta = 2;</code>
+     */
+    public java.util.List<? extends de.bwueller.environment.protocol.General.MetaOrBuilder> 
+        getMetaOrBuilderList() {
+      return meta_;
+    }
+    /**
+     * <pre>
+     * Data is sent to the user when connecting to the processor.
+     * </pre>
+     *
+     * <code>repeated .Meta meta = 2;</code>
      */
     public int getMetaCount() {
       return meta_.size();
@@ -208,9 +227,9 @@ public final class RegisterActor {
      * Data is sent to the user when connecting to the processor.
      * </pre>
      *
-     * <code>repeated string meta = 2;</code>
+     * <code>repeated .Meta meta = 2;</code>
      */
-    public java.lang.String getMeta(int index) {
+    public de.bwueller.environment.protocol.General.Meta getMeta(int index) {
       return meta_.get(index);
     }
     /**
@@ -218,11 +237,11 @@ public final class RegisterActor {
      * Data is sent to the user when connecting to the processor.
      * </pre>
      *
-     * <code>repeated string meta = 2;</code>
+     * <code>repeated .Meta meta = 2;</code>
      */
-    public com.google.protobuf.ByteString
-        getMetaBytes(int index) {
-      return meta_.getByteString(index);
+    public de.bwueller.environment.protocol.General.MetaOrBuilder getMetaOrBuilder(
+        int index) {
+      return meta_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -241,7 +260,7 @@ public final class RegisterActor {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
       }
       for (int i = 0; i < meta_.size(); i++) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, meta_.getRaw(i));
+        output.writeMessage(2, meta_.get(i));
       }
     }
 
@@ -253,13 +272,9 @@ public final class RegisterActor {
       if (!getNameBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
       }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < meta_.size(); i++) {
-          dataSize += computeStringSizeNoTag(meta_.getRaw(i));
-        }
-        size += dataSize;
-        size += 1 * getMetaList().size();
+      for (int i = 0; i < meta_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, meta_.get(i));
       }
       memoizedSize = size;
       return size;
@@ -411,14 +426,19 @@ public final class RegisterActor {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
+          getMetaFieldBuilder();
         }
       }
       public Builder clear() {
         super.clear();
         name_ = "";
 
-        meta_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000002);
+        if (metaBuilder_ == null) {
+          meta_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        } else {
+          metaBuilder_.clear();
+        }
         return this;
       }
 
@@ -444,11 +464,15 @@ public final class RegisterActor {
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         result.name_ = name_;
-        if (((bitField0_ & 0x00000002) == 0x00000002)) {
-          meta_ = meta_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000002);
+        if (metaBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            meta_ = java.util.Collections.unmodifiableList(meta_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.meta_ = meta_;
+        } else {
+          result.meta_ = metaBuilder_.build();
         }
-        result.meta_ = meta_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -495,15 +519,31 @@ public final class RegisterActor {
           name_ = other.name_;
           onChanged();
         }
-        if (!other.meta_.isEmpty()) {
-          if (meta_.isEmpty()) {
-            meta_ = other.meta_;
-            bitField0_ = (bitField0_ & ~0x00000002);
-          } else {
-            ensureMetaIsMutable();
-            meta_.addAll(other.meta_);
+        if (metaBuilder_ == null) {
+          if (!other.meta_.isEmpty()) {
+            if (meta_.isEmpty()) {
+              meta_ = other.meta_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureMetaIsMutable();
+              meta_.addAll(other.meta_);
+            }
+            onChanged();
           }
-          onChanged();
+        } else {
+          if (!other.meta_.isEmpty()) {
+            if (metaBuilder_.isEmpty()) {
+              metaBuilder_.dispose();
+              metaBuilder_ = null;
+              meta_ = other.meta_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              metaBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getMetaFieldBuilder() : null;
+            } else {
+              metaBuilder_.addAllMessages(other.meta_);
+            }
+          }
         }
         onChanged();
         return this;
@@ -601,70 +641,79 @@ public final class RegisterActor {
         return this;
       }
 
-      private com.google.protobuf.LazyStringList meta_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private java.util.List<de.bwueller.environment.protocol.General.Meta> meta_ =
+        java.util.Collections.emptyList();
       private void ensureMetaIsMutable() {
         if (!((bitField0_ & 0x00000002) == 0x00000002)) {
-          meta_ = new com.google.protobuf.LazyStringArrayList(meta_);
+          meta_ = new java.util.ArrayList<de.bwueller.environment.protocol.General.Meta>(meta_);
           bitField0_ |= 0x00000002;
          }
       }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          de.bwueller.environment.protocol.General.Meta, de.bwueller.environment.protocol.General.Meta.Builder, de.bwueller.environment.protocol.General.MetaOrBuilder> metaBuilder_;
+
       /**
        * <pre>
        * Data is sent to the user when connecting to the processor.
        * </pre>
        *
-       * <code>repeated string meta = 2;</code>
+       * <code>repeated .Meta meta = 2;</code>
        */
-      public com.google.protobuf.ProtocolStringList
-          getMetaList() {
-        return meta_.getUnmodifiableView();
+      public java.util.List<de.bwueller.environment.protocol.General.Meta> getMetaList() {
+        if (metaBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(meta_);
+        } else {
+          return metaBuilder_.getMessageList();
+        }
       }
       /**
        * <pre>
        * Data is sent to the user when connecting to the processor.
        * </pre>
        *
-       * <code>repeated string meta = 2;</code>
+       * <code>repeated .Meta meta = 2;</code>
        */
       public int getMetaCount() {
-        return meta_.size();
+        if (metaBuilder_ == null) {
+          return meta_.size();
+        } else {
+          return metaBuilder_.getCount();
+        }
       }
       /**
        * <pre>
        * Data is sent to the user when connecting to the processor.
        * </pre>
        *
-       * <code>repeated string meta = 2;</code>
+       * <code>repeated .Meta meta = 2;</code>
        */
-      public java.lang.String getMeta(int index) {
-        return meta_.get(index);
+      public de.bwueller.environment.protocol.General.Meta getMeta(int index) {
+        if (metaBuilder_ == null) {
+          return meta_.get(index);
+        } else {
+          return metaBuilder_.getMessage(index);
+        }
       }
       /**
        * <pre>
        * Data is sent to the user when connecting to the processor.
        * </pre>
        *
-       * <code>repeated string meta = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getMetaBytes(int index) {
-        return meta_.getByteString(index);
-      }
-      /**
-       * <pre>
-       * Data is sent to the user when connecting to the processor.
-       * </pre>
-       *
-       * <code>repeated string meta = 2;</code>
+       * <code>repeated .Meta meta = 2;</code>
        */
       public Builder setMeta(
-          int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureMetaIsMutable();
-        meta_.set(index, value);
-        onChanged();
+          int index, de.bwueller.environment.protocol.General.Meta value) {
+        if (metaBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureMetaIsMutable();
+          meta_.set(index, value);
+          onChanged();
+        } else {
+          metaBuilder_.setMessage(index, value);
+        }
         return this;
       }
       /**
@@ -672,16 +721,58 @@ public final class RegisterActor {
        * Data is sent to the user when connecting to the processor.
        * </pre>
        *
-       * <code>repeated string meta = 2;</code>
+       * <code>repeated .Meta meta = 2;</code>
+       */
+      public Builder setMeta(
+          int index, de.bwueller.environment.protocol.General.Meta.Builder builderForValue) {
+        if (metaBuilder_ == null) {
+          ensureMetaIsMutable();
+          meta_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          metaBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Data is sent to the user when connecting to the processor.
+       * </pre>
+       *
+       * <code>repeated .Meta meta = 2;</code>
+       */
+      public Builder addMeta(de.bwueller.environment.protocol.General.Meta value) {
+        if (metaBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureMetaIsMutable();
+          meta_.add(value);
+          onChanged();
+        } else {
+          metaBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Data is sent to the user when connecting to the processor.
+       * </pre>
+       *
+       * <code>repeated .Meta meta = 2;</code>
        */
       public Builder addMeta(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureMetaIsMutable();
-        meta_.add(value);
-        onChanged();
+          int index, de.bwueller.environment.protocol.General.Meta value) {
+        if (metaBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureMetaIsMutable();
+          meta_.add(index, value);
+          onChanged();
+        } else {
+          metaBuilder_.addMessage(index, value);
+        }
         return this;
       }
       /**
@@ -689,14 +780,54 @@ public final class RegisterActor {
        * Data is sent to the user when connecting to the processor.
        * </pre>
        *
-       * <code>repeated string meta = 2;</code>
+       * <code>repeated .Meta meta = 2;</code>
+       */
+      public Builder addMeta(
+          de.bwueller.environment.protocol.General.Meta.Builder builderForValue) {
+        if (metaBuilder_ == null) {
+          ensureMetaIsMutable();
+          meta_.add(builderForValue.build());
+          onChanged();
+        } else {
+          metaBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Data is sent to the user when connecting to the processor.
+       * </pre>
+       *
+       * <code>repeated .Meta meta = 2;</code>
+       */
+      public Builder addMeta(
+          int index, de.bwueller.environment.protocol.General.Meta.Builder builderForValue) {
+        if (metaBuilder_ == null) {
+          ensureMetaIsMutable();
+          meta_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          metaBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Data is sent to the user when connecting to the processor.
+       * </pre>
+       *
+       * <code>repeated .Meta meta = 2;</code>
        */
       public Builder addAllMeta(
-          java.lang.Iterable<java.lang.String> values) {
-        ensureMetaIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, meta_);
-        onChanged();
+          java.lang.Iterable<? extends de.bwueller.environment.protocol.General.Meta> values) {
+        if (metaBuilder_ == null) {
+          ensureMetaIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, meta_);
+          onChanged();
+        } else {
+          metaBuilder_.addAllMessages(values);
+        }
         return this;
       }
       /**
@@ -704,12 +835,16 @@ public final class RegisterActor {
        * Data is sent to the user when connecting to the processor.
        * </pre>
        *
-       * <code>repeated string meta = 2;</code>
+       * <code>repeated .Meta meta = 2;</code>
        */
       public Builder clearMeta() {
-        meta_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        onChanged();
+        if (metaBuilder_ == null) {
+          meta_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          metaBuilder_.clear();
+        }
         return this;
       }
       /**
@@ -717,18 +852,105 @@ public final class RegisterActor {
        * Data is sent to the user when connecting to the processor.
        * </pre>
        *
-       * <code>repeated string meta = 2;</code>
+       * <code>repeated .Meta meta = 2;</code>
        */
-      public Builder addMetaBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        ensureMetaIsMutable();
-        meta_.add(value);
-        onChanged();
+      public Builder removeMeta(int index) {
+        if (metaBuilder_ == null) {
+          ensureMetaIsMutable();
+          meta_.remove(index);
+          onChanged();
+        } else {
+          metaBuilder_.remove(index);
+        }
         return this;
+      }
+      /**
+       * <pre>
+       * Data is sent to the user when connecting to the processor.
+       * </pre>
+       *
+       * <code>repeated .Meta meta = 2;</code>
+       */
+      public de.bwueller.environment.protocol.General.Meta.Builder getMetaBuilder(
+          int index) {
+        return getMetaFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <pre>
+       * Data is sent to the user when connecting to the processor.
+       * </pre>
+       *
+       * <code>repeated .Meta meta = 2;</code>
+       */
+      public de.bwueller.environment.protocol.General.MetaOrBuilder getMetaOrBuilder(
+          int index) {
+        if (metaBuilder_ == null) {
+          return meta_.get(index);  } else {
+          return metaBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <pre>
+       * Data is sent to the user when connecting to the processor.
+       * </pre>
+       *
+       * <code>repeated .Meta meta = 2;</code>
+       */
+      public java.util.List<? extends de.bwueller.environment.protocol.General.MetaOrBuilder> 
+           getMetaOrBuilderList() {
+        if (metaBuilder_ != null) {
+          return metaBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(meta_);
+        }
+      }
+      /**
+       * <pre>
+       * Data is sent to the user when connecting to the processor.
+       * </pre>
+       *
+       * <code>repeated .Meta meta = 2;</code>
+       */
+      public de.bwueller.environment.protocol.General.Meta.Builder addMetaBuilder() {
+        return getMetaFieldBuilder().addBuilder(
+            de.bwueller.environment.protocol.General.Meta.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       * Data is sent to the user when connecting to the processor.
+       * </pre>
+       *
+       * <code>repeated .Meta meta = 2;</code>
+       */
+      public de.bwueller.environment.protocol.General.Meta.Builder addMetaBuilder(
+          int index) {
+        return getMetaFieldBuilder().addBuilder(
+            index, de.bwueller.environment.protocol.General.Meta.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       * Data is sent to the user when connecting to the processor.
+       * </pre>
+       *
+       * <code>repeated .Meta meta = 2;</code>
+       */
+      public java.util.List<de.bwueller.environment.protocol.General.Meta.Builder> 
+           getMetaBuilderList() {
+        return getMetaFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          de.bwueller.environment.protocol.General.Meta, de.bwueller.environment.protocol.General.Meta.Builder, de.bwueller.environment.protocol.General.MetaOrBuilder> 
+          getMetaFieldBuilder() {
+        if (metaBuilder_ == null) {
+          metaBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              de.bwueller.environment.protocol.General.Meta, de.bwueller.environment.protocol.General.Meta.Builder, de.bwueller.environment.protocol.General.MetaOrBuilder>(
+                  meta_,
+                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  getParentForChildren(),
+                  isClean());
+          meta_ = null;
+        }
+        return metaBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -788,25 +1010,18 @@ public final class RegisterActor {
      * The identifier will be generated by the processor if the connection was successful.
      * </pre>
      *
-     * <code>optional .UUID identifier = 1;</code>
+     * <code>optional string identifier = 1;</code>
      */
-    boolean hasIdentifier();
+    java.lang.String getIdentifier();
     /**
      * <pre>
      * The identifier will be generated by the processor if the connection was successful.
      * </pre>
      *
-     * <code>optional .UUID identifier = 1;</code>
+     * <code>optional string identifier = 1;</code>
      */
-    de.bwueller.environment.protocol.General.UUID getIdentifier();
-    /**
-     * <pre>
-     * The identifier will be generated by the processor if the connection was successful.
-     * </pre>
-     *
-     * <code>optional .UUID identifier = 1;</code>
-     */
-    de.bwueller.environment.protocol.General.UUIDOrBuilder getIdentifierOrBuilder();
+    com.google.protobuf.ByteString
+        getIdentifierBytes();
 
     /**
      * <code>optional .RegisterActorResponse.Status status = 2;</code>
@@ -829,6 +1044,7 @@ public final class RegisterActor {
       super(builder);
     }
     private RegisterActorResponse() {
+      identifier_ = "";
       status_ = 0;
     }
 
@@ -858,16 +1074,9 @@ public final class RegisterActor {
               break;
             }
             case 10: {
-              de.bwueller.environment.protocol.General.UUID.Builder subBuilder = null;
-              if (identifier_ != null) {
-                subBuilder = identifier_.toBuilder();
-              }
-              identifier_ = input.readMessage(de.bwueller.environment.protocol.General.UUID.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(identifier_);
-                identifier_ = subBuilder.buildPartial();
-              }
+              java.lang.String s = input.readStringRequireUtf8();
 
+              identifier_ = s;
               break;
             }
             case 16: {
@@ -1007,36 +1216,45 @@ public final class RegisterActor {
     }
 
     public static final int IDENTIFIER_FIELD_NUMBER = 1;
-    private de.bwueller.environment.protocol.General.UUID identifier_;
+    private volatile java.lang.Object identifier_;
     /**
      * <pre>
      * The identifier will be generated by the processor if the connection was successful.
      * </pre>
      *
-     * <code>optional .UUID identifier = 1;</code>
+     * <code>optional string identifier = 1;</code>
      */
-    public boolean hasIdentifier() {
-      return identifier_ != null;
+    public java.lang.String getIdentifier() {
+      java.lang.Object ref = identifier_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        identifier_ = s;
+        return s;
+      }
     }
     /**
      * <pre>
      * The identifier will be generated by the processor if the connection was successful.
      * </pre>
      *
-     * <code>optional .UUID identifier = 1;</code>
+     * <code>optional string identifier = 1;</code>
      */
-    public de.bwueller.environment.protocol.General.UUID getIdentifier() {
-      return identifier_ == null ? de.bwueller.environment.protocol.General.UUID.getDefaultInstance() : identifier_;
-    }
-    /**
-     * <pre>
-     * The identifier will be generated by the processor if the connection was successful.
-     * </pre>
-     *
-     * <code>optional .UUID identifier = 1;</code>
-     */
-    public de.bwueller.environment.protocol.General.UUIDOrBuilder getIdentifierOrBuilder() {
-      return getIdentifier();
+    public com.google.protobuf.ByteString
+        getIdentifierBytes() {
+      java.lang.Object ref = identifier_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        identifier_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int STATUS_FIELD_NUMBER = 2;
@@ -1067,8 +1285,8 @@ public final class RegisterActor {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (identifier_ != null) {
-        output.writeMessage(1, getIdentifier());
+      if (!getIdentifierBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, identifier_);
       }
       if (status_ != de.bwueller.environment.protocol.RegisterActor.RegisterActorResponse.Status.SUC_CONNECTED.getNumber()) {
         output.writeEnum(2, status_);
@@ -1080,9 +1298,8 @@ public final class RegisterActor {
       if (size != -1) return size;
 
       size = 0;
-      if (identifier_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getIdentifier());
+      if (!getIdentifierBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, identifier_);
       }
       if (status_ != de.bwueller.environment.protocol.RegisterActor.RegisterActorResponse.Status.SUC_CONNECTED.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
@@ -1104,11 +1321,8 @@ public final class RegisterActor {
       de.bwueller.environment.protocol.RegisterActor.RegisterActorResponse other = (de.bwueller.environment.protocol.RegisterActor.RegisterActorResponse) obj;
 
       boolean result = true;
-      result = result && (hasIdentifier() == other.hasIdentifier());
-      if (hasIdentifier()) {
-        result = result && getIdentifier()
-            .equals(other.getIdentifier());
-      }
+      result = result && getIdentifier()
+          .equals(other.getIdentifier());
       result = result && status_ == other.status_;
       return result;
     }
@@ -1120,10 +1334,8 @@ public final class RegisterActor {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
-      if (hasIdentifier()) {
-        hash = (37 * hash) + IDENTIFIER_FIELD_NUMBER;
-        hash = (53 * hash) + getIdentifier().hashCode();
-      }
+      hash = (37 * hash) + IDENTIFIER_FIELD_NUMBER;
+      hash = (53 * hash) + getIdentifier().hashCode();
       hash = (37 * hash) + STATUS_FIELD_NUMBER;
       hash = (53 * hash) + status_;
       hash = (29 * hash) + unknownFields.hashCode();
@@ -1244,12 +1456,8 @@ public final class RegisterActor {
       }
       public Builder clear() {
         super.clear();
-        if (identifierBuilder_ == null) {
-          identifier_ = null;
-        } else {
-          identifier_ = null;
-          identifierBuilder_ = null;
-        }
+        identifier_ = "";
+
         status_ = 0;
 
         return this;
@@ -1274,11 +1482,7 @@ public final class RegisterActor {
 
       public de.bwueller.environment.protocol.RegisterActor.RegisterActorResponse buildPartial() {
         de.bwueller.environment.protocol.RegisterActor.RegisterActorResponse result = new de.bwueller.environment.protocol.RegisterActor.RegisterActorResponse(this);
-        if (identifierBuilder_ == null) {
-          result.identifier_ = identifier_;
-        } else {
-          result.identifier_ = identifierBuilder_.build();
-        }
+        result.identifier_ = identifier_;
         result.status_ = status_;
         onBuilt();
         return result;
@@ -1321,8 +1525,9 @@ public final class RegisterActor {
 
       public Builder mergeFrom(de.bwueller.environment.protocol.RegisterActor.RegisterActorResponse other) {
         if (other == de.bwueller.environment.protocol.RegisterActor.RegisterActorResponse.getDefaultInstance()) return this;
-        if (other.hasIdentifier()) {
-          mergeIdentifier(other.getIdentifier());
+        if (!other.getIdentifier().isEmpty()) {
+          identifier_ = other.identifier_;
+          onChanged();
         }
         if (other.status_ != 0) {
           setStatusValue(other.getStatusValue());
@@ -1353,31 +1558,24 @@ public final class RegisterActor {
         return this;
       }
 
-      private de.bwueller.environment.protocol.General.UUID identifier_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          de.bwueller.environment.protocol.General.UUID, de.bwueller.environment.protocol.General.UUID.Builder, de.bwueller.environment.protocol.General.UUIDOrBuilder> identifierBuilder_;
+      private java.lang.Object identifier_ = "";
       /**
        * <pre>
        * The identifier will be generated by the processor if the connection was successful.
        * </pre>
        *
-       * <code>optional .UUID identifier = 1;</code>
+       * <code>optional string identifier = 1;</code>
        */
-      public boolean hasIdentifier() {
-        return identifierBuilder_ != null || identifier_ != null;
-      }
-      /**
-       * <pre>
-       * The identifier will be generated by the processor if the connection was successful.
-       * </pre>
-       *
-       * <code>optional .UUID identifier = 1;</code>
-       */
-      public de.bwueller.environment.protocol.General.UUID getIdentifier() {
-        if (identifierBuilder_ == null) {
-          return identifier_ == null ? de.bwueller.environment.protocol.General.UUID.getDefaultInstance() : identifier_;
+      public java.lang.String getIdentifier() {
+        java.lang.Object ref = identifier_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          identifier_ = s;
+          return s;
         } else {
-          return identifierBuilder_.getMessage();
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -1385,37 +1583,36 @@ public final class RegisterActor {
        * The identifier will be generated by the processor if the connection was successful.
        * </pre>
        *
-       * <code>optional .UUID identifier = 1;</code>
+       * <code>optional string identifier = 1;</code>
        */
-      public Builder setIdentifier(de.bwueller.environment.protocol.General.UUID value) {
-        if (identifierBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          identifier_ = value;
-          onChanged();
+      public com.google.protobuf.ByteString
+          getIdentifierBytes() {
+        java.lang.Object ref = identifier_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          identifier_ = b;
+          return b;
         } else {
-          identifierBuilder_.setMessage(value);
+          return (com.google.protobuf.ByteString) ref;
         }
-
-        return this;
       }
       /**
        * <pre>
        * The identifier will be generated by the processor if the connection was successful.
        * </pre>
        *
-       * <code>optional .UUID identifier = 1;</code>
+       * <code>optional string identifier = 1;</code>
        */
       public Builder setIdentifier(
-          de.bwueller.environment.protocol.General.UUID.Builder builderForValue) {
-        if (identifierBuilder_ == null) {
-          identifier_ = builderForValue.build();
-          onChanged();
-        } else {
-          identifierBuilder_.setMessage(builderForValue.build());
-        }
-
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        identifier_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -1423,39 +1620,12 @@ public final class RegisterActor {
        * The identifier will be generated by the processor if the connection was successful.
        * </pre>
        *
-       * <code>optional .UUID identifier = 1;</code>
-       */
-      public Builder mergeIdentifier(de.bwueller.environment.protocol.General.UUID value) {
-        if (identifierBuilder_ == null) {
-          if (identifier_ != null) {
-            identifier_ =
-              de.bwueller.environment.protocol.General.UUID.newBuilder(identifier_).mergeFrom(value).buildPartial();
-          } else {
-            identifier_ = value;
-          }
-          onChanged();
-        } else {
-          identifierBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <pre>
-       * The identifier will be generated by the processor if the connection was successful.
-       * </pre>
-       *
-       * <code>optional .UUID identifier = 1;</code>
+       * <code>optional string identifier = 1;</code>
        */
       public Builder clearIdentifier() {
-        if (identifierBuilder_ == null) {
-          identifier_ = null;
-          onChanged();
-        } else {
-          identifier_ = null;
-          identifierBuilder_ = null;
-        }
-
+        
+        identifier_ = getDefaultInstance().getIdentifier();
+        onChanged();
         return this;
       }
       /**
@@ -1463,47 +1633,18 @@ public final class RegisterActor {
        * The identifier will be generated by the processor if the connection was successful.
        * </pre>
        *
-       * <code>optional .UUID identifier = 1;</code>
+       * <code>optional string identifier = 1;</code>
        */
-      public de.bwueller.environment.protocol.General.UUID.Builder getIdentifierBuilder() {
+      public Builder setIdentifierBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
         
+        identifier_ = value;
         onChanged();
-        return getIdentifierFieldBuilder().getBuilder();
-      }
-      /**
-       * <pre>
-       * The identifier will be generated by the processor if the connection was successful.
-       * </pre>
-       *
-       * <code>optional .UUID identifier = 1;</code>
-       */
-      public de.bwueller.environment.protocol.General.UUIDOrBuilder getIdentifierOrBuilder() {
-        if (identifierBuilder_ != null) {
-          return identifierBuilder_.getMessageOrBuilder();
-        } else {
-          return identifier_ == null ?
-              de.bwueller.environment.protocol.General.UUID.getDefaultInstance() : identifier_;
-        }
-      }
-      /**
-       * <pre>
-       * The identifier will be generated by the processor if the connection was successful.
-       * </pre>
-       *
-       * <code>optional .UUID identifier = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          de.bwueller.environment.protocol.General.UUID, de.bwueller.environment.protocol.General.UUID.Builder, de.bwueller.environment.protocol.General.UUIDOrBuilder> 
-          getIdentifierFieldBuilder() {
-        if (identifierBuilder_ == null) {
-          identifierBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              de.bwueller.environment.protocol.General.UUID, de.bwueller.environment.protocol.General.UUID.Builder, de.bwueller.environment.protocol.General.UUIDOrBuilder>(
-                  getIdentifier(),
-                  getParentForChildren(),
-                  isClean());
-          identifier_ = null;
-        }
-        return identifierBuilder_;
+        return this;
       }
 
       private int status_ = 0;
@@ -1617,10 +1758,10 @@ public final class RegisterActor {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\024register_actor.proto\032\rgeneral.proto\"2\n" +
-      "\024RegisterActorRequest\022\014\n\004name\030\001 \001(\t\022\014\n\004m" +
-      "eta\030\002 \003(\t\"\252\001\n\025RegisterActorResponse\022\031\n\ni" +
-      "dentifier\030\001 \001(\0132\005.UUID\022-\n\006status\030\002 \001(\0162\035" +
+      "\n\024register_actor.proto\032\rgeneral.proto\"9\n" +
+      "\024RegisterActorRequest\022\014\n\004name\030\001 \001(\t\022\023\n\004m" +
+      "eta\030\002 \003(\0132\005.Meta\"\243\001\n\025RegisterActorRespon" +
+      "se\022\022\n\nidentifier\030\001 \001(\t\022-\n\006status\030\002 \001(\0162\035" +
       ".RegisterActorResponse.Status\"G\n\006Status\022" +
       "\021\n\rSUC_CONNECTED\020\000\022\031\n\025ERR_ALREADY_CONNEC" +
       "TED\020\001\022\017\n\013ERR_UNKNOWN\020\002B\"\n de.bwueller.en" +
