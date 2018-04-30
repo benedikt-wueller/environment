@@ -23,25 +23,18 @@ public final class UnregisterActorUser {
      * Unique user identifier.
      * </pre>
      *
-     * <code>optional .UUID identifier = 1;</code>
+     * <code>optional string identifier = 1;</code>
      */
-    boolean hasIdentifier();
+    java.lang.String getIdentifier();
     /**
      * <pre>
      * Unique user identifier.
      * </pre>
      *
-     * <code>optional .UUID identifier = 1;</code>
+     * <code>optional string identifier = 1;</code>
      */
-    de.bwueller.environment.protocol.General.UUID getIdentifier();
-    /**
-     * <pre>
-     * Unique user identifier.
-     * </pre>
-     *
-     * <code>optional .UUID identifier = 1;</code>
-     */
-    de.bwueller.environment.protocol.General.UUIDOrBuilder getIdentifierOrBuilder();
+    com.google.protobuf.ByteString
+        getIdentifierBytes();
   }
   /**
    * Protobuf type {@code UnregisterActorUserRequest}
@@ -55,6 +48,7 @@ public final class UnregisterActorUser {
       super(builder);
     }
     private UnregisterActorUserRequest() {
+      identifier_ = "";
     }
 
     @java.lang.Override
@@ -83,16 +77,9 @@ public final class UnregisterActorUser {
               break;
             }
             case 10: {
-              de.bwueller.environment.protocol.General.UUID.Builder subBuilder = null;
-              if (identifier_ != null) {
-                subBuilder = identifier_.toBuilder();
-              }
-              identifier_ = input.readMessage(de.bwueller.environment.protocol.General.UUID.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(identifier_);
-                identifier_ = subBuilder.buildPartial();
-              }
+              java.lang.String s = input.readStringRequireUtf8();
 
+              identifier_ = s;
               break;
             }
           }
@@ -119,36 +106,45 @@ public final class UnregisterActorUser {
     }
 
     public static final int IDENTIFIER_FIELD_NUMBER = 1;
-    private de.bwueller.environment.protocol.General.UUID identifier_;
+    private volatile java.lang.Object identifier_;
     /**
      * <pre>
      * Unique user identifier.
      * </pre>
      *
-     * <code>optional .UUID identifier = 1;</code>
+     * <code>optional string identifier = 1;</code>
      */
-    public boolean hasIdentifier() {
-      return identifier_ != null;
+    public java.lang.String getIdentifier() {
+      java.lang.Object ref = identifier_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        identifier_ = s;
+        return s;
+      }
     }
     /**
      * <pre>
      * Unique user identifier.
      * </pre>
      *
-     * <code>optional .UUID identifier = 1;</code>
+     * <code>optional string identifier = 1;</code>
      */
-    public de.bwueller.environment.protocol.General.UUID getIdentifier() {
-      return identifier_ == null ? de.bwueller.environment.protocol.General.UUID.getDefaultInstance() : identifier_;
-    }
-    /**
-     * <pre>
-     * Unique user identifier.
-     * </pre>
-     *
-     * <code>optional .UUID identifier = 1;</code>
-     */
-    public de.bwueller.environment.protocol.General.UUIDOrBuilder getIdentifierOrBuilder() {
-      return getIdentifier();
+    public com.google.protobuf.ByteString
+        getIdentifierBytes() {
+      java.lang.Object ref = identifier_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        identifier_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     private byte memoizedIsInitialized = -1;
@@ -163,8 +159,8 @@ public final class UnregisterActorUser {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (identifier_ != null) {
-        output.writeMessage(1, getIdentifier());
+      if (!getIdentifierBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, identifier_);
       }
     }
 
@@ -173,9 +169,8 @@ public final class UnregisterActorUser {
       if (size != -1) return size;
 
       size = 0;
-      if (identifier_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getIdentifier());
+      if (!getIdentifierBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, identifier_);
       }
       memoizedSize = size;
       return size;
@@ -193,11 +188,8 @@ public final class UnregisterActorUser {
       de.bwueller.environment.protocol.UnregisterActorUser.UnregisterActorUserRequest other = (de.bwueller.environment.protocol.UnregisterActorUser.UnregisterActorUserRequest) obj;
 
       boolean result = true;
-      result = result && (hasIdentifier() == other.hasIdentifier());
-      if (hasIdentifier()) {
-        result = result && getIdentifier()
-            .equals(other.getIdentifier());
-      }
+      result = result && getIdentifier()
+          .equals(other.getIdentifier());
       return result;
     }
 
@@ -208,10 +200,8 @@ public final class UnregisterActorUser {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
-      if (hasIdentifier()) {
-        hash = (37 * hash) + IDENTIFIER_FIELD_NUMBER;
-        hash = (53 * hash) + getIdentifier().hashCode();
-      }
+      hash = (37 * hash) + IDENTIFIER_FIELD_NUMBER;
+      hash = (53 * hash) + getIdentifier().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -330,12 +320,8 @@ public final class UnregisterActorUser {
       }
       public Builder clear() {
         super.clear();
-        if (identifierBuilder_ == null) {
-          identifier_ = null;
-        } else {
-          identifier_ = null;
-          identifierBuilder_ = null;
-        }
+        identifier_ = "";
+
         return this;
       }
 
@@ -358,11 +344,7 @@ public final class UnregisterActorUser {
 
       public de.bwueller.environment.protocol.UnregisterActorUser.UnregisterActorUserRequest buildPartial() {
         de.bwueller.environment.protocol.UnregisterActorUser.UnregisterActorUserRequest result = new de.bwueller.environment.protocol.UnregisterActorUser.UnregisterActorUserRequest(this);
-        if (identifierBuilder_ == null) {
-          result.identifier_ = identifier_;
-        } else {
-          result.identifier_ = identifierBuilder_.build();
-        }
+        result.identifier_ = identifier_;
         onBuilt();
         return result;
       }
@@ -404,8 +386,9 @@ public final class UnregisterActorUser {
 
       public Builder mergeFrom(de.bwueller.environment.protocol.UnregisterActorUser.UnregisterActorUserRequest other) {
         if (other == de.bwueller.environment.protocol.UnregisterActorUser.UnregisterActorUserRequest.getDefaultInstance()) return this;
-        if (other.hasIdentifier()) {
-          mergeIdentifier(other.getIdentifier());
+        if (!other.getIdentifier().isEmpty()) {
+          identifier_ = other.identifier_;
+          onChanged();
         }
         onChanged();
         return this;
@@ -433,31 +416,24 @@ public final class UnregisterActorUser {
         return this;
       }
 
-      private de.bwueller.environment.protocol.General.UUID identifier_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          de.bwueller.environment.protocol.General.UUID, de.bwueller.environment.protocol.General.UUID.Builder, de.bwueller.environment.protocol.General.UUIDOrBuilder> identifierBuilder_;
+      private java.lang.Object identifier_ = "";
       /**
        * <pre>
        * Unique user identifier.
        * </pre>
        *
-       * <code>optional .UUID identifier = 1;</code>
+       * <code>optional string identifier = 1;</code>
        */
-      public boolean hasIdentifier() {
-        return identifierBuilder_ != null || identifier_ != null;
-      }
-      /**
-       * <pre>
-       * Unique user identifier.
-       * </pre>
-       *
-       * <code>optional .UUID identifier = 1;</code>
-       */
-      public de.bwueller.environment.protocol.General.UUID getIdentifier() {
-        if (identifierBuilder_ == null) {
-          return identifier_ == null ? de.bwueller.environment.protocol.General.UUID.getDefaultInstance() : identifier_;
+      public java.lang.String getIdentifier() {
+        java.lang.Object ref = identifier_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          identifier_ = s;
+          return s;
         } else {
-          return identifierBuilder_.getMessage();
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -465,37 +441,36 @@ public final class UnregisterActorUser {
        * Unique user identifier.
        * </pre>
        *
-       * <code>optional .UUID identifier = 1;</code>
+       * <code>optional string identifier = 1;</code>
        */
-      public Builder setIdentifier(de.bwueller.environment.protocol.General.UUID value) {
-        if (identifierBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          identifier_ = value;
-          onChanged();
+      public com.google.protobuf.ByteString
+          getIdentifierBytes() {
+        java.lang.Object ref = identifier_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          identifier_ = b;
+          return b;
         } else {
-          identifierBuilder_.setMessage(value);
+          return (com.google.protobuf.ByteString) ref;
         }
-
-        return this;
       }
       /**
        * <pre>
        * Unique user identifier.
        * </pre>
        *
-       * <code>optional .UUID identifier = 1;</code>
+       * <code>optional string identifier = 1;</code>
        */
       public Builder setIdentifier(
-          de.bwueller.environment.protocol.General.UUID.Builder builderForValue) {
-        if (identifierBuilder_ == null) {
-          identifier_ = builderForValue.build();
-          onChanged();
-        } else {
-          identifierBuilder_.setMessage(builderForValue.build());
-        }
-
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        identifier_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -503,39 +478,12 @@ public final class UnregisterActorUser {
        * Unique user identifier.
        * </pre>
        *
-       * <code>optional .UUID identifier = 1;</code>
-       */
-      public Builder mergeIdentifier(de.bwueller.environment.protocol.General.UUID value) {
-        if (identifierBuilder_ == null) {
-          if (identifier_ != null) {
-            identifier_ =
-              de.bwueller.environment.protocol.General.UUID.newBuilder(identifier_).mergeFrom(value).buildPartial();
-          } else {
-            identifier_ = value;
-          }
-          onChanged();
-        } else {
-          identifierBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <pre>
-       * Unique user identifier.
-       * </pre>
-       *
-       * <code>optional .UUID identifier = 1;</code>
+       * <code>optional string identifier = 1;</code>
        */
       public Builder clearIdentifier() {
-        if (identifierBuilder_ == null) {
-          identifier_ = null;
-          onChanged();
-        } else {
-          identifier_ = null;
-          identifierBuilder_ = null;
-        }
-
+        
+        identifier_ = getDefaultInstance().getIdentifier();
+        onChanged();
         return this;
       }
       /**
@@ -543,47 +491,18 @@ public final class UnregisterActorUser {
        * Unique user identifier.
        * </pre>
        *
-       * <code>optional .UUID identifier = 1;</code>
+       * <code>optional string identifier = 1;</code>
        */
-      public de.bwueller.environment.protocol.General.UUID.Builder getIdentifierBuilder() {
+      public Builder setIdentifierBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
         
+        identifier_ = value;
         onChanged();
-        return getIdentifierFieldBuilder().getBuilder();
-      }
-      /**
-       * <pre>
-       * Unique user identifier.
-       * </pre>
-       *
-       * <code>optional .UUID identifier = 1;</code>
-       */
-      public de.bwueller.environment.protocol.General.UUIDOrBuilder getIdentifierOrBuilder() {
-        if (identifierBuilder_ != null) {
-          return identifierBuilder_.getMessageOrBuilder();
-        } else {
-          return identifier_ == null ?
-              de.bwueller.environment.protocol.General.UUID.getDefaultInstance() : identifier_;
-        }
-      }
-      /**
-       * <pre>
-       * Unique user identifier.
-       * </pre>
-       *
-       * <code>optional .UUID identifier = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          de.bwueller.environment.protocol.General.UUID, de.bwueller.environment.protocol.General.UUID.Builder, de.bwueller.environment.protocol.General.UUIDOrBuilder> 
-          getIdentifierFieldBuilder() {
-        if (identifierBuilder_ == null) {
-          identifierBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              de.bwueller.environment.protocol.General.UUID, de.bwueller.environment.protocol.General.UUID.Builder, de.bwueller.environment.protocol.General.UUIDOrBuilder>(
-                  getIdentifier(),
-                  getParentForChildren(),
-                  isClean());
-          identifier_ = null;
-        }
-        return identifierBuilder_;
+        return this;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -649,9 +568,9 @@ public final class UnregisterActorUser {
   static {
     java.lang.String[] descriptorData = {
       "\n\033unregister_actor_user.proto\032\rgeneral.p" +
-      "roto\"7\n\032UnregisterActorUserRequest\022\031\n\nid" +
-      "entifier\030\001 \001(\0132\005.UUIDB\"\n de.bwueller.env" +
-      "ironment.protocolb\006proto3"
+      "roto\"0\n\032UnregisterActorUserRequest\022\022\n\nid" +
+      "entifier\030\001 \001(\tB\"\n de.bwueller.environmen" +
+      "t.protocolb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

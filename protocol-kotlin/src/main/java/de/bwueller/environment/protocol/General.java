@@ -14,28 +14,39 @@ public final class General {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  public interface UUIDOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:UUID)
+  public interface MetaOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Meta)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional bytes value = 1;</code>
+     * <code>optional int32 identifier = 1;</code>
      */
-    com.google.protobuf.ByteString getValue();
+    int getIdentifier();
+
+    /**
+     * <code>optional string value = 2;</code>
+     */
+    java.lang.String getValue();
+    /**
+     * <code>optional string value = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getValueBytes();
   }
   /**
-   * Protobuf type {@code UUID}
+   * Protobuf type {@code Meta}
    */
-  public  static final class UUID extends
+  public  static final class Meta extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:UUID)
-      UUIDOrBuilder {
-    // Use UUID.newBuilder() to construct.
-    private UUID(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      // @@protoc_insertion_point(message_implements:Meta)
+      MetaOrBuilder {
+    // Use Meta.newBuilder() to construct.
+    private Meta(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private UUID() {
-      value_ = com.google.protobuf.ByteString.EMPTY;
+    private Meta() {
+      identifier_ = 0;
+      value_ = "";
     }
 
     @java.lang.Override
@@ -43,7 +54,7 @@ public final class General {
     getUnknownFields() {
       return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
-    private UUID(
+    private Meta(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -63,9 +74,15 @@ public final class General {
               }
               break;
             }
-            case 10: {
+            case 8: {
 
-              value_ = input.readBytes();
+              identifier_ = input.readInt32();
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              value_ = s;
               break;
             }
           }
@@ -81,23 +98,57 @@ public final class General {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return de.bwueller.environment.protocol.General.internal_static_UUID_descriptor;
+      return de.bwueller.environment.protocol.General.internal_static_Meta_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return de.bwueller.environment.protocol.General.internal_static_UUID_fieldAccessorTable
+      return de.bwueller.environment.protocol.General.internal_static_Meta_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              de.bwueller.environment.protocol.General.UUID.class, de.bwueller.environment.protocol.General.UUID.Builder.class);
+              de.bwueller.environment.protocol.General.Meta.class, de.bwueller.environment.protocol.General.Meta.Builder.class);
     }
 
-    public static final int VALUE_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString value_;
+    public static final int IDENTIFIER_FIELD_NUMBER = 1;
+    private int identifier_;
     /**
-     * <code>optional bytes value = 1;</code>
+     * <code>optional int32 identifier = 1;</code>
      */
-    public com.google.protobuf.ByteString getValue() {
-      return value_;
+    public int getIdentifier() {
+      return identifier_;
+    }
+
+    public static final int VALUE_FIELD_NUMBER = 2;
+    private volatile java.lang.Object value_;
+    /**
+     * <code>optional string value = 2;</code>
+     */
+    public java.lang.String getValue() {
+      java.lang.Object ref = value_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        value_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string value = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getValueBytes() {
+      java.lang.Object ref = value_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        value_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     private byte memoizedIsInitialized = -1;
@@ -112,8 +163,11 @@ public final class General {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!value_.isEmpty()) {
-        output.writeBytes(1, value_);
+      if (identifier_ != 0) {
+        output.writeInt32(1, identifier_);
+      }
+      if (!getValueBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, value_);
       }
     }
 
@@ -122,9 +176,12 @@ public final class General {
       if (size != -1) return size;
 
       size = 0;
-      if (!value_.isEmpty()) {
+      if (identifier_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, value_);
+          .computeInt32Size(1, identifier_);
+      }
+      if (!getValueBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, value_);
       }
       memoizedSize = size;
       return size;
@@ -136,12 +193,14 @@ public final class General {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof de.bwueller.environment.protocol.General.UUID)) {
+      if (!(obj instanceof de.bwueller.environment.protocol.General.Meta)) {
         return super.equals(obj);
       }
-      de.bwueller.environment.protocol.General.UUID other = (de.bwueller.environment.protocol.General.UUID) obj;
+      de.bwueller.environment.protocol.General.Meta other = (de.bwueller.environment.protocol.General.Meta) obj;
 
       boolean result = true;
+      result = result && (getIdentifier()
+          == other.getIdentifier());
       result = result && getValue()
           .equals(other.getValue());
       return result;
@@ -154,6 +213,8 @@ public final class General {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + IDENTIFIER_FIELD_NUMBER;
+      hash = (53 * hash) + getIdentifier();
       hash = (37 * hash) + VALUE_FIELD_NUMBER;
       hash = (53 * hash) + getValue().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -161,58 +222,58 @@ public final class General {
       return hash;
     }
 
-    public static de.bwueller.environment.protocol.General.UUID parseFrom(
+    public static de.bwueller.environment.protocol.General.Meta parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static de.bwueller.environment.protocol.General.UUID parseFrom(
+    public static de.bwueller.environment.protocol.General.Meta parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static de.bwueller.environment.protocol.General.UUID parseFrom(byte[] data)
+    public static de.bwueller.environment.protocol.General.Meta parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static de.bwueller.environment.protocol.General.UUID parseFrom(
+    public static de.bwueller.environment.protocol.General.Meta parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static de.bwueller.environment.protocol.General.UUID parseFrom(java.io.InputStream input)
+    public static de.bwueller.environment.protocol.General.Meta parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static de.bwueller.environment.protocol.General.UUID parseFrom(
+    public static de.bwueller.environment.protocol.General.Meta parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static de.bwueller.environment.protocol.General.UUID parseDelimitedFrom(java.io.InputStream input)
+    public static de.bwueller.environment.protocol.General.Meta parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static de.bwueller.environment.protocol.General.UUID parseDelimitedFrom(
+    public static de.bwueller.environment.protocol.General.Meta parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static de.bwueller.environment.protocol.General.UUID parseFrom(
+    public static de.bwueller.environment.protocol.General.Meta parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static de.bwueller.environment.protocol.General.UUID parseFrom(
+    public static de.bwueller.environment.protocol.General.Meta parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -224,7 +285,7 @@ public final class General {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(de.bwueller.environment.protocol.General.UUID prototype) {
+    public static Builder newBuilder(de.bwueller.environment.protocol.General.Meta prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -239,25 +300,25 @@ public final class General {
       return builder;
     }
     /**
-     * Protobuf type {@code UUID}
+     * Protobuf type {@code Meta}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:UUID)
-        de.bwueller.environment.protocol.General.UUIDOrBuilder {
+        // @@protoc_insertion_point(builder_implements:Meta)
+        de.bwueller.environment.protocol.General.MetaOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return de.bwueller.environment.protocol.General.internal_static_UUID_descriptor;
+        return de.bwueller.environment.protocol.General.internal_static_Meta_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return de.bwueller.environment.protocol.General.internal_static_UUID_fieldAccessorTable
+        return de.bwueller.environment.protocol.General.internal_static_Meta_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                de.bwueller.environment.protocol.General.UUID.class, de.bwueller.environment.protocol.General.UUID.Builder.class);
+                de.bwueller.environment.protocol.General.Meta.class, de.bwueller.environment.protocol.General.Meta.Builder.class);
       }
 
-      // Construct using de.bwueller.environment.protocol.General.UUID.newBuilder()
+      // Construct using de.bwueller.environment.protocol.General.Meta.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -274,30 +335,33 @@ public final class General {
       }
       public Builder clear() {
         super.clear();
-        value_ = com.google.protobuf.ByteString.EMPTY;
+        identifier_ = 0;
+
+        value_ = "";
 
         return this;
       }
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return de.bwueller.environment.protocol.General.internal_static_UUID_descriptor;
+        return de.bwueller.environment.protocol.General.internal_static_Meta_descriptor;
       }
 
-      public de.bwueller.environment.protocol.General.UUID getDefaultInstanceForType() {
-        return de.bwueller.environment.protocol.General.UUID.getDefaultInstance();
+      public de.bwueller.environment.protocol.General.Meta getDefaultInstanceForType() {
+        return de.bwueller.environment.protocol.General.Meta.getDefaultInstance();
       }
 
-      public de.bwueller.environment.protocol.General.UUID build() {
-        de.bwueller.environment.protocol.General.UUID result = buildPartial();
+      public de.bwueller.environment.protocol.General.Meta build() {
+        de.bwueller.environment.protocol.General.Meta result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public de.bwueller.environment.protocol.General.UUID buildPartial() {
-        de.bwueller.environment.protocol.General.UUID result = new de.bwueller.environment.protocol.General.UUID(this);
+      public de.bwueller.environment.protocol.General.Meta buildPartial() {
+        de.bwueller.environment.protocol.General.Meta result = new de.bwueller.environment.protocol.General.Meta(this);
+        result.identifier_ = identifier_;
         result.value_ = value_;
         onBuilt();
         return result;
@@ -330,18 +394,22 @@ public final class General {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof de.bwueller.environment.protocol.General.UUID) {
-          return mergeFrom((de.bwueller.environment.protocol.General.UUID)other);
+        if (other instanceof de.bwueller.environment.protocol.General.Meta) {
+          return mergeFrom((de.bwueller.environment.protocol.General.Meta)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(de.bwueller.environment.protocol.General.UUID other) {
-        if (other == de.bwueller.environment.protocol.General.UUID.getDefaultInstance()) return this;
-        if (other.getValue() != com.google.protobuf.ByteString.EMPTY) {
-          setValue(other.getValue());
+      public Builder mergeFrom(de.bwueller.environment.protocol.General.Meta other) {
+        if (other == de.bwueller.environment.protocol.General.Meta.getDefaultInstance()) return this;
+        if (other.getIdentifier() != 0) {
+          setIdentifier(other.getIdentifier());
+        }
+        if (!other.getValue().isEmpty()) {
+          value_ = other.value_;
+          onChanged();
         }
         onChanged();
         return this;
@@ -355,11 +423,11 @@ public final class General {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        de.bwueller.environment.protocol.General.UUID parsedMessage = null;
+        de.bwueller.environment.protocol.General.Meta parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (de.bwueller.environment.protocol.General.UUID) e.getUnfinishedMessage();
+          parsedMessage = (de.bwueller.environment.protocol.General.Meta) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -369,17 +437,69 @@ public final class General {
         return this;
       }
 
-      private com.google.protobuf.ByteString value_ = com.google.protobuf.ByteString.EMPTY;
+      private int identifier_ ;
       /**
-       * <code>optional bytes value = 1;</code>
+       * <code>optional int32 identifier = 1;</code>
        */
-      public com.google.protobuf.ByteString getValue() {
-        return value_;
+      public int getIdentifier() {
+        return identifier_;
       }
       /**
-       * <code>optional bytes value = 1;</code>
+       * <code>optional int32 identifier = 1;</code>
        */
-      public Builder setValue(com.google.protobuf.ByteString value) {
+      public Builder setIdentifier(int value) {
+        
+        identifier_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 identifier = 1;</code>
+       */
+      public Builder clearIdentifier() {
+        
+        identifier_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object value_ = "";
+      /**
+       * <code>optional string value = 2;</code>
+       */
+      public java.lang.String getValue() {
+        java.lang.Object ref = value_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          value_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string value = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getValueBytes() {
+        java.lang.Object ref = value_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          value_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string value = 2;</code>
+       */
+      public Builder setValue(
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -389,11 +509,25 @@ public final class General {
         return this;
       }
       /**
-       * <code>optional bytes value = 1;</code>
+       * <code>optional string value = 2;</code>
        */
       public Builder clearValue() {
         
         value_ = getDefaultInstance().getValue();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string value = 2;</code>
+       */
+      public Builder setValueBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        value_ = value;
         onChanged();
         return this;
       }
@@ -408,49 +542,49 @@ public final class General {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:UUID)
+      // @@protoc_insertion_point(builder_scope:Meta)
     }
 
-    // @@protoc_insertion_point(class_scope:UUID)
-    private static final de.bwueller.environment.protocol.General.UUID DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:Meta)
+    private static final de.bwueller.environment.protocol.General.Meta DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new de.bwueller.environment.protocol.General.UUID();
+      DEFAULT_INSTANCE = new de.bwueller.environment.protocol.General.Meta();
     }
 
-    public static de.bwueller.environment.protocol.General.UUID getDefaultInstance() {
+    public static de.bwueller.environment.protocol.General.Meta getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<UUID>
-        PARSER = new com.google.protobuf.AbstractParser<UUID>() {
-      public UUID parsePartialFrom(
+    private static final com.google.protobuf.Parser<Meta>
+        PARSER = new com.google.protobuf.AbstractParser<Meta>() {
+      public Meta parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-          return new UUID(input, extensionRegistry);
+          return new Meta(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<UUID> parser() {
+    public static com.google.protobuf.Parser<Meta> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<UUID> getParserForType() {
+    public com.google.protobuf.Parser<Meta> getParserForType() {
       return PARSER;
     }
 
-    public de.bwueller.environment.protocol.General.UUID getDefaultInstanceForType() {
+    public de.bwueller.environment.protocol.General.Meta getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_UUID_descriptor;
+    internal_static_Meta_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_UUID_fieldAccessorTable;
+      internal_static_Meta_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -460,9 +594,9 @@ public final class General {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rgeneral.proto\"\025\n\004UUID\022\r\n\005value\030\001 \001(\014B\"" +
-      "\n de.bwueller.environment.protocolb\006prot" +
-      "o3"
+      "\n\rgeneral.proto\")\n\004Meta\022\022\n\nidentifier\030\001 " +
+      "\001(\005\022\r\n\005value\030\002 \001(\tB\"\n de.bwueller.enviro" +
+      "nment.protocolb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -476,12 +610,12 @@ public final class General {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_UUID_descriptor =
+    internal_static_Meta_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_UUID_fieldAccessorTable = new
+    internal_static_Meta_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_UUID_descriptor,
-        new java.lang.String[] { "Value", });
+        internal_static_Meta_descriptor,
+        new java.lang.String[] { "Identifier", "Value", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

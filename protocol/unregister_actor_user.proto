@@ -5,5 +5,5 @@ option java_package = "de.bwueller.environment.protocol";
 import "general.proto";
 
 message UnregisterActorUserRequest {
-    UUID identifier = 1; // Unique user identifier.
+    string identifier = 1; // Unique user identifier.
 }

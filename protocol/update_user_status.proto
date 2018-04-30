@@ -6,7 +6,7 @@ import "general.proto";
 
 message UpdateUserStatusRequest {
     string user = 1;
-    UUID identifier = 2;
+    string identifier = 2;
     Status status = 3;
 
     enum Status {

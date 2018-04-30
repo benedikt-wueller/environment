@@ -29,17 +29,14 @@ public final class UpdateUserStatus {
         getUserBytes();
 
     /**
-     * <code>optional .UUID identifier = 2;</code>
+     * <code>optional string identifier = 2;</code>
      */
-    boolean hasIdentifier();
+    java.lang.String getIdentifier();
     /**
-     * <code>optional .UUID identifier = 2;</code>
+     * <code>optional string identifier = 2;</code>
      */
-    de.bwueller.environment.protocol.General.UUID getIdentifier();
-    /**
-     * <code>optional .UUID identifier = 2;</code>
-     */
-    de.bwueller.environment.protocol.General.UUIDOrBuilder getIdentifierOrBuilder();
+    com.google.protobuf.ByteString
+        getIdentifierBytes();
 
     /**
      * <code>optional .UpdateUserStatusRequest.Status status = 3;</code>
@@ -63,6 +60,7 @@ public final class UpdateUserStatus {
     }
     private UpdateUserStatusRequest() {
       user_ = "";
+      identifier_ = "";
       status_ = 0;
     }
 
@@ -98,16 +96,9 @@ public final class UpdateUserStatus {
               break;
             }
             case 18: {
-              de.bwueller.environment.protocol.General.UUID.Builder subBuilder = null;
-              if (identifier_ != null) {
-                subBuilder = identifier_.toBuilder();
-              }
-              identifier_ = input.readMessage(de.bwueller.environment.protocol.General.UUID.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(identifier_);
-                identifier_ = subBuilder.buildPartial();
-              }
+              java.lang.String s = input.readStringRequireUtf8();
 
+              identifier_ = s;
               break;
             }
             case 24: {
@@ -272,24 +263,37 @@ public final class UpdateUserStatus {
     }
 
     public static final int IDENTIFIER_FIELD_NUMBER = 2;
-    private de.bwueller.environment.protocol.General.UUID identifier_;
+    private volatile java.lang.Object identifier_;
     /**
-     * <code>optional .UUID identifier = 2;</code>
+     * <code>optional string identifier = 2;</code>
      */
-    public boolean hasIdentifier() {
-      return identifier_ != null;
+    public java.lang.String getIdentifier() {
+      java.lang.Object ref = identifier_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        identifier_ = s;
+        return s;
+      }
     }
     /**
-     * <code>optional .UUID identifier = 2;</code>
+     * <code>optional string identifier = 2;</code>
      */
-    public de.bwueller.environment.protocol.General.UUID getIdentifier() {
-      return identifier_ == null ? de.bwueller.environment.protocol.General.UUID.getDefaultInstance() : identifier_;
-    }
-    /**
-     * <code>optional .UUID identifier = 2;</code>
-     */
-    public de.bwueller.environment.protocol.General.UUIDOrBuilder getIdentifierOrBuilder() {
-      return getIdentifier();
+    public com.google.protobuf.ByteString
+        getIdentifierBytes() {
+      java.lang.Object ref = identifier_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        identifier_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int STATUS_FIELD_NUMBER = 3;
@@ -323,8 +327,8 @@ public final class UpdateUserStatus {
       if (!getUserBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, user_);
       }
-      if (identifier_ != null) {
-        output.writeMessage(2, getIdentifier());
+      if (!getIdentifierBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, identifier_);
       }
       if (status_ != de.bwueller.environment.protocol.UpdateUserStatus.UpdateUserStatusRequest.Status.CONNECTED.getNumber()) {
         output.writeEnum(3, status_);
@@ -339,9 +343,8 @@ public final class UpdateUserStatus {
       if (!getUserBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, user_);
       }
-      if (identifier_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, getIdentifier());
+      if (!getIdentifierBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, identifier_);
       }
       if (status_ != de.bwueller.environment.protocol.UpdateUserStatus.UpdateUserStatusRequest.Status.CONNECTED.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
@@ -365,11 +368,8 @@ public final class UpdateUserStatus {
       boolean result = true;
       result = result && getUser()
           .equals(other.getUser());
-      result = result && (hasIdentifier() == other.hasIdentifier());
-      if (hasIdentifier()) {
-        result = result && getIdentifier()
-            .equals(other.getIdentifier());
-      }
+      result = result && getIdentifier()
+          .equals(other.getIdentifier());
       result = result && status_ == other.status_;
       return result;
     }
@@ -383,10 +383,8 @@ public final class UpdateUserStatus {
       hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + USER_FIELD_NUMBER;
       hash = (53 * hash) + getUser().hashCode();
-      if (hasIdentifier()) {
-        hash = (37 * hash) + IDENTIFIER_FIELD_NUMBER;
-        hash = (53 * hash) + getIdentifier().hashCode();
-      }
+      hash = (37 * hash) + IDENTIFIER_FIELD_NUMBER;
+      hash = (53 * hash) + getIdentifier().hashCode();
       hash = (37 * hash) + STATUS_FIELD_NUMBER;
       hash = (53 * hash) + status_;
       hash = (29 * hash) + unknownFields.hashCode();
@@ -509,12 +507,8 @@ public final class UpdateUserStatus {
         super.clear();
         user_ = "";
 
-        if (identifierBuilder_ == null) {
-          identifier_ = null;
-        } else {
-          identifier_ = null;
-          identifierBuilder_ = null;
-        }
+        identifier_ = "";
+
         status_ = 0;
 
         return this;
@@ -540,11 +534,7 @@ public final class UpdateUserStatus {
       public de.bwueller.environment.protocol.UpdateUserStatus.UpdateUserStatusRequest buildPartial() {
         de.bwueller.environment.protocol.UpdateUserStatus.UpdateUserStatusRequest result = new de.bwueller.environment.protocol.UpdateUserStatus.UpdateUserStatusRequest(this);
         result.user_ = user_;
-        if (identifierBuilder_ == null) {
-          result.identifier_ = identifier_;
-        } else {
-          result.identifier_ = identifierBuilder_.build();
-        }
+        result.identifier_ = identifier_;
         result.status_ = status_;
         onBuilt();
         return result;
@@ -591,8 +581,9 @@ public final class UpdateUserStatus {
           user_ = other.user_;
           onChanged();
         }
-        if (other.hasIdentifier()) {
-          mergeIdentifier(other.getIdentifier());
+        if (!other.getIdentifier().isEmpty()) {
+          identifier_ = other.identifier_;
+          onChanged();
         }
         if (other.status_ != 0) {
           setStatusValue(other.getStatusValue());
@@ -692,121 +683,73 @@ public final class UpdateUserStatus {
         return this;
       }
 
-      private de.bwueller.environment.protocol.General.UUID identifier_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          de.bwueller.environment.protocol.General.UUID, de.bwueller.environment.protocol.General.UUID.Builder, de.bwueller.environment.protocol.General.UUIDOrBuilder> identifierBuilder_;
+      private java.lang.Object identifier_ = "";
       /**
-       * <code>optional .UUID identifier = 2;</code>
+       * <code>optional string identifier = 2;</code>
        */
-      public boolean hasIdentifier() {
-        return identifierBuilder_ != null || identifier_ != null;
-      }
-      /**
-       * <code>optional .UUID identifier = 2;</code>
-       */
-      public de.bwueller.environment.protocol.General.UUID getIdentifier() {
-        if (identifierBuilder_ == null) {
-          return identifier_ == null ? de.bwueller.environment.protocol.General.UUID.getDefaultInstance() : identifier_;
+      public java.lang.String getIdentifier() {
+        java.lang.Object ref = identifier_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          identifier_ = s;
+          return s;
         } else {
-          return identifierBuilder_.getMessage();
+          return (java.lang.String) ref;
         }
       }
       /**
-       * <code>optional .UUID identifier = 2;</code>
+       * <code>optional string identifier = 2;</code>
        */
-      public Builder setIdentifier(de.bwueller.environment.protocol.General.UUID value) {
-        if (identifierBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          identifier_ = value;
-          onChanged();
+      public com.google.protobuf.ByteString
+          getIdentifierBytes() {
+        java.lang.Object ref = identifier_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          identifier_ = b;
+          return b;
         } else {
-          identifierBuilder_.setMessage(value);
+          return (com.google.protobuf.ByteString) ref;
         }
-
-        return this;
       }
       /**
-       * <code>optional .UUID identifier = 2;</code>
+       * <code>optional string identifier = 2;</code>
        */
       public Builder setIdentifier(
-          de.bwueller.environment.protocol.General.UUID.Builder builderForValue) {
-        if (identifierBuilder_ == null) {
-          identifier_ = builderForValue.build();
-          onChanged();
-        } else {
-          identifierBuilder_.setMessage(builderForValue.build());
-        }
-
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        identifier_ = value;
+        onChanged();
         return this;
       }
       /**
-       * <code>optional .UUID identifier = 2;</code>
-       */
-      public Builder mergeIdentifier(de.bwueller.environment.protocol.General.UUID value) {
-        if (identifierBuilder_ == null) {
-          if (identifier_ != null) {
-            identifier_ =
-              de.bwueller.environment.protocol.General.UUID.newBuilder(identifier_).mergeFrom(value).buildPartial();
-          } else {
-            identifier_ = value;
-          }
-          onChanged();
-        } else {
-          identifierBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .UUID identifier = 2;</code>
+       * <code>optional string identifier = 2;</code>
        */
       public Builder clearIdentifier() {
-        if (identifierBuilder_ == null) {
-          identifier_ = null;
-          onChanged();
-        } else {
-          identifier_ = null;
-          identifierBuilder_ = null;
-        }
-
+        
+        identifier_ = getDefaultInstance().getIdentifier();
+        onChanged();
         return this;
       }
       /**
-       * <code>optional .UUID identifier = 2;</code>
+       * <code>optional string identifier = 2;</code>
        */
-      public de.bwueller.environment.protocol.General.UUID.Builder getIdentifierBuilder() {
+      public Builder setIdentifierBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
         
+        identifier_ = value;
         onChanged();
-        return getIdentifierFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .UUID identifier = 2;</code>
-       */
-      public de.bwueller.environment.protocol.General.UUIDOrBuilder getIdentifierOrBuilder() {
-        if (identifierBuilder_ != null) {
-          return identifierBuilder_.getMessageOrBuilder();
-        } else {
-          return identifier_ == null ?
-              de.bwueller.environment.protocol.General.UUID.getDefaultInstance() : identifier_;
-        }
-      }
-      /**
-       * <code>optional .UUID identifier = 2;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          de.bwueller.environment.protocol.General.UUID, de.bwueller.environment.protocol.General.UUID.Builder, de.bwueller.environment.protocol.General.UUIDOrBuilder> 
-          getIdentifierFieldBuilder() {
-        if (identifierBuilder_ == null) {
-          identifierBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              de.bwueller.environment.protocol.General.UUID, de.bwueller.environment.protocol.General.UUID.Builder, de.bwueller.environment.protocol.General.UUIDOrBuilder>(
-                  getIdentifier(),
-                  getParentForChildren(),
-                  isClean());
-          identifier_ = null;
-        }
-        return identifierBuilder_;
+        return this;
       }
 
       private int status_ = 0;
@@ -916,12 +859,11 @@ public final class UpdateUserStatus {
   static {
     java.lang.String[] descriptorData = {
       "\n\030update_user_status.proto\032\rgeneral.prot" +
-      "o\"\236\001\n\027UpdateUserStatusRequest\022\014\n\004user\030\001 " +
-      "\001(\t\022\031\n\nidentifier\030\002 \001(\0132\005.UUID\022/\n\006status" +
-      "\030\003 \001(\0162\037.UpdateUserStatusRequest.Status\"" +
-      ")\n\006Status\022\r\n\tCONNECTED\020\000\022\020\n\014DISCONNECTED" +
-      "\020\001B\"\n de.bwueller.environment.protocolb\006" +
-      "proto3"
+      "o\"\227\001\n\027UpdateUserStatusRequest\022\014\n\004user\030\001 " +
+      "\001(\t\022\022\n\nidentifier\030\002 \001(\t\022/\n\006status\030\003 \001(\0162" +
+      "\037.UpdateUserStatusRequest.Status\")\n\006Stat" +
+      "us\022\r\n\tCONNECTED\020\000\022\020\n\014DISCONNECTED\020\001B\"\n d" +
+      "e.bwueller.environment.protocolb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

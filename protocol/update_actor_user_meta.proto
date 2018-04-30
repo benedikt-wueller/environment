@@ -5,11 +5,6 @@ option java_package = "de.bwueller.environment.protocol";
 import "general.proto";
 
 message UpdateActorUserMetaRequest {
-    UUID identifier = 1;
+    string identifier = 1;
     repeated Meta meta = 2;
-}
-
-message Meta {
-    int32 identifier = 1;
-    string value = 2;
 }

@@ -23,25 +23,18 @@ public final class UpdateSoundRate {
      * Sound identifier.
      * </pre>
      *
-     * <code>optional .UUID sound = 1;</code>
+     * <code>optional string sound = 1;</code>
      */
-    boolean hasSound();
+    java.lang.String getSound();
     /**
      * <pre>
      * Sound identifier.
      * </pre>
      *
-     * <code>optional .UUID sound = 1;</code>
+     * <code>optional string sound = 1;</code>
      */
-    de.bwueller.environment.protocol.General.UUID getSound();
-    /**
-     * <pre>
-     * Sound identifier.
-     * </pre>
-     *
-     * <code>optional .UUID sound = 1;</code>
-     */
-    de.bwueller.environment.protocol.General.UUIDOrBuilder getSoundOrBuilder();
+    com.google.protobuf.ByteString
+        getSoundBytes();
 
     /**
      * <code>optional double rate = 2;</code>
@@ -60,6 +53,7 @@ public final class UpdateSoundRate {
       super(builder);
     }
     private UpdateSoundRateRequest() {
+      sound_ = "";
       rate_ = 0D;
     }
 
@@ -89,16 +83,9 @@ public final class UpdateSoundRate {
               break;
             }
             case 10: {
-              de.bwueller.environment.protocol.General.UUID.Builder subBuilder = null;
-              if (sound_ != null) {
-                subBuilder = sound_.toBuilder();
-              }
-              sound_ = input.readMessage(de.bwueller.environment.protocol.General.UUID.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(sound_);
-                sound_ = subBuilder.buildPartial();
-              }
+              java.lang.String s = input.readStringRequireUtf8();
 
+              sound_ = s;
               break;
             }
             case 17: {
@@ -130,36 +117,45 @@ public final class UpdateSoundRate {
     }
 
     public static final int SOUND_FIELD_NUMBER = 1;
-    private de.bwueller.environment.protocol.General.UUID sound_;
+    private volatile java.lang.Object sound_;
     /**
      * <pre>
      * Sound identifier.
      * </pre>
      *
-     * <code>optional .UUID sound = 1;</code>
+     * <code>optional string sound = 1;</code>
      */
-    public boolean hasSound() {
-      return sound_ != null;
+    public java.lang.String getSound() {
+      java.lang.Object ref = sound_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        sound_ = s;
+        return s;
+      }
     }
     /**
      * <pre>
      * Sound identifier.
      * </pre>
      *
-     * <code>optional .UUID sound = 1;</code>
+     * <code>optional string sound = 1;</code>
      */
-    public de.bwueller.environment.protocol.General.UUID getSound() {
-      return sound_ == null ? de.bwueller.environment.protocol.General.UUID.getDefaultInstance() : sound_;
-    }
-    /**
-     * <pre>
-     * Sound identifier.
-     * </pre>
-     *
-     * <code>optional .UUID sound = 1;</code>
-     */
-    public de.bwueller.environment.protocol.General.UUIDOrBuilder getSoundOrBuilder() {
-      return getSound();
+    public com.google.protobuf.ByteString
+        getSoundBytes() {
+      java.lang.Object ref = sound_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        sound_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int RATE_FIELD_NUMBER = 2;
@@ -183,8 +179,8 @@ public final class UpdateSoundRate {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (sound_ != null) {
-        output.writeMessage(1, getSound());
+      if (!getSoundBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, sound_);
       }
       if (rate_ != 0D) {
         output.writeDouble(2, rate_);
@@ -196,9 +192,8 @@ public final class UpdateSoundRate {
       if (size != -1) return size;
 
       size = 0;
-      if (sound_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getSound());
+      if (!getSoundBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, sound_);
       }
       if (rate_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
@@ -220,11 +215,8 @@ public final class UpdateSoundRate {
       de.bwueller.environment.protocol.UpdateSoundRate.UpdateSoundRateRequest other = (de.bwueller.environment.protocol.UpdateSoundRate.UpdateSoundRateRequest) obj;
 
       boolean result = true;
-      result = result && (hasSound() == other.hasSound());
-      if (hasSound()) {
-        result = result && getSound()
-            .equals(other.getSound());
-      }
+      result = result && getSound()
+          .equals(other.getSound());
       result = result && (
           java.lang.Double.doubleToLongBits(getRate())
           == java.lang.Double.doubleToLongBits(
@@ -239,10 +231,8 @@ public final class UpdateSoundRate {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
-      if (hasSound()) {
-        hash = (37 * hash) + SOUND_FIELD_NUMBER;
-        hash = (53 * hash) + getSound().hashCode();
-      }
+      hash = (37 * hash) + SOUND_FIELD_NUMBER;
+      hash = (53 * hash) + getSound().hashCode();
       hash = (37 * hash) + RATE_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           java.lang.Double.doubleToLongBits(getRate()));
@@ -364,12 +354,8 @@ public final class UpdateSoundRate {
       }
       public Builder clear() {
         super.clear();
-        if (soundBuilder_ == null) {
-          sound_ = null;
-        } else {
-          sound_ = null;
-          soundBuilder_ = null;
-        }
+        sound_ = "";
+
         rate_ = 0D;
 
         return this;
@@ -394,11 +380,7 @@ public final class UpdateSoundRate {
 
       public de.bwueller.environment.protocol.UpdateSoundRate.UpdateSoundRateRequest buildPartial() {
         de.bwueller.environment.protocol.UpdateSoundRate.UpdateSoundRateRequest result = new de.bwueller.environment.protocol.UpdateSoundRate.UpdateSoundRateRequest(this);
-        if (soundBuilder_ == null) {
-          result.sound_ = sound_;
-        } else {
-          result.sound_ = soundBuilder_.build();
-        }
+        result.sound_ = sound_;
         result.rate_ = rate_;
         onBuilt();
         return result;
@@ -441,8 +423,9 @@ public final class UpdateSoundRate {
 
       public Builder mergeFrom(de.bwueller.environment.protocol.UpdateSoundRate.UpdateSoundRateRequest other) {
         if (other == de.bwueller.environment.protocol.UpdateSoundRate.UpdateSoundRateRequest.getDefaultInstance()) return this;
-        if (other.hasSound()) {
-          mergeSound(other.getSound());
+        if (!other.getSound().isEmpty()) {
+          sound_ = other.sound_;
+          onChanged();
         }
         if (other.getRate() != 0D) {
           setRate(other.getRate());
@@ -473,31 +456,24 @@ public final class UpdateSoundRate {
         return this;
       }
 
-      private de.bwueller.environment.protocol.General.UUID sound_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          de.bwueller.environment.protocol.General.UUID, de.bwueller.environment.protocol.General.UUID.Builder, de.bwueller.environment.protocol.General.UUIDOrBuilder> soundBuilder_;
+      private java.lang.Object sound_ = "";
       /**
        * <pre>
        * Sound identifier.
        * </pre>
        *
-       * <code>optional .UUID sound = 1;</code>
+       * <code>optional string sound = 1;</code>
        */
-      public boolean hasSound() {
-        return soundBuilder_ != null || sound_ != null;
-      }
-      /**
-       * <pre>
-       * Sound identifier.
-       * </pre>
-       *
-       * <code>optional .UUID sound = 1;</code>
-       */
-      public de.bwueller.environment.protocol.General.UUID getSound() {
-        if (soundBuilder_ == null) {
-          return sound_ == null ? de.bwueller.environment.protocol.General.UUID.getDefaultInstance() : sound_;
+      public java.lang.String getSound() {
+        java.lang.Object ref = sound_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          sound_ = s;
+          return s;
         } else {
-          return soundBuilder_.getMessage();
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -505,37 +481,36 @@ public final class UpdateSoundRate {
        * Sound identifier.
        * </pre>
        *
-       * <code>optional .UUID sound = 1;</code>
+       * <code>optional string sound = 1;</code>
        */
-      public Builder setSound(de.bwueller.environment.protocol.General.UUID value) {
-        if (soundBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          sound_ = value;
-          onChanged();
+      public com.google.protobuf.ByteString
+          getSoundBytes() {
+        java.lang.Object ref = sound_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          sound_ = b;
+          return b;
         } else {
-          soundBuilder_.setMessage(value);
+          return (com.google.protobuf.ByteString) ref;
         }
-
-        return this;
       }
       /**
        * <pre>
        * Sound identifier.
        * </pre>
        *
-       * <code>optional .UUID sound = 1;</code>
+       * <code>optional string sound = 1;</code>
        */
       public Builder setSound(
-          de.bwueller.environment.protocol.General.UUID.Builder builderForValue) {
-        if (soundBuilder_ == null) {
-          sound_ = builderForValue.build();
-          onChanged();
-        } else {
-          soundBuilder_.setMessage(builderForValue.build());
-        }
-
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        sound_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -543,39 +518,12 @@ public final class UpdateSoundRate {
        * Sound identifier.
        * </pre>
        *
-       * <code>optional .UUID sound = 1;</code>
-       */
-      public Builder mergeSound(de.bwueller.environment.protocol.General.UUID value) {
-        if (soundBuilder_ == null) {
-          if (sound_ != null) {
-            sound_ =
-              de.bwueller.environment.protocol.General.UUID.newBuilder(sound_).mergeFrom(value).buildPartial();
-          } else {
-            sound_ = value;
-          }
-          onChanged();
-        } else {
-          soundBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <pre>
-       * Sound identifier.
-       * </pre>
-       *
-       * <code>optional .UUID sound = 1;</code>
+       * <code>optional string sound = 1;</code>
        */
       public Builder clearSound() {
-        if (soundBuilder_ == null) {
-          sound_ = null;
-          onChanged();
-        } else {
-          sound_ = null;
-          soundBuilder_ = null;
-        }
-
+        
+        sound_ = getDefaultInstance().getSound();
+        onChanged();
         return this;
       }
       /**
@@ -583,47 +531,18 @@ public final class UpdateSoundRate {
        * Sound identifier.
        * </pre>
        *
-       * <code>optional .UUID sound = 1;</code>
+       * <code>optional string sound = 1;</code>
        */
-      public de.bwueller.environment.protocol.General.UUID.Builder getSoundBuilder() {
+      public Builder setSoundBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
         
+        sound_ = value;
         onChanged();
-        return getSoundFieldBuilder().getBuilder();
-      }
-      /**
-       * <pre>
-       * Sound identifier.
-       * </pre>
-       *
-       * <code>optional .UUID sound = 1;</code>
-       */
-      public de.bwueller.environment.protocol.General.UUIDOrBuilder getSoundOrBuilder() {
-        if (soundBuilder_ != null) {
-          return soundBuilder_.getMessageOrBuilder();
-        } else {
-          return sound_ == null ?
-              de.bwueller.environment.protocol.General.UUID.getDefaultInstance() : sound_;
-        }
-      }
-      /**
-       * <pre>
-       * Sound identifier.
-       * </pre>
-       *
-       * <code>optional .UUID sound = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          de.bwueller.environment.protocol.General.UUID, de.bwueller.environment.protocol.General.UUID.Builder, de.bwueller.environment.protocol.General.UUIDOrBuilder> 
-          getSoundFieldBuilder() {
-        if (soundBuilder_ == null) {
-          soundBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              de.bwueller.environment.protocol.General.UUID, de.bwueller.environment.protocol.General.UUID.Builder, de.bwueller.environment.protocol.General.UUIDOrBuilder>(
-                  getSound(),
-                  getParentForChildren(),
-                  isClean());
-          sound_ = null;
-        }
-        return soundBuilder_;
+        return this;
       }
 
       private double rate_ ;
@@ -705,17 +624,14 @@ public final class UpdateSoundRate {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional .UUID sound = 1;</code>
+     * <code>optional string sound = 1;</code>
      */
-    boolean hasSound();
+    java.lang.String getSound();
     /**
-     * <code>optional .UUID sound = 1;</code>
+     * <code>optional string sound = 1;</code>
      */
-    de.bwueller.environment.protocol.General.UUID getSound();
-    /**
-     * <code>optional .UUID sound = 1;</code>
-     */
-    de.bwueller.environment.protocol.General.UUIDOrBuilder getSoundOrBuilder();
+    com.google.protobuf.ByteString
+        getSoundBytes();
 
     /**
      * <code>optional double rate = 2;</code>
@@ -734,6 +650,7 @@ public final class UpdateSoundRate {
       super(builder);
     }
     private UpdateSoundRateResponse() {
+      sound_ = "";
       rate_ = 0D;
     }
 
@@ -763,16 +680,9 @@ public final class UpdateSoundRate {
               break;
             }
             case 10: {
-              de.bwueller.environment.protocol.General.UUID.Builder subBuilder = null;
-              if (sound_ != null) {
-                subBuilder = sound_.toBuilder();
-              }
-              sound_ = input.readMessage(de.bwueller.environment.protocol.General.UUID.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(sound_);
-                sound_ = subBuilder.buildPartial();
-              }
+              java.lang.String s = input.readStringRequireUtf8();
 
+              sound_ = s;
               break;
             }
             case 17: {
@@ -804,24 +714,37 @@ public final class UpdateSoundRate {
     }
 
     public static final int SOUND_FIELD_NUMBER = 1;
-    private de.bwueller.environment.protocol.General.UUID sound_;
+    private volatile java.lang.Object sound_;
     /**
-     * <code>optional .UUID sound = 1;</code>
+     * <code>optional string sound = 1;</code>
      */
-    public boolean hasSound() {
-      return sound_ != null;
+    public java.lang.String getSound() {
+      java.lang.Object ref = sound_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        sound_ = s;
+        return s;
+      }
     }
     /**
-     * <code>optional .UUID sound = 1;</code>
+     * <code>optional string sound = 1;</code>
      */
-    public de.bwueller.environment.protocol.General.UUID getSound() {
-      return sound_ == null ? de.bwueller.environment.protocol.General.UUID.getDefaultInstance() : sound_;
-    }
-    /**
-     * <code>optional .UUID sound = 1;</code>
-     */
-    public de.bwueller.environment.protocol.General.UUIDOrBuilder getSoundOrBuilder() {
-      return getSound();
+    public com.google.protobuf.ByteString
+        getSoundBytes() {
+      java.lang.Object ref = sound_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        sound_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int RATE_FIELD_NUMBER = 2;
@@ -845,8 +768,8 @@ public final class UpdateSoundRate {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (sound_ != null) {
-        output.writeMessage(1, getSound());
+      if (!getSoundBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, sound_);
       }
       if (rate_ != 0D) {
         output.writeDouble(2, rate_);
@@ -858,9 +781,8 @@ public final class UpdateSoundRate {
       if (size != -1) return size;
 
       size = 0;
-      if (sound_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getSound());
+      if (!getSoundBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, sound_);
       }
       if (rate_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
@@ -882,11 +804,8 @@ public final class UpdateSoundRate {
       de.bwueller.environment.protocol.UpdateSoundRate.UpdateSoundRateResponse other = (de.bwueller.environment.protocol.UpdateSoundRate.UpdateSoundRateResponse) obj;
 
       boolean result = true;
-      result = result && (hasSound() == other.hasSound());
-      if (hasSound()) {
-        result = result && getSound()
-            .equals(other.getSound());
-      }
+      result = result && getSound()
+          .equals(other.getSound());
       result = result && (
           java.lang.Double.doubleToLongBits(getRate())
           == java.lang.Double.doubleToLongBits(
@@ -901,10 +820,8 @@ public final class UpdateSoundRate {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
-      if (hasSound()) {
-        hash = (37 * hash) + SOUND_FIELD_NUMBER;
-        hash = (53 * hash) + getSound().hashCode();
-      }
+      hash = (37 * hash) + SOUND_FIELD_NUMBER;
+      hash = (53 * hash) + getSound().hashCode();
       hash = (37 * hash) + RATE_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           java.lang.Double.doubleToLongBits(getRate()));
@@ -1026,12 +943,8 @@ public final class UpdateSoundRate {
       }
       public Builder clear() {
         super.clear();
-        if (soundBuilder_ == null) {
-          sound_ = null;
-        } else {
-          sound_ = null;
-          soundBuilder_ = null;
-        }
+        sound_ = "";
+
         rate_ = 0D;
 
         return this;
@@ -1056,11 +969,7 @@ public final class UpdateSoundRate {
 
       public de.bwueller.environment.protocol.UpdateSoundRate.UpdateSoundRateResponse buildPartial() {
         de.bwueller.environment.protocol.UpdateSoundRate.UpdateSoundRateResponse result = new de.bwueller.environment.protocol.UpdateSoundRate.UpdateSoundRateResponse(this);
-        if (soundBuilder_ == null) {
-          result.sound_ = sound_;
-        } else {
-          result.sound_ = soundBuilder_.build();
-        }
+        result.sound_ = sound_;
         result.rate_ = rate_;
         onBuilt();
         return result;
@@ -1103,8 +1012,9 @@ public final class UpdateSoundRate {
 
       public Builder mergeFrom(de.bwueller.environment.protocol.UpdateSoundRate.UpdateSoundRateResponse other) {
         if (other == de.bwueller.environment.protocol.UpdateSoundRate.UpdateSoundRateResponse.getDefaultInstance()) return this;
-        if (other.hasSound()) {
-          mergeSound(other.getSound());
+        if (!other.getSound().isEmpty()) {
+          sound_ = other.sound_;
+          onChanged();
         }
         if (other.getRate() != 0D) {
           setRate(other.getRate());
@@ -1135,121 +1045,73 @@ public final class UpdateSoundRate {
         return this;
       }
 
-      private de.bwueller.environment.protocol.General.UUID sound_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          de.bwueller.environment.protocol.General.UUID, de.bwueller.environment.protocol.General.UUID.Builder, de.bwueller.environment.protocol.General.UUIDOrBuilder> soundBuilder_;
+      private java.lang.Object sound_ = "";
       /**
-       * <code>optional .UUID sound = 1;</code>
+       * <code>optional string sound = 1;</code>
        */
-      public boolean hasSound() {
-        return soundBuilder_ != null || sound_ != null;
-      }
-      /**
-       * <code>optional .UUID sound = 1;</code>
-       */
-      public de.bwueller.environment.protocol.General.UUID getSound() {
-        if (soundBuilder_ == null) {
-          return sound_ == null ? de.bwueller.environment.protocol.General.UUID.getDefaultInstance() : sound_;
+      public java.lang.String getSound() {
+        java.lang.Object ref = sound_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          sound_ = s;
+          return s;
         } else {
-          return soundBuilder_.getMessage();
+          return (java.lang.String) ref;
         }
       }
       /**
-       * <code>optional .UUID sound = 1;</code>
+       * <code>optional string sound = 1;</code>
        */
-      public Builder setSound(de.bwueller.environment.protocol.General.UUID value) {
-        if (soundBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          sound_ = value;
-          onChanged();
+      public com.google.protobuf.ByteString
+          getSoundBytes() {
+        java.lang.Object ref = sound_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          sound_ = b;
+          return b;
         } else {
-          soundBuilder_.setMessage(value);
+          return (com.google.protobuf.ByteString) ref;
         }
-
-        return this;
       }
       /**
-       * <code>optional .UUID sound = 1;</code>
+       * <code>optional string sound = 1;</code>
        */
       public Builder setSound(
-          de.bwueller.environment.protocol.General.UUID.Builder builderForValue) {
-        if (soundBuilder_ == null) {
-          sound_ = builderForValue.build();
-          onChanged();
-        } else {
-          soundBuilder_.setMessage(builderForValue.build());
-        }
-
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        sound_ = value;
+        onChanged();
         return this;
       }
       /**
-       * <code>optional .UUID sound = 1;</code>
-       */
-      public Builder mergeSound(de.bwueller.environment.protocol.General.UUID value) {
-        if (soundBuilder_ == null) {
-          if (sound_ != null) {
-            sound_ =
-              de.bwueller.environment.protocol.General.UUID.newBuilder(sound_).mergeFrom(value).buildPartial();
-          } else {
-            sound_ = value;
-          }
-          onChanged();
-        } else {
-          soundBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .UUID sound = 1;</code>
+       * <code>optional string sound = 1;</code>
        */
       public Builder clearSound() {
-        if (soundBuilder_ == null) {
-          sound_ = null;
-          onChanged();
-        } else {
-          sound_ = null;
-          soundBuilder_ = null;
-        }
-
+        
+        sound_ = getDefaultInstance().getSound();
+        onChanged();
         return this;
       }
       /**
-       * <code>optional .UUID sound = 1;</code>
+       * <code>optional string sound = 1;</code>
        */
-      public de.bwueller.environment.protocol.General.UUID.Builder getSoundBuilder() {
+      public Builder setSoundBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
         
+        sound_ = value;
         onChanged();
-        return getSoundFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .UUID sound = 1;</code>
-       */
-      public de.bwueller.environment.protocol.General.UUIDOrBuilder getSoundOrBuilder() {
-        if (soundBuilder_ != null) {
-          return soundBuilder_.getMessageOrBuilder();
-        } else {
-          return sound_ == null ?
-              de.bwueller.environment.protocol.General.UUID.getDefaultInstance() : sound_;
-        }
-      }
-      /**
-       * <code>optional .UUID sound = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          de.bwueller.environment.protocol.General.UUID, de.bwueller.environment.protocol.General.UUID.Builder, de.bwueller.environment.protocol.General.UUIDOrBuilder> 
-          getSoundFieldBuilder() {
-        if (soundBuilder_ == null) {
-          soundBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              de.bwueller.environment.protocol.General.UUID, de.bwueller.environment.protocol.General.UUID.Builder, de.bwueller.environment.protocol.General.UUIDOrBuilder>(
-                  getSound(),
-                  getParentForChildren(),
-                  isClean());
-          sound_ = null;
-        }
-        return soundBuilder_;
+        return this;
       }
 
       private double rate_ ;
@@ -1346,11 +1208,10 @@ public final class UpdateSoundRate {
   static {
     java.lang.String[] descriptorData = {
       "\n\027update_sound_rate.proto\032\rgeneral.proto" +
-      "\"<\n\026UpdateSoundRateRequest\022\024\n\005sound\030\001 \001(" +
-      "\0132\005.UUID\022\014\n\004rate\030\002 \001(\001\"=\n\027UpdateSoundRat" +
-      "eResponse\022\024\n\005sound\030\001 \001(\0132\005.UUID\022\014\n\004rate\030" +
-      "\002 \001(\001B\"\n de.bwueller.environment.protoco" +
-      "lb\006proto3"
+      "\"5\n\026UpdateSoundRateRequest\022\r\n\005sound\030\001 \001(" +
+      "\t\022\014\n\004rate\030\002 \001(\001\"6\n\027UpdateSoundRateRespon" +
+      "se\022\r\n\005sound\030\001 \001(\t\022\014\n\004rate\030\002 \001(\001B\"\n de.bw" +
+      "ueller.environment.protocolb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
