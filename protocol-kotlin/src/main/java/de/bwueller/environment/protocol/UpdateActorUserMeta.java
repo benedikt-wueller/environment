@@ -19,14 +19,14 @@ public final class UpdateActorUserMeta {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional string identifier = 1;</code>
+     * <code>optional string user = 1;</code>
      */
-    java.lang.String getIdentifier();
+    java.lang.String getUser();
     /**
-     * <code>optional string identifier = 1;</code>
+     * <code>optional string user = 1;</code>
      */
     com.google.protobuf.ByteString
-        getIdentifierBytes();
+        getUserBytes();
 
     /**
      * <code>repeated .Meta meta = 2;</code>
@@ -64,7 +64,7 @@ public final class UpdateActorUserMeta {
       super(builder);
     }
     private UpdateActorUserMetaRequest() {
-      identifier_ = "";
+      user_ = "";
       meta_ = java.util.Collections.emptyList();
     }
 
@@ -96,7 +96,7 @@ public final class UpdateActorUserMeta {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              identifier_ = s;
+              user_ = s;
               break;
             }
             case 18: {
@@ -135,34 +135,34 @@ public final class UpdateActorUserMeta {
     }
 
     private int bitField0_;
-    public static final int IDENTIFIER_FIELD_NUMBER = 1;
-    private volatile java.lang.Object identifier_;
+    public static final int USER_FIELD_NUMBER = 1;
+    private volatile java.lang.Object user_;
     /**
-     * <code>optional string identifier = 1;</code>
+     * <code>optional string user = 1;</code>
      */
-    public java.lang.String getIdentifier() {
-      java.lang.Object ref = identifier_;
+    public java.lang.String getUser() {
+      java.lang.Object ref = user_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        identifier_ = s;
+        user_ = s;
         return s;
       }
     }
     /**
-     * <code>optional string identifier = 1;</code>
+     * <code>optional string user = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getIdentifierBytes() {
-      java.lang.Object ref = identifier_;
+        getUserBytes() {
+      java.lang.Object ref = user_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        identifier_ = b;
+        user_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -216,8 +216,8 @@ public final class UpdateActorUserMeta {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getIdentifierBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, identifier_);
+      if (!getUserBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, user_);
       }
       for (int i = 0; i < meta_.size(); i++) {
         output.writeMessage(2, meta_.get(i));
@@ -229,8 +229,8 @@ public final class UpdateActorUserMeta {
       if (size != -1) return size;
 
       size = 0;
-      if (!getIdentifierBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, identifier_);
+      if (!getUserBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, user_);
       }
       for (int i = 0; i < meta_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
@@ -252,8 +252,8 @@ public final class UpdateActorUserMeta {
       de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest other = (de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest) obj;
 
       boolean result = true;
-      result = result && getIdentifier()
-          .equals(other.getIdentifier());
+      result = result && getUser()
+          .equals(other.getUser());
       result = result && getMetaList()
           .equals(other.getMetaList());
       return result;
@@ -266,8 +266,8 @@ public final class UpdateActorUserMeta {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + IDENTIFIER_FIELD_NUMBER;
-      hash = (53 * hash) + getIdentifier().hashCode();
+      hash = (37 * hash) + USER_FIELD_NUMBER;
+      hash = (53 * hash) + getUser().hashCode();
       if (getMetaCount() > 0) {
         hash = (37 * hash) + META_FIELD_NUMBER;
         hash = (53 * hash) + getMetaList().hashCode();
@@ -391,7 +391,7 @@ public final class UpdateActorUserMeta {
       }
       public Builder clear() {
         super.clear();
-        identifier_ = "";
+        user_ = "";
 
         if (metaBuilder_ == null) {
           meta_ = java.util.Collections.emptyList();
@@ -423,7 +423,7 @@ public final class UpdateActorUserMeta {
         de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest result = new de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
-        result.identifier_ = identifier_;
+        result.user_ = user_;
         if (metaBuilder_ == null) {
           if (((bitField0_ & 0x00000002) == 0x00000002)) {
             meta_ = java.util.Collections.unmodifiableList(meta_);
@@ -475,8 +475,8 @@ public final class UpdateActorUserMeta {
 
       public Builder mergeFrom(de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest other) {
         if (other == de.bwueller.environment.protocol.UpdateActorUserMeta.UpdateActorUserMetaRequest.getDefaultInstance()) return this;
-        if (!other.getIdentifier().isEmpty()) {
-          identifier_ = other.identifier_;
+        if (!other.getUser().isEmpty()) {
+          user_ = other.user_;
           onChanged();
         }
         if (metaBuilder_ == null) {
@@ -532,71 +532,71 @@ public final class UpdateActorUserMeta {
       }
       private int bitField0_;
 
-      private java.lang.Object identifier_ = "";
+      private java.lang.Object user_ = "";
       /**
-       * <code>optional string identifier = 1;</code>
+       * <code>optional string user = 1;</code>
        */
-      public java.lang.String getIdentifier() {
-        java.lang.Object ref = identifier_;
+      public java.lang.String getUser() {
+        java.lang.Object ref = user_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          identifier_ = s;
+          user_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>optional string identifier = 1;</code>
+       * <code>optional string user = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getIdentifierBytes() {
-        java.lang.Object ref = identifier_;
+          getUserBytes() {
+        java.lang.Object ref = user_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          identifier_ = b;
+          user_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>optional string identifier = 1;</code>
+       * <code>optional string user = 1;</code>
        */
-      public Builder setIdentifier(
+      public Builder setUser(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        identifier_ = value;
+        user_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string identifier = 1;</code>
+       * <code>optional string user = 1;</code>
        */
-      public Builder clearIdentifier() {
+      public Builder clearUser() {
         
-        identifier_ = getDefaultInstance().getIdentifier();
+        user_ = getDefaultInstance().getUser();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string identifier = 1;</code>
+       * <code>optional string user = 1;</code>
        */
-      public Builder setIdentifierBytes(
+      public Builder setUserBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        identifier_ = value;
+        user_ = value;
         onChanged();
         return this;
       }
@@ -904,9 +904,9 @@ public final class UpdateActorUserMeta {
   static {
     java.lang.String[] descriptorData = {
       "\n\034update_actor_user_meta.proto\032\rgeneral." +
-      "proto\"E\n\032UpdateActorUserMetaRequest\022\022\n\ni" +
-      "dentifier\030\001 \001(\t\022\023\n\004meta\030\002 \003(\0132\005.MetaB\"\n " +
-      "de.bwueller.environment.protocolb\006proto3"
+      "proto\"?\n\032UpdateActorUserMetaRequest\022\014\n\004u" +
+      "ser\030\001 \001(\t\022\023\n\004meta\030\002 \003(\0132\005.MetaB\"\n de.bwu" +
+      "eller.environment.protocolb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -926,7 +926,7 @@ public final class UpdateActorUserMeta {
     internal_static_UpdateActorUserMetaRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UpdateActorUserMetaRequest_descriptor,
-        new java.lang.String[] { "Identifier", "Meta", });
+        new java.lang.String[] { "User", "Meta", });
     de.bwueller.environment.protocol.General.getDescriptor();
   }
 

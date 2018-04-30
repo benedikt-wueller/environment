@@ -1,5 +1,6 @@
-package de.bwueller.environment.processor
+package de.bwueller.environment.processor.actor
 
+import de.bwueller.environment.processor.user.User
 import org.java_websocket.WebSocket
 import java.util.*
 

@@ -1,6 +1,10 @@
 package de.bwueller.environment.processor
 
-import de.bwueller.environment.processor.internal.InternalWebsocketServer
+import de.bwueller.environment.processor.actor.ActorManager
+import de.bwueller.environment.processor.user.UserManager
+
+val actorManager = ActorManager()
+val userManager = UserManager()
 
 fun main(args: Array<String>) {
     InternalWebsocketServer(1234)
