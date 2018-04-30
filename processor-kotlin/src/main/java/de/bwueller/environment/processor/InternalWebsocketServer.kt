@@ -1,6 +1,9 @@
-package de.bwueller.environment.processor.internal
+package de.bwueller.environment.processor
 
+import de.bwueller.environment.processor.actor.ActorManager
 import de.bwueller.environment.protocol.RegisterActor
+import de.bwueller.environment.protocol.RegisterActorUser
+import de.bwueller.environment.protocol.UnregisterActorUser
 import de.bwueller.environment.protocol.deserializePacket
 import org.java_websocket.WebSocket
 import org.java_websocket.handshake.ClientHandshake
@@ -35,6 +38,8 @@ class InternalWebsocketServer(private val serverPort: Int) : WebSocketServer(Ine
         // Pass packet to the corresponding handlers.
         when (packet) {
             is RegisterActor.RegisterActorRequest -> actorManager.handleRegisterActorRequest(packet, socket)
+            is RegisterActorUser.RegisterActorUserRequest -> actorManager.handleRegisterUserRequest(packet, socket)
+            is UnregisterActorUser.UnregisterActorUserRequest -> actorManager.handleUnregisterUserRequest(packet, socket)
         }
     }
 

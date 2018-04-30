@@ -23,18 +23,18 @@ public final class UnregisterActorUser {
      * Unique user identifier.
      * </pre>
      *
-     * <code>optional string identifier = 1;</code>
+     * <code>optional string user = 1;</code>
      */
-    java.lang.String getIdentifier();
+    java.lang.String getUser();
     /**
      * <pre>
      * Unique user identifier.
      * </pre>
      *
-     * <code>optional string identifier = 1;</code>
+     * <code>optional string user = 1;</code>
      */
     com.google.protobuf.ByteString
-        getIdentifierBytes();
+        getUserBytes();
   }
   /**
    * Protobuf type {@code UnregisterActorUserRequest}
@@ -48,7 +48,7 @@ public final class UnregisterActorUser {
       super(builder);
     }
     private UnregisterActorUserRequest() {
-      identifier_ = "";
+      user_ = "";
     }
 
     @java.lang.Override
@@ -79,7 +79,7 @@ public final class UnregisterActorUser {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              identifier_ = s;
+              user_ = s;
               break;
             }
           }
@@ -105,24 +105,24 @@ public final class UnregisterActorUser {
               de.bwueller.environment.protocol.UnregisterActorUser.UnregisterActorUserRequest.class, de.bwueller.environment.protocol.UnregisterActorUser.UnregisterActorUserRequest.Builder.class);
     }
 
-    public static final int IDENTIFIER_FIELD_NUMBER = 1;
-    private volatile java.lang.Object identifier_;
+    public static final int USER_FIELD_NUMBER = 1;
+    private volatile java.lang.Object user_;
     /**
      * <pre>
      * Unique user identifier.
      * </pre>
      *
-     * <code>optional string identifier = 1;</code>
+     * <code>optional string user = 1;</code>
      */
-    public java.lang.String getIdentifier() {
-      java.lang.Object ref = identifier_;
+    public java.lang.String getUser() {
+      java.lang.Object ref = user_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        identifier_ = s;
+        user_ = s;
         return s;
       }
     }
@@ -131,16 +131,16 @@ public final class UnregisterActorUser {
      * Unique user identifier.
      * </pre>
      *
-     * <code>optional string identifier = 1;</code>
+     * <code>optional string user = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getIdentifierBytes() {
-      java.lang.Object ref = identifier_;
+        getUserBytes() {
+      java.lang.Object ref = user_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        identifier_ = b;
+        user_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -159,8 +159,8 @@ public final class UnregisterActorUser {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getIdentifierBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, identifier_);
+      if (!getUserBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, user_);
       }
     }
 
@@ -169,8 +169,8 @@ public final class UnregisterActorUser {
       if (size != -1) return size;
 
       size = 0;
-      if (!getIdentifierBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, identifier_);
+      if (!getUserBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, user_);
       }
       memoizedSize = size;
       return size;
@@ -188,8 +188,8 @@ public final class UnregisterActorUser {
       de.bwueller.environment.protocol.UnregisterActorUser.UnregisterActorUserRequest other = (de.bwueller.environment.protocol.UnregisterActorUser.UnregisterActorUserRequest) obj;
 
       boolean result = true;
-      result = result && getIdentifier()
-          .equals(other.getIdentifier());
+      result = result && getUser()
+          .equals(other.getUser());
       return result;
     }
 
@@ -200,8 +200,8 @@ public final class UnregisterActorUser {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + IDENTIFIER_FIELD_NUMBER;
-      hash = (53 * hash) + getIdentifier().hashCode();
+      hash = (37 * hash) + USER_FIELD_NUMBER;
+      hash = (53 * hash) + getUser().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -320,7 +320,7 @@ public final class UnregisterActorUser {
       }
       public Builder clear() {
         super.clear();
-        identifier_ = "";
+        user_ = "";
 
         return this;
       }
@@ -344,7 +344,7 @@ public final class UnregisterActorUser {
 
       public de.bwueller.environment.protocol.UnregisterActorUser.UnregisterActorUserRequest buildPartial() {
         de.bwueller.environment.protocol.UnregisterActorUser.UnregisterActorUserRequest result = new de.bwueller.environment.protocol.UnregisterActorUser.UnregisterActorUserRequest(this);
-        result.identifier_ = identifier_;
+        result.user_ = user_;
         onBuilt();
         return result;
       }
@@ -386,8 +386,8 @@ public final class UnregisterActorUser {
 
       public Builder mergeFrom(de.bwueller.environment.protocol.UnregisterActorUser.UnregisterActorUserRequest other) {
         if (other == de.bwueller.environment.protocol.UnregisterActorUser.UnregisterActorUserRequest.getDefaultInstance()) return this;
-        if (!other.getIdentifier().isEmpty()) {
-          identifier_ = other.identifier_;
+        if (!other.getUser().isEmpty()) {
+          user_ = other.user_;
           onChanged();
         }
         onChanged();
@@ -416,21 +416,21 @@ public final class UnregisterActorUser {
         return this;
       }
 
-      private java.lang.Object identifier_ = "";
+      private java.lang.Object user_ = "";
       /**
        * <pre>
        * Unique user identifier.
        * </pre>
        *
-       * <code>optional string identifier = 1;</code>
+       * <code>optional string user = 1;</code>
        */
-      public java.lang.String getIdentifier() {
-        java.lang.Object ref = identifier_;
+      public java.lang.String getUser() {
+        java.lang.Object ref = user_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          identifier_ = s;
+          user_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -441,16 +441,16 @@ public final class UnregisterActorUser {
        * Unique user identifier.
        * </pre>
        *
-       * <code>optional string identifier = 1;</code>
+       * <code>optional string user = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getIdentifierBytes() {
-        java.lang.Object ref = identifier_;
+          getUserBytes() {
+        java.lang.Object ref = user_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          identifier_ = b;
+          user_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
@@ -461,15 +461,15 @@ public final class UnregisterActorUser {
        * Unique user identifier.
        * </pre>
        *
-       * <code>optional string identifier = 1;</code>
+       * <code>optional string user = 1;</code>
        */
-      public Builder setIdentifier(
+      public Builder setUser(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        identifier_ = value;
+        user_ = value;
         onChanged();
         return this;
       }
@@ -478,11 +478,11 @@ public final class UnregisterActorUser {
        * Unique user identifier.
        * </pre>
        *
-       * <code>optional string identifier = 1;</code>
+       * <code>optional string user = 1;</code>
        */
-      public Builder clearIdentifier() {
+      public Builder clearUser() {
         
-        identifier_ = getDefaultInstance().getIdentifier();
+        user_ = getDefaultInstance().getUser();
         onChanged();
         return this;
       }
@@ -491,16 +491,16 @@ public final class UnregisterActorUser {
        * Unique user identifier.
        * </pre>
        *
-       * <code>optional string identifier = 1;</code>
+       * <code>optional string user = 1;</code>
        */
-      public Builder setIdentifierBytes(
+      public Builder setUserBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        identifier_ = value;
+        user_ = value;
         onChanged();
         return this;
       }
@@ -568,9 +568,9 @@ public final class UnregisterActorUser {
   static {
     java.lang.String[] descriptorData = {
       "\n\033unregister_actor_user.proto\032\rgeneral.p" +
-      "roto\"0\n\032UnregisterActorUserRequest\022\022\n\nid" +
-      "entifier\030\001 \001(\tB\"\n de.bwueller.environmen" +
-      "t.protocolb\006proto3"
+      "roto\"*\n\032UnregisterActorUserRequest\022\014\n\004us" +
+      "er\030\001 \001(\tB\"\n de.bwueller.environment.prot" +
+      "ocolb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -590,7 +590,7 @@ public final class UnregisterActorUser {
     internal_static_UnregisterActorUserRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UnregisterActorUserRequest_descriptor,
-        new java.lang.String[] { "Identifier", });
+        new java.lang.String[] { "User", });
     de.bwueller.environment.protocol.General.getDescriptor();
   }
 

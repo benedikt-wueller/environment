@@ -1,6 +1,6 @@
-package de.bwueller.environment.processor.internal
+package de.bwueller.environment.processor.actor
 
-import de.bwueller.environment.processor.Actor
+import de.bwueller.environment.processor.userManager
 import de.bwueller.environment.protocol.RegisterActor
 import de.bwueller.environment.protocol.serializePacket
 import org.java_websocket.WebSocket
@@ -62,8 +62,14 @@ class ActorManager {
         val actor = socketActors.remove(socket) ?: return
         actors.remove(actor.name)
 
-        // TODO: unregister users.
+        synchronized(actor) {
+            for (i in actor.users.size - 1 .. 0) {
+                userManager.unregisterUser(actor.users[i])
+            }
+        }
 
         println("Actor ${actor.name}(${actor.uuid}) has been unregistered.")
     }
+
+    fun getActor(socket: WebSocket) = socketActors[socket]
 }
