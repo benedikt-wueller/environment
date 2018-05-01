@@ -4,6 +4,7 @@ import de.bwueller.environment.processor.actor.ActorManager
 import de.bwueller.environment.processor.user.UserManager
 
 // TODO: implement logger
+// TODO: add config
 
 val actorManager = ActorManager()
 val userManager = UserManager()
