@@ -10,8 +10,8 @@ val userManager = UserManager()
 val soundManager = SoundManager()
 
 fun main(args: Array<String>) {
-    InternalWebsocketServer(24499)
-    ExternalWebsocketServer(24500)
+  InternalWebsocketServer(24499)
+  ExternalWebsocketServer(24500)
 
-    while (true);
+  while (true);
 }
