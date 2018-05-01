@@ -56,9 +56,11 @@ class ActorManager {
     val actor = socketActors.remove(socket) ?: return
     actors.remove(actor.name)
 
-    synchronized(actor) {
-      for (i in actor.users.size - 1..0) {
-        userManager.unregisterUser(actor.users[i])
+    if (actor.users.isNotEmpty()) {
+      synchronized(actor) {
+        for (i in actor.users.size - 1 downTo 0) {
+          userManager.unregisterUser(actor.users[i])
+        }
       }
     }
 
