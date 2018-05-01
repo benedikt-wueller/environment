@@ -1,9 +1,6 @@
 package de.bwueller.environment.processor
 
-import de.bwueller.environment.protocol.RegisterActor
-import de.bwueller.environment.protocol.RegisterActorUser
-import de.bwueller.environment.protocol.UnregisterActorUser
-import de.bwueller.environment.protocol.deserializePacket
+import de.bwueller.environment.protocol.*
 import org.java_websocket.WebSocket
 import org.java_websocket.handshake.ClientHandshake
 import org.java_websocket.server.WebSocketServer
@@ -35,6 +32,10 @@ class InternalWebsocketServer(private val serverPort: Int) : WebSocketServer(Ine
             is RegisterActor.RegisterActorRequest -> actorManager.handleRegisterActorRequest(packet, socket)
             is RegisterActorUser.RegisterActorUserRequest -> userManager.handleRegisterUserRequest(packet, socket)
             is UnregisterActorUser.UnregisterActorUserRequest -> userManager.handleUnregisterUserRequest(packet, socket)
+            is PlaySound.PlaySoundRequest -> soundManager.handlePlaySoundRequest(packet)
+            is StopSound.StopSoundRequest -> soundManager.handleStopSoundRequest(packet)
+            is UpdateSoundVolume.UpdateSoundVolumeRequest -> soundManager.handleUpdateVolumeRequest(packet)
+            is UpdateSoundRate.UpdateSoundRateRequest -> soundManager.handleUpdateRateRequest(packet)
         }
     }
 

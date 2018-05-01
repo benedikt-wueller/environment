@@ -1,6 +1,7 @@
 package de.bwueller.environment.processor.user
 
 import de.bwueller.environment.processor.actorManager
+import de.bwueller.environment.processor.soundManager
 import de.bwueller.environment.protocol.*
 import org.java_websocket.WebSocket
 import java.util.*
@@ -19,8 +20,12 @@ class UserManager {
     fun unregisterUser(user: User) {
         user.actor.users.remove(user)
 
+        // Stop any currently playing sounds.
+        soundManager.stopAllSounds(user)
+
         println("User ${user.name} has been unregistered from actor ${user.actor.name}.")
 
+        // Try to remove the user if he is neither connected nor registered.
         tryRemoveUser(user)
     }
 
@@ -43,6 +48,11 @@ class UserManager {
         println("User ${user.name} has been removed.")
     }
 
+    /**
+     * Disconnects a user with the given WebSocket connection.
+     *
+     * @param socket the socket to disconnect the user with.
+     */
     @Synchronized
     fun disconnectUser(socket: WebSocket) {
         val user = socketUsers.remove(socket) ?: return
@@ -57,6 +67,11 @@ class UserManager {
         tryRemoveUser(user)
     }
 
+    /**
+     * Removes a user with the given WebSocket connection.
+     *
+     * @param socket the socket to remove the user with.
+     */
     @Synchronized
     fun handleConnectUserRequest(packet: ConnectUser.ConnectUserRequest, socket: WebSocket) {
         val userName = packet.user
@@ -141,4 +156,6 @@ class UserManager {
     }
 
     fun isUserSocket(socket: WebSocket) = socketUsers.containsKey(socket)
+
+    fun getUser(user: String) = users[user]
 }

@@ -7,6 +7,7 @@ import de.bwueller.environment.processor.user.UserManager
 
 val actorManager = ActorManager()
 val userManager = UserManager()
+val soundManager = SoundManager()
 
 fun main(args: Array<String>) {
     InternalWebsocketServer(24499)
