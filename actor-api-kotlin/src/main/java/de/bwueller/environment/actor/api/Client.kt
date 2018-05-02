@@ -32,6 +32,7 @@ internal class Client(private val name: String, uri: URI, private val meta: Map<
       is PlaySound.PlaySoundResponse -> ActorApi.soundManager.handlePlaySoundResponse(packet)
       is StopSound.StopSoundResponse -> ActorApi.soundManager.handleStopSoundResponse(packet)
       is RegisterActorUser.RegisterActorUserResponse -> ActorApi.userManager.handleRegisterActorUserResponse(packet)
+      is UpdateUserStatus.UpdateUserStatusRequest -> ActorApi.userManager.handleUpdateUserStatusRequest(packet)
     }
   }
 

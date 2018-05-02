@@ -9,7 +9,8 @@ class ActorApi {
 
   companion object {
 
-    private var client = Client("my-custom-actor", URI.create("ws://localhost:24499"))
+    private val config: Config = Config.load()
+    private var client = Client(config.name, URI.create(config.processorAddress))
 
     internal val soundManager = SoundManager(client)
     internal val userManager = UserManager(client)
@@ -21,7 +22,7 @@ class ActorApi {
         if (!connected) {
           Thread({
             Thread.sleep(10000)
-            client = Client("my-custom-actor", URI.create("ws://localhost:24499"))
+            client = Client(config.name, URI.create(config.processorAddress))
             soundManager.client = client
             userManager.client = client
           }).start()
@@ -70,12 +71,19 @@ class ActorApi {
     }
 
     @JvmStatic
-    fun registerUser(user: String, callback: (user: String, key: String) -> Unit) = userManager.registerUser(user, callback)
+    fun registerUser(user: String,
+                     registerCallback: (user: String, key: String) -> Unit,
+                     connectCallback: ((user: String, connected: Boolean) -> Unit)? = null) {
+      userManager.registerUser(user, registerCallback, connectCallback)
+    }
 
     @JvmStatic
     fun unregisterUser(user: String) = userManager.unregisterUser(user)
 
     @JvmStatic
-    fun isUserRegistered(user: String) = userManager.isUserConnected(user)
+    fun isUserRegistered(user: String) = userManager.isUserRegistered(user)
+
+    @JvmStatic
+    fun isUserConnected(user: String) = userManager.isUserConnected(user)
   }
 }

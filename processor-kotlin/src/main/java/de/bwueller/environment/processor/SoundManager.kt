@@ -4,6 +4,7 @@ import com.google.protobuf.GeneratedMessageV3
 import de.bwueller.environment.processor.actor.Actor
 import de.bwueller.environment.processor.user.User
 import de.bwueller.environment.protocol.*
+import org.java_websocket.WebSocket
 
 class SoundManager {
 
@@ -71,8 +72,8 @@ class SoundManager {
     forwardPacketToUser(packet, user)
   }
 
-  fun handlePlaySoundResponse(packet: PlaySound.PlaySoundResponse) {
-    val user = userManager.getUser(packet.identifier) ?: return
+  fun handlePlaySoundResponse(packet: PlaySound.PlaySoundResponse, socket: WebSocket) {
+    val user = userManager.getUser(socket) ?: return
 
     val builder = PlaySound.PlaySoundResponse.newBuilder()
     builder.user = user.name
@@ -81,8 +82,8 @@ class SoundManager {
     forwardPacketToActor(builder.build(), user.actor)
   }
 
-  fun handleStopSoundResponse(packet: StopSound.StopSoundResponse) {
-    val user = userManager.getUser(packet.user) ?: return
+  fun handleStopSoundResponse(packet: StopSound.StopSoundResponse, socket: WebSocket) {
+    val user = userManager.getUser(socket) ?: return
 
     val builder = StopSound.StopSoundResponse.newBuilder()
     builder.user = user.name

@@ -124,7 +124,7 @@ class UserManager {
     val userName = packet.user
 
     // Find the existing user or create a new one.
-    val user = users[userName] ?: User(packet.user, UUID.randomUUID().toString(), actor, null)
+    val user = users[userName] ?: User(packet.user, String(Base64.getEncoder().encode(UUID.randomUUID().toString().toByteArray())), actor, null)
 
     synchronized(user) {
       // Remove the user from the actor he is currently connected to.
@@ -138,6 +138,8 @@ class UserManager {
       val builder = RegisterActorUser.RegisterActorUserResponse.newBuilder()
       builder.user = user.name
       builder.key = user.key
+
+      socket.send(serializePacket(builder.build()))
     }
 
     println("User $userName has been registered for actor ${actor.name}.")
@@ -158,4 +160,6 @@ class UserManager {
   fun isUserSocket(socket: WebSocket) = socketUsers.containsKey(socket)
 
   fun getUser(user: String) = users[user]
+
+  fun getUser(socket: WebSocket) = socketUsers[socket]
 }
