@@ -23,7 +23,7 @@ public final class UpdateSoundVolume {
      * Sound identifier.
      * </pre>
      *
-     * <code>optional string sound = 1;</code>
+     * <code>optional string sound = 2;</code>
      */
     java.lang.String getSound();
     /**
@@ -31,20 +31,20 @@ public final class UpdateSoundVolume {
      * Sound identifier.
      * </pre>
      *
-     * <code>optional string sound = 1;</code>
+     * <code>optional string sound = 2;</code>
      */
     com.google.protobuf.ByteString
         getSoundBytes();
 
     /**
-     * <code>optional double volume = 2;</code>
+     * <code>optional double volume = 3;</code>
      */
     double getVolume();
 
     /**
-     * <code>optional uint32 duration = 3;</code>
+     * <code>optional uint64 duration = 4;</code>
      */
-    int getDuration();
+    long getDuration();
   }
   /**
    * Protobuf type {@code UpdateSoundVolumeRequest}
@@ -60,7 +60,7 @@ public final class UpdateSoundVolume {
     private UpdateSoundVolumeRequest() {
       sound_ = "";
       volume_ = 0D;
-      duration_ = 0;
+      duration_ = 0L;
     }
 
     @java.lang.Override
@@ -88,20 +88,20 @@ public final class UpdateSoundVolume {
               }
               break;
             }
-            case 10: {
+            case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
               sound_ = s;
               break;
             }
-            case 17: {
+            case 25: {
 
               volume_ = input.readDouble();
               break;
             }
-            case 24: {
+            case 32: {
 
-              duration_ = input.readUInt32();
+              duration_ = input.readUInt64();
               break;
             }
           }
@@ -127,14 +127,14 @@ public final class UpdateSoundVolume {
               de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeRequest.class, de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeRequest.Builder.class);
     }
 
-    public static final int SOUND_FIELD_NUMBER = 1;
+    public static final int SOUND_FIELD_NUMBER = 2;
     private volatile java.lang.Object sound_;
     /**
      * <pre>
      * Sound identifier.
      * </pre>
      *
-     * <code>optional string sound = 1;</code>
+     * <code>optional string sound = 2;</code>
      */
     public java.lang.String getSound() {
       java.lang.Object ref = sound_;
@@ -153,7 +153,7 @@ public final class UpdateSoundVolume {
      * Sound identifier.
      * </pre>
      *
-     * <code>optional string sound = 1;</code>
+     * <code>optional string sound = 2;</code>
      */
     public com.google.protobuf.ByteString
         getSoundBytes() {
@@ -169,21 +169,21 @@ public final class UpdateSoundVolume {
       }
     }
 
-    public static final int VOLUME_FIELD_NUMBER = 2;
+    public static final int VOLUME_FIELD_NUMBER = 3;
     private double volume_;
     /**
-     * <code>optional double volume = 2;</code>
+     * <code>optional double volume = 3;</code>
      */
     public double getVolume() {
       return volume_;
     }
 
-    public static final int DURATION_FIELD_NUMBER = 3;
-    private int duration_;
+    public static final int DURATION_FIELD_NUMBER = 4;
+    private long duration_;
     /**
-     * <code>optional uint32 duration = 3;</code>
+     * <code>optional uint64 duration = 4;</code>
      */
-    public int getDuration() {
+    public long getDuration() {
       return duration_;
     }
 
@@ -200,13 +200,13 @@ public final class UpdateSoundVolume {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getSoundBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, sound_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, sound_);
       }
       if (volume_ != 0D) {
-        output.writeDouble(2, volume_);
+        output.writeDouble(3, volume_);
       }
-      if (duration_ != 0) {
-        output.writeUInt32(3, duration_);
+      if (duration_ != 0L) {
+        output.writeUInt64(4, duration_);
       }
     }
 
@@ -216,15 +216,15 @@ public final class UpdateSoundVolume {
 
       size = 0;
       if (!getSoundBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, sound_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, sound_);
       }
       if (volume_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(2, volume_);
+          .computeDoubleSize(3, volume_);
       }
-      if (duration_ != 0) {
+      if (duration_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(3, duration_);
+          .computeUInt64Size(4, duration_);
       }
       memoizedSize = size;
       return size;
@@ -266,7 +266,8 @@ public final class UpdateSoundVolume {
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           java.lang.Double.doubleToLongBits(getVolume()));
       hash = (37 * hash) + DURATION_FIELD_NUMBER;
-      hash = (53 * hash) + getDuration();
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getDuration());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -389,7 +390,7 @@ public final class UpdateSoundVolume {
 
         volume_ = 0D;
 
-        duration_ = 0;
+        duration_ = 0L;
 
         return this;
       }
@@ -464,7 +465,7 @@ public final class UpdateSoundVolume {
         if (other.getVolume() != 0D) {
           setVolume(other.getVolume());
         }
-        if (other.getDuration() != 0) {
+        if (other.getDuration() != 0L) {
           setDuration(other.getDuration());
         }
         onChanged();
@@ -499,7 +500,7 @@ public final class UpdateSoundVolume {
        * Sound identifier.
        * </pre>
        *
-       * <code>optional string sound = 1;</code>
+       * <code>optional string sound = 2;</code>
        */
       public java.lang.String getSound() {
         java.lang.Object ref = sound_;
@@ -518,7 +519,7 @@ public final class UpdateSoundVolume {
        * Sound identifier.
        * </pre>
        *
-       * <code>optional string sound = 1;</code>
+       * <code>optional string sound = 2;</code>
        */
       public com.google.protobuf.ByteString
           getSoundBytes() {
@@ -538,7 +539,7 @@ public final class UpdateSoundVolume {
        * Sound identifier.
        * </pre>
        *
-       * <code>optional string sound = 1;</code>
+       * <code>optional string sound = 2;</code>
        */
       public Builder setSound(
           java.lang.String value) {
@@ -555,7 +556,7 @@ public final class UpdateSoundVolume {
        * Sound identifier.
        * </pre>
        *
-       * <code>optional string sound = 1;</code>
+       * <code>optional string sound = 2;</code>
        */
       public Builder clearSound() {
         
@@ -568,7 +569,7 @@ public final class UpdateSoundVolume {
        * Sound identifier.
        * </pre>
        *
-       * <code>optional string sound = 1;</code>
+       * <code>optional string sound = 2;</code>
        */
       public Builder setSoundBytes(
           com.google.protobuf.ByteString value) {
@@ -584,13 +585,13 @@ public final class UpdateSoundVolume {
 
       private double volume_ ;
       /**
-       * <code>optional double volume = 2;</code>
+       * <code>optional double volume = 3;</code>
        */
       public double getVolume() {
         return volume_;
       }
       /**
-       * <code>optional double volume = 2;</code>
+       * <code>optional double volume = 3;</code>
        */
       public Builder setVolume(double value) {
         
@@ -599,7 +600,7 @@ public final class UpdateSoundVolume {
         return this;
       }
       /**
-       * <code>optional double volume = 2;</code>
+       * <code>optional double volume = 3;</code>
        */
       public Builder clearVolume() {
         
@@ -608,28 +609,28 @@ public final class UpdateSoundVolume {
         return this;
       }
 
-      private int duration_ ;
+      private long duration_ ;
       /**
-       * <code>optional uint32 duration = 3;</code>
+       * <code>optional uint64 duration = 4;</code>
        */
-      public int getDuration() {
+      public long getDuration() {
         return duration_;
       }
       /**
-       * <code>optional uint32 duration = 3;</code>
+       * <code>optional uint64 duration = 4;</code>
        */
-      public Builder setDuration(int value) {
+      public Builder setDuration(long value) {
         
         duration_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional uint32 duration = 3;</code>
+       * <code>optional uint64 duration = 4;</code>
        */
       public Builder clearDuration() {
         
-        duration_ = 0;
+        duration_ = 0L;
         onChanged();
         return this;
       }
@@ -682,585 +683,11 @@ public final class UpdateSoundVolume {
 
   }
 
-  public interface UpdateSoundVolumeResponseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:UpdateSoundVolumeResponse)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional string sound = 1;</code>
-     */
-    java.lang.String getSound();
-    /**
-     * <code>optional string sound = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getSoundBytes();
-
-    /**
-     * <code>optional double volume = 2;</code>
-     */
-    double getVolume();
-  }
-  /**
-   * Protobuf type {@code UpdateSoundVolumeResponse}
-   */
-  public  static final class UpdateSoundVolumeResponse extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:UpdateSoundVolumeResponse)
-      UpdateSoundVolumeResponseOrBuilder {
-    // Use UpdateSoundVolumeResponse.newBuilder() to construct.
-    private UpdateSoundVolumeResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private UpdateSoundVolumeResponse() {
-      sound_ = "";
-      volume_ = 0D;
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-    }
-    private UpdateSoundVolumeResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      int mutable_bitField0_ = 0;
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!input.skipField(tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              sound_ = s;
-              break;
-            }
-            case 17: {
-
-              volume_ = input.readDouble();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return de.bwueller.environment.protocol.UpdateSoundVolume.internal_static_UpdateSoundVolumeResponse_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return de.bwueller.environment.protocol.UpdateSoundVolume.internal_static_UpdateSoundVolumeResponse_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse.class, de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse.Builder.class);
-    }
-
-    public static final int SOUND_FIELD_NUMBER = 1;
-    private volatile java.lang.Object sound_;
-    /**
-     * <code>optional string sound = 1;</code>
-     */
-    public java.lang.String getSound() {
-      java.lang.Object ref = sound_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        sound_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>optional string sound = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getSoundBytes() {
-      java.lang.Object ref = sound_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        sound_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int VOLUME_FIELD_NUMBER = 2;
-    private double volume_;
-    /**
-     * <code>optional double volume = 2;</code>
-     */
-    public double getVolume() {
-      return volume_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!getSoundBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, sound_);
-      }
-      if (volume_ != 0D) {
-        output.writeDouble(2, volume_);
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!getSoundBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, sound_);
-      }
-      if (volume_ != 0D) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(2, volume_);
-      }
-      memoizedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse)) {
-        return super.equals(obj);
-      }
-      de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse other = (de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse) obj;
-
-      boolean result = true;
-      result = result && getSound()
-          .equals(other.getSound());
-      result = result && (
-          java.lang.Double.doubleToLongBits(getVolume())
-          == java.lang.Double.doubleToLongBits(
-              other.getVolume()));
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + SOUND_FIELD_NUMBER;
-      hash = (53 * hash) + getSound().hashCode();
-      hash = (37 * hash) + VOLUME_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          java.lang.Double.doubleToLongBits(getVolume()));
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code UpdateSoundVolumeResponse}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:UpdateSoundVolumeResponse)
-        de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponseOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return de.bwueller.environment.protocol.UpdateSoundVolume.internal_static_UpdateSoundVolumeResponse_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return de.bwueller.environment.protocol.UpdateSoundVolume.internal_static_UpdateSoundVolumeResponse_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse.class, de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse.Builder.class);
-      }
-
-      // Construct using de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      public Builder clear() {
-        super.clear();
-        sound_ = "";
-
-        volume_ = 0D;
-
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return de.bwueller.environment.protocol.UpdateSoundVolume.internal_static_UpdateSoundVolumeResponse_descriptor;
-      }
-
-      public de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse getDefaultInstanceForType() {
-        return de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse.getDefaultInstance();
-      }
-
-      public de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse build() {
-        de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse buildPartial() {
-        de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse result = new de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse(this);
-        result.sound_ = sound_;
-        result.volume_ = volume_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse) {
-          return mergeFrom((de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse other) {
-        if (other == de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse.getDefaultInstance()) return this;
-        if (!other.getSound().isEmpty()) {
-          sound_ = other.sound_;
-          onChanged();
-        }
-        if (other.getVolume() != 0D) {
-          setVolume(other.getVolume());
-        }
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private java.lang.Object sound_ = "";
-      /**
-       * <code>optional string sound = 1;</code>
-       */
-      public java.lang.String getSound() {
-        java.lang.Object ref = sound_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          sound_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string sound = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getSoundBytes() {
-        java.lang.Object ref = sound_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          sound_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string sound = 1;</code>
-       */
-      public Builder setSound(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        sound_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string sound = 1;</code>
-       */
-      public Builder clearSound() {
-        
-        sound_ = getDefaultInstance().getSound();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string sound = 1;</code>
-       */
-      public Builder setSoundBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        sound_ = value;
-        onChanged();
-        return this;
-      }
-
-      private double volume_ ;
-      /**
-       * <code>optional double volume = 2;</code>
-       */
-      public double getVolume() {
-        return volume_;
-      }
-      /**
-       * <code>optional double volume = 2;</code>
-       */
-      public Builder setVolume(double value) {
-        
-        volume_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional double volume = 2;</code>
-       */
-      public Builder clearVolume() {
-        
-        volume_ = 0D;
-        onChanged();
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:UpdateSoundVolumeResponse)
-    }
-
-    // @@protoc_insertion_point(class_scope:UpdateSoundVolumeResponse)
-    private static final de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse();
-    }
-
-    public static de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<UpdateSoundVolumeResponse>
-        PARSER = new com.google.protobuf.AbstractParser<UpdateSoundVolumeResponse>() {
-      public UpdateSoundVolumeResponse parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new UpdateSoundVolumeResponse(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<UpdateSoundVolumeResponse> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<UpdateSoundVolumeResponse> getParserForType() {
-      return PARSER;
-    }
-
-    public de.bwueller.environment.protocol.UpdateSoundVolume.UpdateSoundVolumeResponse getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_UpdateSoundVolumeRequest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_UpdateSoundVolumeRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_UpdateSoundVolumeResponse_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_UpdateSoundVolumeResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -1272,10 +699,9 @@ public final class UpdateSoundVolume {
     java.lang.String[] descriptorData = {
       "\n\031update_sound_volume.proto\032\rgeneral.pro" +
       "to\"K\n\030UpdateSoundVolumeRequest\022\r\n\005sound\030" +
-      "\001 \001(\t\022\016\n\006volume\030\002 \001(\001\022\020\n\010duration\030\003 \001(\r\"" +
-      ":\n\031UpdateSoundVolumeResponse\022\r\n\005sound\030\001 " +
-      "\001(\t\022\016\n\006volume\030\002 \001(\001B\"\n de.bwueller.envir" +
-      "onment.protocolb\006proto3"
+      "\002 \001(\t\022\016\n\006volume\030\003 \001(\001\022\020\n\010duration\030\004 \001(\004B" +
+      "\"\n de.bwueller.environment.protocolb\006pro" +
+      "to3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1296,12 +722,6 @@ public final class UpdateSoundVolume {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UpdateSoundVolumeRequest_descriptor,
         new java.lang.String[] { "Sound", "Volume", "Duration", });
-    internal_static_UpdateSoundVolumeResponse_descriptor =
-      getDescriptor().getMessageTypes().get(1);
-    internal_static_UpdateSoundVolumeResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_UpdateSoundVolumeResponse_descriptor,
-        new java.lang.String[] { "Sound", "Volume", });
     de.bwueller.environment.protocol.General.getDescriptor();
   }
 

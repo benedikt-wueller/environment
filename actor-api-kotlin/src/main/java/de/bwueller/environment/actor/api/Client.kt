@@ -8,7 +8,7 @@ import java.net.URI
 import java.nio.ByteBuffer
 import java.util.*
 
-class Client(private val name: String, uri: URI, private val meta: Map<Int, String> = mapOf()) : WebSocketClient(uri) {
+internal class Client(private val name: String, uri: URI, private val meta: Map<Int, String> = mapOf()) : WebSocketClient(uri) {
 
   init {
     connect()
@@ -29,12 +29,15 @@ class Client(private val name: String, uri: URI, private val meta: Map<Int, Stri
 
     when (packet) {
       is RegisterActor.RegisterActorResponse -> handleRegisterActorResponse(packet)
+      is PlaySound.PlaySoundResponse -> ActorApi.soundManager.handlePlaySoundResponse(packet)
+      is StopSound.StopSoundResponse -> ActorApi.soundManager.handleStopSoundResponse(packet)
+      is RegisterActorUser.RegisterActorUserResponse -> ActorApi.userManager.handleRegisterActorUserResponse(packet)
     }
   }
 
   override fun onClose(code: Int, reason: String, remote: Boolean) {
-    // TODO: clear local users
-    // TODO: clear local sounds
+    ActorApi.userManager.clear()
+    ActorApi.soundManager.clear()
 
     ActorApi.setConnected(false, null)
   }

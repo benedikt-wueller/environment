@@ -5,11 +5,6 @@ option java_package = "de.bwueller.environment.protocol";
 import "general.proto";
 
 message UpdateSoundRateRequest {
-  string sound = 1; // Sound identifier.
-  double rate = 2;
-}
-
-message UpdateSoundRateResponse {
-  string sound = 1;
-  double rate = 2;
+  string sound = 2; // Sound identifier.
+  double rate = 3;
 }

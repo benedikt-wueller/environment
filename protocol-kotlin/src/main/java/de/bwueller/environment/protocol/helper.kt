@@ -24,9 +24,7 @@ fun deserializePacket(bytes: ByteArray): GeneratedMessageV3? {
       11 -> return StopSound.StopSoundRequest.parseFrom(data)
       12 -> return StopSound.StopSoundResponse.parseFrom(data)
       13 -> return UpdateSoundVolume.UpdateSoundVolumeRequest.parseFrom(data)
-      14 -> return UpdateSoundVolume.UpdateSoundVolumeResponse.parseFrom(data)
-      15 -> return UpdateSoundRate.UpdateSoundRateRequest.parseFrom(data)
-      16 -> return UpdateSoundRate.UpdateSoundRateResponse.parseFrom(data)
+      14 -> return UpdateSoundRate.UpdateSoundRateRequest.parseFrom(data)
     }
   } catch (ex: Exception) {
   }
@@ -50,9 +48,7 @@ fun serializePacket(message: GeneratedMessageV3): ByteArray? {
     is StopSound.StopSoundRequest -> 11
     is StopSound.StopSoundResponse -> 12
     is UpdateSoundVolume.UpdateSoundVolumeRequest -> 13
-    is UpdateSoundVolume.UpdateSoundVolumeResponse -> 14
-    is UpdateSoundRate.UpdateSoundRateRequest -> 15
-    is UpdateSoundRate.UpdateSoundRateResponse -> 16
+    is UpdateSoundRate.UpdateSoundRateRequest -> 14
     else -> return null
   }
 
