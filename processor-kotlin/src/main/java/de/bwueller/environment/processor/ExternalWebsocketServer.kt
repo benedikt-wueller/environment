@@ -32,8 +32,6 @@ class ExternalWebsocketServer(private val serverPort: Int) : WebSocketServer(Ine
       is ConnectUser.ConnectUserRequest -> userManager.handleConnectUserRequest(packet, socket)
       is PlaySound.PlaySoundResponse -> soundManager.handlePlaySoundResponse(packet)
       is StopSound.StopSoundResponse -> soundManager.handleStopSoundResponse(packet)
-      is UpdateSoundVolume.UpdateSoundVolumeResponse -> soundManager.handleUpdateVolumeResponse(packet)
-      is UpdateSoundRate.UpdateSoundRateResponse -> soundManager.handleUpdateRateResponse(packet)
     }
   }
 

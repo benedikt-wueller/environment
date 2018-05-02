@@ -7,67 +7,88 @@ import de.bwueller.environment.protocol.*
 
 class SoundManager {
 
-  private val soundUsers = mutableMapOf<String, User>()
+  private val soundUsers = mutableMapOf<String, MutableList<User>>()
 
   fun stopAllSounds(user: User) {
-    val builder = StopSound.StopSoundRequest.newBuilder()
-    builder.delay = 0
-    builder.duration = 1000
+    val requestBuilder = StopSound.StopSoundRequest.newBuilder()
+    requestBuilder.user = user.name
+    requestBuilder.delay = 0
+    requestBuilder.duration = 1000
 
-    // Remove all sounds for this user.
-    soundUsers
-        .filter { it -> it.value === user }
+    val responseBuilder = StopSound.StopSoundResponse.newBuilder()
+    responseBuilder.user = user.name
+
+    // Remove all soundUsers for this user.
+    soundUsers.entries
+        .filter { it.value.contains(user) }
         .forEach { entry ->
-          soundUsers.remove(entry.key)
+          entry.value.remove(user)
+
+          if (entry.value.isEmpty()) {
+            soundUsers.remove(entry.key)
+          }
 
           // Send stop sound request.
           if (user.socket !== null) {
-            builder.sound = entry.key
-            user.socket?.send(serializePacket(builder.build()))
+            requestBuilder.sound = entry.key
+            user.socket?.send(serializePacket(requestBuilder.build()))
+
+            responseBuilder.sound = entry.key
+            user.actor.socket.send(serializePacket(responseBuilder.build()))
           }
         }
   }
 
   fun handlePlaySoundRequest(packet: PlaySound.PlaySoundRequest) {
     val user = userManager.getUser(packet.user) ?: return
-    soundUsers[packet.identifier] = user
+
+    soundUsers.putIfAbsent(packet.identifier, mutableListOf())
+    soundUsers[packet.identifier]!!.add(user)
+
     forwardPacketToUser(packet, user)
   }
 
   fun handleUpdateVolumeRequest(packet: UpdateSoundVolume.UpdateSoundVolumeRequest) {
-    val user = soundUsers[packet.sound] ?: return
-    forwardPacketToUser(packet, user)
+    val users = soundUsers[packet.sound] ?: return
+    users.forEach { user -> forwardPacketToUser(packet, user) }
   }
 
   fun handleUpdateRateRequest(packet: UpdateSoundRate.UpdateSoundRateRequest) {
-    val user = soundUsers[packet.sound] ?: return
-    forwardPacketToUser(packet, user)
+    val users = soundUsers[packet.sound] ?: return
+    users.forEach { user -> forwardPacketToUser(packet, user) }
   }
 
   fun handleStopSoundRequest(packet: StopSound.StopSoundRequest) {
-    val user = soundUsers.remove(packet.sound) ?: return
+    val user = userManager.getUser(packet.user) ?: return
+
+    if (soundUsers.containsKey(packet.sound)) {
+      soundUsers[packet.sound]!!.remove(user)
+      if (soundUsers[packet.sound]!!.isEmpty()) {
+        soundUsers.remove(packet.sound)
+      }
+    }
+
     forwardPacketToUser(packet, user)
   }
 
   fun handlePlaySoundResponse(packet: PlaySound.PlaySoundResponse) {
     val user = userManager.getUser(packet.identifier) ?: return
-    soundUsers[packet.identifier] = user
-    forwardPacketToActor(packet, user.actor)
-  }
 
-  fun handleUpdateVolumeResponse(packet: UpdateSoundVolume.UpdateSoundVolumeResponse) {
-    val user = soundUsers[packet.sound] ?: return
-    forwardPacketToActor(packet, user.actor)
-  }
+    val builder = PlaySound.PlaySoundResponse.newBuilder()
+    builder.user = user.name
+    builder.identifier = packet.identifier
 
-  fun handleUpdateRateResponse(packet: UpdateSoundRate.UpdateSoundRateResponse) {
-    val user = soundUsers[packet.sound] ?: return
-    forwardPacketToActor(packet, user.actor)
+    forwardPacketToActor(builder.build(), user.actor)
   }
 
   fun handleStopSoundResponse(packet: StopSound.StopSoundResponse) {
-    val user = soundUsers.remove(packet.sound) ?: return
-    forwardPacketToActor(packet, user.actor)
+    val user = userManager.getUser(packet.user) ?: return
+
+    val builder = StopSound.StopSoundResponse.newBuilder()
+    builder.user = user.name
+    builder.sound = packet.sound
+
+    forwardPacketToActor(builder.build(), user.actor)
   }
 
   private fun forwardPacketToActor(packet: GeneratedMessageV3, actor: Actor) {

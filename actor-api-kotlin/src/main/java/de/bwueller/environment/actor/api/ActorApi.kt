@@ -9,9 +9,25 @@ class ActorApi {
 
   companion object {
 
-    private val client = Client("my-custom-actor", URI.create("ws://localhost:24499"))
+    private var client = Client("my-custom-actor", URI.create("ws://localhost:24499"))
+
+    internal val soundManager = SoundManager(client)
+    internal val userManager = UserManager(client)
 
     private val listeners = mutableListOf<(Boolean) -> Unit>()
+
+    init {
+      addListener { connected ->
+        if (!connected) {
+          Thread({
+            Thread.sleep(10000)
+            client = Client("my-custom-actor", URI.create("ws://localhost:24499"))
+            soundManager.client = client
+            userManager.client = client
+          }).start()
+        }
+      }
+    }
 
     internal fun setConnected(connected: Boolean, identifier: UUID?) {
       this.identifier = identifier
@@ -52,11 +68,14 @@ class ActorApi {
     fun removeListener(listener: (Boolean) -> Unit) {
       listeners.remove(listener)
     }
+
+    @JvmStatic
+    fun registerUser(user: String, callback: (user: String, key: String) -> Unit) = userManager.registerUser(user, callback)
+
+    @JvmStatic
+    fun unregisterUser(user: String) = userManager.unregisterUser(user)
+
+    @JvmStatic
+    fun isUserRegistered(user: String) = userManager.isUserConnected(user)
   }
-}
-
-fun main(args: Array<String>) {
-  ActorApi.addListener { println(it) }
-
-  while (true);
 }

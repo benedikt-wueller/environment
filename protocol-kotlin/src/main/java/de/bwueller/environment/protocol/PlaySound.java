@@ -55,30 +55,24 @@ public final class PlaySound {
         getIdentifierBytes();
 
     /**
-     * <code>optional .Sound intro = 3;</code>
+     * <code>optional string intro_sound = 3;</code>
      */
-    boolean hasIntro();
+    java.lang.String getIntroSound();
     /**
-     * <code>optional .Sound intro = 3;</code>
+     * <code>optional string intro_sound = 3;</code>
      */
-    de.bwueller.environment.protocol.PlaySound.Sound getIntro();
-    /**
-     * <code>optional .Sound intro = 3;</code>
-     */
-    de.bwueller.environment.protocol.PlaySound.SoundOrBuilder getIntroOrBuilder();
+    com.google.protobuf.ByteString
+        getIntroSoundBytes();
 
     /**
-     * <code>optional .Sound sound = 4;</code>
+     * <code>optional string main_sound = 4;</code>
      */
-    boolean hasSound();
+    java.lang.String getMainSound();
     /**
-     * <code>optional .Sound sound = 4;</code>
+     * <code>optional string main_sound = 4;</code>
      */
-    de.bwueller.environment.protocol.PlaySound.Sound getSound();
-    /**
-     * <code>optional .Sound sound = 4;</code>
-     */
-    de.bwueller.environment.protocol.PlaySound.SoundOrBuilder getSoundOrBuilder();
+    com.google.protobuf.ByteString
+        getMainSoundBytes();
 
     /**
      * <code>optional double volume = 5;</code>
@@ -109,6 +103,8 @@ public final class PlaySound {
     private PlaySoundRequest() {
       user_ = "";
       identifier_ = "";
+      introSound_ = "";
+      mainSound_ = "";
       volume_ = 0D;
       rate_ = 0D;
       loop_ = false;
@@ -152,29 +148,15 @@ public final class PlaySound {
               break;
             }
             case 26: {
-              de.bwueller.environment.protocol.PlaySound.Sound.Builder subBuilder = null;
-              if (intro_ != null) {
-                subBuilder = intro_.toBuilder();
-              }
-              intro_ = input.readMessage(de.bwueller.environment.protocol.PlaySound.Sound.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(intro_);
-                intro_ = subBuilder.buildPartial();
-              }
+              java.lang.String s = input.readStringRequireUtf8();
 
+              introSound_ = s;
               break;
             }
             case 34: {
-              de.bwueller.environment.protocol.PlaySound.Sound.Builder subBuilder = null;
-              if (sound_ != null) {
-                subBuilder = sound_.toBuilder();
-              }
-              sound_ = input.readMessage(de.bwueller.environment.protocol.PlaySound.Sound.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(sound_);
-                sound_ = subBuilder.buildPartial();
-              }
+              java.lang.String s = input.readStringRequireUtf8();
 
+              mainSound_ = s;
               break;
             }
             case 41: {
@@ -299,46 +281,72 @@ public final class PlaySound {
       }
     }
 
-    public static final int INTRO_FIELD_NUMBER = 3;
-    private de.bwueller.environment.protocol.PlaySound.Sound intro_;
+    public static final int INTRO_SOUND_FIELD_NUMBER = 3;
+    private volatile java.lang.Object introSound_;
     /**
-     * <code>optional .Sound intro = 3;</code>
+     * <code>optional string intro_sound = 3;</code>
      */
-    public boolean hasIntro() {
-      return intro_ != null;
+    public java.lang.String getIntroSound() {
+      java.lang.Object ref = introSound_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        introSound_ = s;
+        return s;
+      }
     }
     /**
-     * <code>optional .Sound intro = 3;</code>
+     * <code>optional string intro_sound = 3;</code>
      */
-    public de.bwueller.environment.protocol.PlaySound.Sound getIntro() {
-      return intro_ == null ? de.bwueller.environment.protocol.PlaySound.Sound.getDefaultInstance() : intro_;
-    }
-    /**
-     * <code>optional .Sound intro = 3;</code>
-     */
-    public de.bwueller.environment.protocol.PlaySound.SoundOrBuilder getIntroOrBuilder() {
-      return getIntro();
+    public com.google.protobuf.ByteString
+        getIntroSoundBytes() {
+      java.lang.Object ref = introSound_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        introSound_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
-    public static final int SOUND_FIELD_NUMBER = 4;
-    private de.bwueller.environment.protocol.PlaySound.Sound sound_;
+    public static final int MAIN_SOUND_FIELD_NUMBER = 4;
+    private volatile java.lang.Object mainSound_;
     /**
-     * <code>optional .Sound sound = 4;</code>
+     * <code>optional string main_sound = 4;</code>
      */
-    public boolean hasSound() {
-      return sound_ != null;
+    public java.lang.String getMainSound() {
+      java.lang.Object ref = mainSound_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        mainSound_ = s;
+        return s;
+      }
     }
     /**
-     * <code>optional .Sound sound = 4;</code>
+     * <code>optional string main_sound = 4;</code>
      */
-    public de.bwueller.environment.protocol.PlaySound.Sound getSound() {
-      return sound_ == null ? de.bwueller.environment.protocol.PlaySound.Sound.getDefaultInstance() : sound_;
-    }
-    /**
-     * <code>optional .Sound sound = 4;</code>
-     */
-    public de.bwueller.environment.protocol.PlaySound.SoundOrBuilder getSoundOrBuilder() {
-      return getSound();
+    public com.google.protobuf.ByteString
+        getMainSoundBytes() {
+      java.lang.Object ref = mainSound_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        mainSound_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int VOLUME_FIELD_NUMBER = 5;
@@ -386,11 +394,11 @@ public final class PlaySound {
       if (!getIdentifierBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, identifier_);
       }
-      if (intro_ != null) {
-        output.writeMessage(3, getIntro());
+      if (!getIntroSoundBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, introSound_);
       }
-      if (sound_ != null) {
-        output.writeMessage(4, getSound());
+      if (!getMainSoundBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, mainSound_);
       }
       if (volume_ != 0D) {
         output.writeDouble(5, volume_);
@@ -414,13 +422,11 @@ public final class PlaySound {
       if (!getIdentifierBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, identifier_);
       }
-      if (intro_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, getIntro());
+      if (!getIntroSoundBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, introSound_);
       }
-      if (sound_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, getSound());
+      if (!getMainSoundBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, mainSound_);
       }
       if (volume_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
@@ -454,16 +460,10 @@ public final class PlaySound {
           .equals(other.getUser());
       result = result && getIdentifier()
           .equals(other.getIdentifier());
-      result = result && (hasIntro() == other.hasIntro());
-      if (hasIntro()) {
-        result = result && getIntro()
-            .equals(other.getIntro());
-      }
-      result = result && (hasSound() == other.hasSound());
-      if (hasSound()) {
-        result = result && getSound()
-            .equals(other.getSound());
-      }
+      result = result && getIntroSound()
+          .equals(other.getIntroSound());
+      result = result && getMainSound()
+          .equals(other.getMainSound());
       result = result && (
           java.lang.Double.doubleToLongBits(getVolume())
           == java.lang.Double.doubleToLongBits(
@@ -488,14 +488,10 @@ public final class PlaySound {
       hash = (53 * hash) + getUser().hashCode();
       hash = (37 * hash) + IDENTIFIER_FIELD_NUMBER;
       hash = (53 * hash) + getIdentifier().hashCode();
-      if (hasIntro()) {
-        hash = (37 * hash) + INTRO_FIELD_NUMBER;
-        hash = (53 * hash) + getIntro().hashCode();
-      }
-      if (hasSound()) {
-        hash = (37 * hash) + SOUND_FIELD_NUMBER;
-        hash = (53 * hash) + getSound().hashCode();
-      }
+      hash = (37 * hash) + INTRO_SOUND_FIELD_NUMBER;
+      hash = (53 * hash) + getIntroSound().hashCode();
+      hash = (37 * hash) + MAIN_SOUND_FIELD_NUMBER;
+      hash = (53 * hash) + getMainSound().hashCode();
       hash = (37 * hash) + VOLUME_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           java.lang.Double.doubleToLongBits(getVolume()));
@@ -627,18 +623,10 @@ public final class PlaySound {
 
         identifier_ = "";
 
-        if (introBuilder_ == null) {
-          intro_ = null;
-        } else {
-          intro_ = null;
-          introBuilder_ = null;
-        }
-        if (soundBuilder_ == null) {
-          sound_ = null;
-        } else {
-          sound_ = null;
-          soundBuilder_ = null;
-        }
+        introSound_ = "";
+
+        mainSound_ = "";
+
         volume_ = 0D;
 
         rate_ = 0D;
@@ -669,16 +657,8 @@ public final class PlaySound {
         de.bwueller.environment.protocol.PlaySound.PlaySoundRequest result = new de.bwueller.environment.protocol.PlaySound.PlaySoundRequest(this);
         result.user_ = user_;
         result.identifier_ = identifier_;
-        if (introBuilder_ == null) {
-          result.intro_ = intro_;
-        } else {
-          result.intro_ = introBuilder_.build();
-        }
-        if (soundBuilder_ == null) {
-          result.sound_ = sound_;
-        } else {
-          result.sound_ = soundBuilder_.build();
-        }
+        result.introSound_ = introSound_;
+        result.mainSound_ = mainSound_;
         result.volume_ = volume_;
         result.rate_ = rate_;
         result.loop_ = loop_;
@@ -731,11 +711,13 @@ public final class PlaySound {
           identifier_ = other.identifier_;
           onChanged();
         }
-        if (other.hasIntro()) {
-          mergeIntro(other.getIntro());
+        if (!other.getIntroSound().isEmpty()) {
+          introSound_ = other.introSound_;
+          onChanged();
         }
-        if (other.hasSound()) {
-          mergeSound(other.getSound());
+        if (!other.getMainSound().isEmpty()) {
+          mainSound_ = other.mainSound_;
+          onChanged();
         }
         if (other.getVolume() != 0D) {
           setVolume(other.getVolume());
@@ -950,238 +932,142 @@ public final class PlaySound {
         return this;
       }
 
-      private de.bwueller.environment.protocol.PlaySound.Sound intro_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          de.bwueller.environment.protocol.PlaySound.Sound, de.bwueller.environment.protocol.PlaySound.Sound.Builder, de.bwueller.environment.protocol.PlaySound.SoundOrBuilder> introBuilder_;
+      private java.lang.Object introSound_ = "";
       /**
-       * <code>optional .Sound intro = 3;</code>
+       * <code>optional string intro_sound = 3;</code>
        */
-      public boolean hasIntro() {
-        return introBuilder_ != null || intro_ != null;
-      }
-      /**
-       * <code>optional .Sound intro = 3;</code>
-       */
-      public de.bwueller.environment.protocol.PlaySound.Sound getIntro() {
-        if (introBuilder_ == null) {
-          return intro_ == null ? de.bwueller.environment.protocol.PlaySound.Sound.getDefaultInstance() : intro_;
+      public java.lang.String getIntroSound() {
+        java.lang.Object ref = introSound_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          introSound_ = s;
+          return s;
         } else {
-          return introBuilder_.getMessage();
+          return (java.lang.String) ref;
         }
       }
       /**
-       * <code>optional .Sound intro = 3;</code>
+       * <code>optional string intro_sound = 3;</code>
        */
-      public Builder setIntro(de.bwueller.environment.protocol.PlaySound.Sound value) {
-        if (introBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          intro_ = value;
-          onChanged();
+      public com.google.protobuf.ByteString
+          getIntroSoundBytes() {
+        java.lang.Object ref = introSound_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          introSound_ = b;
+          return b;
         } else {
-          introBuilder_.setMessage(value);
+          return (com.google.protobuf.ByteString) ref;
         }
-
-        return this;
       }
       /**
-       * <code>optional .Sound intro = 3;</code>
+       * <code>optional string intro_sound = 3;</code>
        */
-      public Builder setIntro(
-          de.bwueller.environment.protocol.PlaySound.Sound.Builder builderForValue) {
-        if (introBuilder_ == null) {
-          intro_ = builderForValue.build();
-          onChanged();
-        } else {
-          introBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .Sound intro = 3;</code>
-       */
-      public Builder mergeIntro(de.bwueller.environment.protocol.PlaySound.Sound value) {
-        if (introBuilder_ == null) {
-          if (intro_ != null) {
-            intro_ =
-              de.bwueller.environment.protocol.PlaySound.Sound.newBuilder(intro_).mergeFrom(value).buildPartial();
-          } else {
-            intro_ = value;
-          }
-          onChanged();
-        } else {
-          introBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .Sound intro = 3;</code>
-       */
-      public Builder clearIntro() {
-        if (introBuilder_ == null) {
-          intro_ = null;
-          onChanged();
-        } else {
-          intro_ = null;
-          introBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .Sound intro = 3;</code>
-       */
-      public de.bwueller.environment.protocol.PlaySound.Sound.Builder getIntroBuilder() {
-        
+      public Builder setIntroSound(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        introSound_ = value;
         onChanged();
-        return getIntroFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .Sound intro = 3;</code>
-       */
-      public de.bwueller.environment.protocol.PlaySound.SoundOrBuilder getIntroOrBuilder() {
-        if (introBuilder_ != null) {
-          return introBuilder_.getMessageOrBuilder();
-        } else {
-          return intro_ == null ?
-              de.bwueller.environment.protocol.PlaySound.Sound.getDefaultInstance() : intro_;
-        }
-      }
-      /**
-       * <code>optional .Sound intro = 3;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          de.bwueller.environment.protocol.PlaySound.Sound, de.bwueller.environment.protocol.PlaySound.Sound.Builder, de.bwueller.environment.protocol.PlaySound.SoundOrBuilder> 
-          getIntroFieldBuilder() {
-        if (introBuilder_ == null) {
-          introBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              de.bwueller.environment.protocol.PlaySound.Sound, de.bwueller.environment.protocol.PlaySound.Sound.Builder, de.bwueller.environment.protocol.PlaySound.SoundOrBuilder>(
-                  getIntro(),
-                  getParentForChildren(),
-                  isClean());
-          intro_ = null;
-        }
-        return introBuilder_;
-      }
-
-      private de.bwueller.environment.protocol.PlaySound.Sound sound_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          de.bwueller.environment.protocol.PlaySound.Sound, de.bwueller.environment.protocol.PlaySound.Sound.Builder, de.bwueller.environment.protocol.PlaySound.SoundOrBuilder> soundBuilder_;
-      /**
-       * <code>optional .Sound sound = 4;</code>
-       */
-      public boolean hasSound() {
-        return soundBuilder_ != null || sound_ != null;
-      }
-      /**
-       * <code>optional .Sound sound = 4;</code>
-       */
-      public de.bwueller.environment.protocol.PlaySound.Sound getSound() {
-        if (soundBuilder_ == null) {
-          return sound_ == null ? de.bwueller.environment.protocol.PlaySound.Sound.getDefaultInstance() : sound_;
-        } else {
-          return soundBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>optional .Sound sound = 4;</code>
-       */
-      public Builder setSound(de.bwueller.environment.protocol.PlaySound.Sound value) {
-        if (soundBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          sound_ = value;
-          onChanged();
-        } else {
-          soundBuilder_.setMessage(value);
-        }
-
         return this;
       }
       /**
-       * <code>optional .Sound sound = 4;</code>
+       * <code>optional string intro_sound = 3;</code>
        */
-      public Builder setSound(
-          de.bwueller.environment.protocol.PlaySound.Sound.Builder builderForValue) {
-        if (soundBuilder_ == null) {
-          sound_ = builderForValue.build();
-          onChanged();
-        } else {
-          soundBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .Sound sound = 4;</code>
-       */
-      public Builder mergeSound(de.bwueller.environment.protocol.PlaySound.Sound value) {
-        if (soundBuilder_ == null) {
-          if (sound_ != null) {
-            sound_ =
-              de.bwueller.environment.protocol.PlaySound.Sound.newBuilder(sound_).mergeFrom(value).buildPartial();
-          } else {
-            sound_ = value;
-          }
-          onChanged();
-        } else {
-          soundBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .Sound sound = 4;</code>
-       */
-      public Builder clearSound() {
-        if (soundBuilder_ == null) {
-          sound_ = null;
-          onChanged();
-        } else {
-          sound_ = null;
-          soundBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .Sound sound = 4;</code>
-       */
-      public de.bwueller.environment.protocol.PlaySound.Sound.Builder getSoundBuilder() {
+      public Builder clearIntroSound() {
         
+        introSound_ = getDefaultInstance().getIntroSound();
         onChanged();
-        return getSoundFieldBuilder().getBuilder();
+        return this;
       }
       /**
-       * <code>optional .Sound sound = 4;</code>
+       * <code>optional string intro_sound = 3;</code>
        */
-      public de.bwueller.environment.protocol.PlaySound.SoundOrBuilder getSoundOrBuilder() {
-        if (soundBuilder_ != null) {
-          return soundBuilder_.getMessageOrBuilder();
+      public Builder setIntroSoundBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        introSound_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object mainSound_ = "";
+      /**
+       * <code>optional string main_sound = 4;</code>
+       */
+      public java.lang.String getMainSound() {
+        java.lang.Object ref = mainSound_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          mainSound_ = s;
+          return s;
         } else {
-          return sound_ == null ?
-              de.bwueller.environment.protocol.PlaySound.Sound.getDefaultInstance() : sound_;
+          return (java.lang.String) ref;
         }
       }
       /**
-       * <code>optional .Sound sound = 4;</code>
+       * <code>optional string main_sound = 4;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          de.bwueller.environment.protocol.PlaySound.Sound, de.bwueller.environment.protocol.PlaySound.Sound.Builder, de.bwueller.environment.protocol.PlaySound.SoundOrBuilder> 
-          getSoundFieldBuilder() {
-        if (soundBuilder_ == null) {
-          soundBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              de.bwueller.environment.protocol.PlaySound.Sound, de.bwueller.environment.protocol.PlaySound.Sound.Builder, de.bwueller.environment.protocol.PlaySound.SoundOrBuilder>(
-                  getSound(),
-                  getParentForChildren(),
-                  isClean());
-          sound_ = null;
+      public com.google.protobuf.ByteString
+          getMainSoundBytes() {
+        java.lang.Object ref = mainSound_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          mainSound_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
         }
-        return soundBuilder_;
+      }
+      /**
+       * <code>optional string main_sound = 4;</code>
+       */
+      public Builder setMainSound(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        mainSound_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string main_sound = 4;</code>
+       */
+      public Builder clearMainSound() {
+        
+        mainSound_ = getDefaultInstance().getMainSound();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string main_sound = 4;</code>
+       */
+      public Builder setMainSoundBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        mainSound_ = value;
+        onChanged();
+        return this;
       }
 
       private double volume_ ;
@@ -1315,11 +1201,21 @@ public final class PlaySound {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional string identifier = 1;</code>
+     * <code>optional string user = 1;</code>
+     */
+    java.lang.String getUser();
+    /**
+     * <code>optional string user = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getUserBytes();
+
+    /**
+     * <code>optional string identifier = 2;</code>
      */
     java.lang.String getIdentifier();
     /**
-     * <code>optional string identifier = 1;</code>
+     * <code>optional string identifier = 2;</code>
      */
     com.google.protobuf.ByteString
         getIdentifierBytes();
@@ -1336,6 +1232,7 @@ public final class PlaySound {
       super(builder);
     }
     private PlaySoundResponse() {
+      user_ = "";
       identifier_ = "";
     }
 
@@ -1367,6 +1264,12 @@ public final class PlaySound {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
+              user_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
               identifier_ = s;
               break;
             }
@@ -1393,10 +1296,44 @@ public final class PlaySound {
               de.bwueller.environment.protocol.PlaySound.PlaySoundResponse.class, de.bwueller.environment.protocol.PlaySound.PlaySoundResponse.Builder.class);
     }
 
-    public static final int IDENTIFIER_FIELD_NUMBER = 1;
+    public static final int USER_FIELD_NUMBER = 1;
+    private volatile java.lang.Object user_;
+    /**
+     * <code>optional string user = 1;</code>
+     */
+    public java.lang.String getUser() {
+      java.lang.Object ref = user_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        user_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string user = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getUserBytes() {
+      java.lang.Object ref = user_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        user_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int IDENTIFIER_FIELD_NUMBER = 2;
     private volatile java.lang.Object identifier_;
     /**
-     * <code>optional string identifier = 1;</code>
+     * <code>optional string identifier = 2;</code>
      */
     public java.lang.String getIdentifier() {
       java.lang.Object ref = identifier_;
@@ -1411,7 +1348,7 @@ public final class PlaySound {
       }
     }
     /**
-     * <code>optional string identifier = 1;</code>
+     * <code>optional string identifier = 2;</code>
      */
     public com.google.protobuf.ByteString
         getIdentifierBytes() {
@@ -1439,8 +1376,11 @@ public final class PlaySound {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (!getUserBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, user_);
+      }
       if (!getIdentifierBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, identifier_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, identifier_);
       }
     }
 
@@ -1449,8 +1389,11 @@ public final class PlaySound {
       if (size != -1) return size;
 
       size = 0;
+      if (!getUserBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, user_);
+      }
       if (!getIdentifierBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, identifier_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, identifier_);
       }
       memoizedSize = size;
       return size;
@@ -1468,6 +1411,8 @@ public final class PlaySound {
       de.bwueller.environment.protocol.PlaySound.PlaySoundResponse other = (de.bwueller.environment.protocol.PlaySound.PlaySoundResponse) obj;
 
       boolean result = true;
+      result = result && getUser()
+          .equals(other.getUser());
       result = result && getIdentifier()
           .equals(other.getIdentifier());
       return result;
@@ -1480,6 +1425,8 @@ public final class PlaySound {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + USER_FIELD_NUMBER;
+      hash = (53 * hash) + getUser().hashCode();
       hash = (37 * hash) + IDENTIFIER_FIELD_NUMBER;
       hash = (53 * hash) + getIdentifier().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -1600,6 +1547,8 @@ public final class PlaySound {
       }
       public Builder clear() {
         super.clear();
+        user_ = "";
+
         identifier_ = "";
 
         return this;
@@ -1624,6 +1573,7 @@ public final class PlaySound {
 
       public de.bwueller.environment.protocol.PlaySound.PlaySoundResponse buildPartial() {
         de.bwueller.environment.protocol.PlaySound.PlaySoundResponse result = new de.bwueller.environment.protocol.PlaySound.PlaySoundResponse(this);
+        result.user_ = user_;
         result.identifier_ = identifier_;
         onBuilt();
         return result;
@@ -1666,6 +1616,10 @@ public final class PlaySound {
 
       public Builder mergeFrom(de.bwueller.environment.protocol.PlaySound.PlaySoundResponse other) {
         if (other == de.bwueller.environment.protocol.PlaySound.PlaySoundResponse.getDefaultInstance()) return this;
+        if (!other.getUser().isEmpty()) {
+          user_ = other.user_;
+          onChanged();
+        }
         if (!other.getIdentifier().isEmpty()) {
           identifier_ = other.identifier_;
           onChanged();
@@ -1696,9 +1650,78 @@ public final class PlaySound {
         return this;
       }
 
+      private java.lang.Object user_ = "";
+      /**
+       * <code>optional string user = 1;</code>
+       */
+      public java.lang.String getUser() {
+        java.lang.Object ref = user_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          user_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string user = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getUserBytes() {
+        java.lang.Object ref = user_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          user_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string user = 1;</code>
+       */
+      public Builder setUser(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        user_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string user = 1;</code>
+       */
+      public Builder clearUser() {
+        
+        user_ = getDefaultInstance().getUser();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string user = 1;</code>
+       */
+      public Builder setUserBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        user_ = value;
+        onChanged();
+        return this;
+      }
+
       private java.lang.Object identifier_ = "";
       /**
-       * <code>optional string identifier = 1;</code>
+       * <code>optional string identifier = 2;</code>
        */
       public java.lang.String getIdentifier() {
         java.lang.Object ref = identifier_;
@@ -1713,7 +1736,7 @@ public final class PlaySound {
         }
       }
       /**
-       * <code>optional string identifier = 1;</code>
+       * <code>optional string identifier = 2;</code>
        */
       public com.google.protobuf.ByteString
           getIdentifierBytes() {
@@ -1729,7 +1752,7 @@ public final class PlaySound {
         }
       }
       /**
-       * <code>optional string identifier = 1;</code>
+       * <code>optional string identifier = 2;</code>
        */
       public Builder setIdentifier(
           java.lang.String value) {
@@ -1742,7 +1765,7 @@ public final class PlaySound {
         return this;
       }
       /**
-       * <code>optional string identifier = 1;</code>
+       * <code>optional string identifier = 2;</code>
        */
       public Builder clearIdentifier() {
         
@@ -1751,7 +1774,7 @@ public final class PlaySound {
         return this;
       }
       /**
-       * <code>optional string identifier = 1;</code>
+       * <code>optional string identifier = 2;</code>
        */
       public Builder setIdentifierBytes(
           com.google.protobuf.ByteString value) {
@@ -1813,646 +1836,6 @@ public final class PlaySound {
 
   }
 
-  public interface SoundOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Sound)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional string category = 1;</code>
-     */
-    java.lang.String getCategory();
-    /**
-     * <code>optional string category = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getCategoryBytes();
-
-    /**
-     * <code>optional string name = 2;</code>
-     */
-    java.lang.String getName();
-    /**
-     * <code>optional string name = 2;</code>
-     */
-    com.google.protobuf.ByteString
-        getNameBytes();
-  }
-  /**
-   * Protobuf type {@code Sound}
-   */
-  public  static final class Sound extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Sound)
-      SoundOrBuilder {
-    // Use Sound.newBuilder() to construct.
-    private Sound(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private Sound() {
-      category_ = "";
-      name_ = "";
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-    }
-    private Sound(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      int mutable_bitField0_ = 0;
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!input.skipField(tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              category_ = s;
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              name_ = s;
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return de.bwueller.environment.protocol.PlaySound.internal_static_Sound_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return de.bwueller.environment.protocol.PlaySound.internal_static_Sound_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              de.bwueller.environment.protocol.PlaySound.Sound.class, de.bwueller.environment.protocol.PlaySound.Sound.Builder.class);
-    }
-
-    public static final int CATEGORY_FIELD_NUMBER = 1;
-    private volatile java.lang.Object category_;
-    /**
-     * <code>optional string category = 1;</code>
-     */
-    public java.lang.String getCategory() {
-      java.lang.Object ref = category_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        category_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>optional string category = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getCategoryBytes() {
-      java.lang.Object ref = category_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        category_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int NAME_FIELD_NUMBER = 2;
-    private volatile java.lang.Object name_;
-    /**
-     * <code>optional string name = 2;</code>
-     */
-    public java.lang.String getName() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        name_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>optional string name = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getNameBytes() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        name_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!getCategoryBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, category_);
-      }
-      if (!getNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!getCategoryBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, category_);
-      }
-      if (!getNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
-      }
-      memoizedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof de.bwueller.environment.protocol.PlaySound.Sound)) {
-        return super.equals(obj);
-      }
-      de.bwueller.environment.protocol.PlaySound.Sound other = (de.bwueller.environment.protocol.PlaySound.Sound) obj;
-
-      boolean result = true;
-      result = result && getCategory()
-          .equals(other.getCategory());
-      result = result && getName()
-          .equals(other.getName());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + CATEGORY_FIELD_NUMBER;
-      hash = (53 * hash) + getCategory().hashCode();
-      hash = (37 * hash) + NAME_FIELD_NUMBER;
-      hash = (53 * hash) + getName().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static de.bwueller.environment.protocol.PlaySound.Sound parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static de.bwueller.environment.protocol.PlaySound.Sound parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static de.bwueller.environment.protocol.PlaySound.Sound parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static de.bwueller.environment.protocol.PlaySound.Sound parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static de.bwueller.environment.protocol.PlaySound.Sound parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static de.bwueller.environment.protocol.PlaySound.Sound parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static de.bwueller.environment.protocol.PlaySound.Sound parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static de.bwueller.environment.protocol.PlaySound.Sound parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static de.bwueller.environment.protocol.PlaySound.Sound parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static de.bwueller.environment.protocol.PlaySound.Sound parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(de.bwueller.environment.protocol.PlaySound.Sound prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code Sound}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Sound)
-        de.bwueller.environment.protocol.PlaySound.SoundOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return de.bwueller.environment.protocol.PlaySound.internal_static_Sound_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return de.bwueller.environment.protocol.PlaySound.internal_static_Sound_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                de.bwueller.environment.protocol.PlaySound.Sound.class, de.bwueller.environment.protocol.PlaySound.Sound.Builder.class);
-      }
-
-      // Construct using de.bwueller.environment.protocol.PlaySound.Sound.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      public Builder clear() {
-        super.clear();
-        category_ = "";
-
-        name_ = "";
-
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return de.bwueller.environment.protocol.PlaySound.internal_static_Sound_descriptor;
-      }
-
-      public de.bwueller.environment.protocol.PlaySound.Sound getDefaultInstanceForType() {
-        return de.bwueller.environment.protocol.PlaySound.Sound.getDefaultInstance();
-      }
-
-      public de.bwueller.environment.protocol.PlaySound.Sound build() {
-        de.bwueller.environment.protocol.PlaySound.Sound result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public de.bwueller.environment.protocol.PlaySound.Sound buildPartial() {
-        de.bwueller.environment.protocol.PlaySound.Sound result = new de.bwueller.environment.protocol.PlaySound.Sound(this);
-        result.category_ = category_;
-        result.name_ = name_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof de.bwueller.environment.protocol.PlaySound.Sound) {
-          return mergeFrom((de.bwueller.environment.protocol.PlaySound.Sound)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(de.bwueller.environment.protocol.PlaySound.Sound other) {
-        if (other == de.bwueller.environment.protocol.PlaySound.Sound.getDefaultInstance()) return this;
-        if (!other.getCategory().isEmpty()) {
-          category_ = other.category_;
-          onChanged();
-        }
-        if (!other.getName().isEmpty()) {
-          name_ = other.name_;
-          onChanged();
-        }
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        de.bwueller.environment.protocol.PlaySound.Sound parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (de.bwueller.environment.protocol.PlaySound.Sound) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private java.lang.Object category_ = "";
-      /**
-       * <code>optional string category = 1;</code>
-       */
-      public java.lang.String getCategory() {
-        java.lang.Object ref = category_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          category_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string category = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getCategoryBytes() {
-        java.lang.Object ref = category_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          category_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string category = 1;</code>
-       */
-      public Builder setCategory(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        category_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string category = 1;</code>
-       */
-      public Builder clearCategory() {
-        
-        category_ = getDefaultInstance().getCategory();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string category = 1;</code>
-       */
-      public Builder setCategoryBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        category_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object name_ = "";
-      /**
-       * <code>optional string name = 2;</code>
-       */
-      public java.lang.String getName() {
-        java.lang.Object ref = name_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          name_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string name = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getNameBytes() {
-        java.lang.Object ref = name_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          name_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string name = 2;</code>
-       */
-      public Builder setName(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        name_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string name = 2;</code>
-       */
-      public Builder clearName() {
-        
-        name_ = getDefaultInstance().getName();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string name = 2;</code>
-       */
-      public Builder setNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        name_ = value;
-        onChanged();
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:Sound)
-    }
-
-    // @@protoc_insertion_point(class_scope:Sound)
-    private static final de.bwueller.environment.protocol.PlaySound.Sound DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new de.bwueller.environment.protocol.PlaySound.Sound();
-    }
-
-    public static de.bwueller.environment.protocol.PlaySound.Sound getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<Sound>
-        PARSER = new com.google.protobuf.AbstractParser<Sound>() {
-      public Sound parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new Sound(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<Sound> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Sound> getParserForType() {
-      return PARSER;
-    }
-
-    public de.bwueller.environment.protocol.PlaySound.Sound getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_PlaySoundRequest_descriptor;
   private static final 
@@ -2463,11 +1846,6 @@ public final class PlaySound {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_PlaySoundResponse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Sound_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Sound_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -2477,14 +1855,13 @@ public final class PlaySound {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020play_sound.proto\032\rgeneral.proto\"\216\001\n\020Pl" +
+      "\n\020play_sound.proto\032\rgeneral.proto\"\211\001\n\020Pl" +
       "aySoundRequest\022\014\n\004user\030\001 \001(\t\022\022\n\nidentifi" +
-      "er\030\002 \001(\t\022\025\n\005intro\030\003 \001(\0132\006.Sound\022\025\n\005sound" +
-      "\030\004 \001(\0132\006.Sound\022\016\n\006volume\030\005 \001(\001\022\014\n\004rate\030\006" +
-      " \001(\001\022\014\n\004loop\030\007 \001(\010\"\'\n\021PlaySoundResponse\022" +
-      "\022\n\nidentifier\030\001 \001(\t\"\'\n\005Sound\022\020\n\010category" +
-      "\030\001 \001(\t\022\014\n\004name\030\002 \001(\tB\"\n de.bwueller.envi" +
-      "ronment.protocolb\006proto3"
+      "er\030\002 \001(\t\022\023\n\013intro_sound\030\003 \001(\t\022\022\n\nmain_so" +
+      "und\030\004 \001(\t\022\016\n\006volume\030\005 \001(\001\022\014\n\004rate\030\006 \001(\001\022" +
+      "\014\n\004loop\030\007 \001(\010\"5\n\021PlaySoundResponse\022\014\n\004us" +
+      "er\030\001 \001(\t\022\022\n\nidentifier\030\002 \001(\tB\"\n de.bwuel" +
+      "ler.environment.protocolb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -2504,19 +1881,13 @@ public final class PlaySound {
     internal_static_PlaySoundRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_PlaySoundRequest_descriptor,
-        new java.lang.String[] { "User", "Identifier", "Intro", "Sound", "Volume", "Rate", "Loop", });
+        new java.lang.String[] { "User", "Identifier", "IntroSound", "MainSound", "Volume", "Rate", "Loop", });
     internal_static_PlaySoundResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_PlaySoundResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_PlaySoundResponse_descriptor,
-        new java.lang.String[] { "Identifier", });
-    internal_static_Sound_descriptor =
-      getDescriptor().getMessageTypes().get(2);
-    internal_static_Sound_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Sound_descriptor,
-        new java.lang.String[] { "Category", "Name", });
+        new java.lang.String[] { "User", "Identifier", });
     de.bwueller.environment.protocol.General.getDescriptor();
   }
 

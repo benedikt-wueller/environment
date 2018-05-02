@@ -5,12 +5,7 @@ option java_package = "de.bwueller.environment.protocol";
 import "general.proto";
 
 message UpdateSoundVolumeRequest {
-  string sound = 1; // Sound identifier.
-  double volume = 2;
-  uint32 duration = 3;
-}
-
-message UpdateSoundVolumeResponse {
-  string sound = 1;
-  double volume = 2;
+  string sound = 2; // Sound identifier.
+  double volume = 3;
+  uint64 duration = 4;
 }

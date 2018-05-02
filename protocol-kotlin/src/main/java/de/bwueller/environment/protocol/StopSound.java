@@ -19,11 +19,21 @@ public final class StopSound {
       com.google.protobuf.MessageOrBuilder {
 
     /**
+     * <code>optional string user = 1;</code>
+     */
+    java.lang.String getUser();
+    /**
+     * <code>optional string user = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getUserBytes();
+
+    /**
      * <pre>
      * Sound identifier.
      * </pre>
      *
-     * <code>optional string sound = 1;</code>
+     * <code>optional string sound = 2;</code>
      */
     java.lang.String getSound();
     /**
@@ -31,20 +41,20 @@ public final class StopSound {
      * Sound identifier.
      * </pre>
      *
-     * <code>optional string sound = 1;</code>
+     * <code>optional string sound = 2;</code>
      */
     com.google.protobuf.ByteString
         getSoundBytes();
 
     /**
-     * <code>optional uint32 delay = 2;</code>
+     * <code>optional uint64 delay = 3;</code>
      */
-    int getDelay();
+    long getDelay();
 
     /**
-     * <code>optional uint32 duration = 3;</code>
+     * <code>optional uint64 duration = 4;</code>
      */
-    int getDuration();
+    long getDuration();
   }
   /**
    * Protobuf type {@code StopSoundRequest}
@@ -58,9 +68,10 @@ public final class StopSound {
       super(builder);
     }
     private StopSoundRequest() {
+      user_ = "";
       sound_ = "";
-      delay_ = 0;
-      duration_ = 0;
+      delay_ = 0L;
+      duration_ = 0L;
     }
 
     @java.lang.Override
@@ -91,17 +102,23 @@ public final class StopSound {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              sound_ = s;
+              user_ = s;
               break;
             }
-            case 16: {
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
 
-              delay_ = input.readUInt32();
+              sound_ = s;
               break;
             }
             case 24: {
 
-              duration_ = input.readUInt32();
+              delay_ = input.readUInt64();
+              break;
+            }
+            case 32: {
+
+              duration_ = input.readUInt64();
               break;
             }
           }
@@ -127,14 +144,48 @@ public final class StopSound {
               de.bwueller.environment.protocol.StopSound.StopSoundRequest.class, de.bwueller.environment.protocol.StopSound.StopSoundRequest.Builder.class);
     }
 
-    public static final int SOUND_FIELD_NUMBER = 1;
+    public static final int USER_FIELD_NUMBER = 1;
+    private volatile java.lang.Object user_;
+    /**
+     * <code>optional string user = 1;</code>
+     */
+    public java.lang.String getUser() {
+      java.lang.Object ref = user_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        user_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string user = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getUserBytes() {
+      java.lang.Object ref = user_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        user_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int SOUND_FIELD_NUMBER = 2;
     private volatile java.lang.Object sound_;
     /**
      * <pre>
      * Sound identifier.
      * </pre>
      *
-     * <code>optional string sound = 1;</code>
+     * <code>optional string sound = 2;</code>
      */
     public java.lang.String getSound() {
       java.lang.Object ref = sound_;
@@ -153,7 +204,7 @@ public final class StopSound {
      * Sound identifier.
      * </pre>
      *
-     * <code>optional string sound = 1;</code>
+     * <code>optional string sound = 2;</code>
      */
     public com.google.protobuf.ByteString
         getSoundBytes() {
@@ -169,21 +220,21 @@ public final class StopSound {
       }
     }
 
-    public static final int DELAY_FIELD_NUMBER = 2;
-    private int delay_;
+    public static final int DELAY_FIELD_NUMBER = 3;
+    private long delay_;
     /**
-     * <code>optional uint32 delay = 2;</code>
+     * <code>optional uint64 delay = 3;</code>
      */
-    public int getDelay() {
+    public long getDelay() {
       return delay_;
     }
 
-    public static final int DURATION_FIELD_NUMBER = 3;
-    private int duration_;
+    public static final int DURATION_FIELD_NUMBER = 4;
+    private long duration_;
     /**
-     * <code>optional uint32 duration = 3;</code>
+     * <code>optional uint64 duration = 4;</code>
      */
-    public int getDuration() {
+    public long getDuration() {
       return duration_;
     }
 
@@ -199,14 +250,17 @@ public final class StopSound {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (!getUserBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, user_);
+      }
       if (!getSoundBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, sound_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, sound_);
       }
-      if (delay_ != 0) {
-        output.writeUInt32(2, delay_);
+      if (delay_ != 0L) {
+        output.writeUInt64(3, delay_);
       }
-      if (duration_ != 0) {
-        output.writeUInt32(3, duration_);
+      if (duration_ != 0L) {
+        output.writeUInt64(4, duration_);
       }
     }
 
@@ -215,16 +269,19 @@ public final class StopSound {
       if (size != -1) return size;
 
       size = 0;
+      if (!getUserBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, user_);
+      }
       if (!getSoundBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, sound_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, sound_);
       }
-      if (delay_ != 0) {
+      if (delay_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(2, delay_);
+          .computeUInt64Size(3, delay_);
       }
-      if (duration_ != 0) {
+      if (duration_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(3, duration_);
+          .computeUInt64Size(4, duration_);
       }
       memoizedSize = size;
       return size;
@@ -242,6 +299,8 @@ public final class StopSound {
       de.bwueller.environment.protocol.StopSound.StopSoundRequest other = (de.bwueller.environment.protocol.StopSound.StopSoundRequest) obj;
 
       boolean result = true;
+      result = result && getUser()
+          .equals(other.getUser());
       result = result && getSound()
           .equals(other.getSound());
       result = result && (getDelay()
@@ -258,12 +317,16 @@ public final class StopSound {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + USER_FIELD_NUMBER;
+      hash = (53 * hash) + getUser().hashCode();
       hash = (37 * hash) + SOUND_FIELD_NUMBER;
       hash = (53 * hash) + getSound().hashCode();
       hash = (37 * hash) + DELAY_FIELD_NUMBER;
-      hash = (53 * hash) + getDelay();
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getDelay());
       hash = (37 * hash) + DURATION_FIELD_NUMBER;
-      hash = (53 * hash) + getDuration();
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getDuration());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -382,11 +445,13 @@ public final class StopSound {
       }
       public Builder clear() {
         super.clear();
+        user_ = "";
+
         sound_ = "";
 
-        delay_ = 0;
+        delay_ = 0L;
 
-        duration_ = 0;
+        duration_ = 0L;
 
         return this;
       }
@@ -410,6 +475,7 @@ public final class StopSound {
 
       public de.bwueller.environment.protocol.StopSound.StopSoundRequest buildPartial() {
         de.bwueller.environment.protocol.StopSound.StopSoundRequest result = new de.bwueller.environment.protocol.StopSound.StopSoundRequest(this);
+        result.user_ = user_;
         result.sound_ = sound_;
         result.delay_ = delay_;
         result.duration_ = duration_;
@@ -454,14 +520,18 @@ public final class StopSound {
 
       public Builder mergeFrom(de.bwueller.environment.protocol.StopSound.StopSoundRequest other) {
         if (other == de.bwueller.environment.protocol.StopSound.StopSoundRequest.getDefaultInstance()) return this;
+        if (!other.getUser().isEmpty()) {
+          user_ = other.user_;
+          onChanged();
+        }
         if (!other.getSound().isEmpty()) {
           sound_ = other.sound_;
           onChanged();
         }
-        if (other.getDelay() != 0) {
+        if (other.getDelay() != 0L) {
           setDelay(other.getDelay());
         }
-        if (other.getDuration() != 0) {
+        if (other.getDuration() != 0L) {
           setDuration(other.getDuration());
         }
         onChanged();
@@ -490,13 +560,82 @@ public final class StopSound {
         return this;
       }
 
+      private java.lang.Object user_ = "";
+      /**
+       * <code>optional string user = 1;</code>
+       */
+      public java.lang.String getUser() {
+        java.lang.Object ref = user_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          user_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string user = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getUserBytes() {
+        java.lang.Object ref = user_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          user_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string user = 1;</code>
+       */
+      public Builder setUser(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        user_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string user = 1;</code>
+       */
+      public Builder clearUser() {
+        
+        user_ = getDefaultInstance().getUser();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string user = 1;</code>
+       */
+      public Builder setUserBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        user_ = value;
+        onChanged();
+        return this;
+      }
+
       private java.lang.Object sound_ = "";
       /**
        * <pre>
        * Sound identifier.
        * </pre>
        *
-       * <code>optional string sound = 1;</code>
+       * <code>optional string sound = 2;</code>
        */
       public java.lang.String getSound() {
         java.lang.Object ref = sound_;
@@ -515,7 +654,7 @@ public final class StopSound {
        * Sound identifier.
        * </pre>
        *
-       * <code>optional string sound = 1;</code>
+       * <code>optional string sound = 2;</code>
        */
       public com.google.protobuf.ByteString
           getSoundBytes() {
@@ -535,7 +674,7 @@ public final class StopSound {
        * Sound identifier.
        * </pre>
        *
-       * <code>optional string sound = 1;</code>
+       * <code>optional string sound = 2;</code>
        */
       public Builder setSound(
           java.lang.String value) {
@@ -552,7 +691,7 @@ public final class StopSound {
        * Sound identifier.
        * </pre>
        *
-       * <code>optional string sound = 1;</code>
+       * <code>optional string sound = 2;</code>
        */
       public Builder clearSound() {
         
@@ -565,7 +704,7 @@ public final class StopSound {
        * Sound identifier.
        * </pre>
        *
-       * <code>optional string sound = 1;</code>
+       * <code>optional string sound = 2;</code>
        */
       public Builder setSoundBytes(
           com.google.protobuf.ByteString value) {
@@ -579,54 +718,54 @@ public final class StopSound {
         return this;
       }
 
-      private int delay_ ;
+      private long delay_ ;
       /**
-       * <code>optional uint32 delay = 2;</code>
+       * <code>optional uint64 delay = 3;</code>
        */
-      public int getDelay() {
+      public long getDelay() {
         return delay_;
       }
       /**
-       * <code>optional uint32 delay = 2;</code>
+       * <code>optional uint64 delay = 3;</code>
        */
-      public Builder setDelay(int value) {
+      public Builder setDelay(long value) {
         
         delay_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional uint32 delay = 2;</code>
+       * <code>optional uint64 delay = 3;</code>
        */
       public Builder clearDelay() {
         
-        delay_ = 0;
+        delay_ = 0L;
         onChanged();
         return this;
       }
 
-      private int duration_ ;
+      private long duration_ ;
       /**
-       * <code>optional uint32 duration = 3;</code>
+       * <code>optional uint64 duration = 4;</code>
        */
-      public int getDuration() {
+      public long getDuration() {
         return duration_;
       }
       /**
-       * <code>optional uint32 duration = 3;</code>
+       * <code>optional uint64 duration = 4;</code>
        */
-      public Builder setDuration(int value) {
+      public Builder setDuration(long value) {
         
         duration_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional uint32 duration = 3;</code>
+       * <code>optional uint64 duration = 4;</code>
        */
       public Builder clearDuration() {
         
-        duration_ = 0;
+        duration_ = 0L;
         onChanged();
         return this;
       }
@@ -684,11 +823,21 @@ public final class StopSound {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional string sound = 1;</code>
+     * <code>optional string user = 1;</code>
+     */
+    java.lang.String getUser();
+    /**
+     * <code>optional string user = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getUserBytes();
+
+    /**
+     * <code>optional string sound = 2;</code>
      */
     java.lang.String getSound();
     /**
-     * <code>optional string sound = 1;</code>
+     * <code>optional string sound = 2;</code>
      */
     com.google.protobuf.ByteString
         getSoundBytes();
@@ -705,6 +854,7 @@ public final class StopSound {
       super(builder);
     }
     private StopSoundResponse() {
+      user_ = "";
       sound_ = "";
     }
 
@@ -736,6 +886,12 @@ public final class StopSound {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
+              user_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
               sound_ = s;
               break;
             }
@@ -762,10 +918,44 @@ public final class StopSound {
               de.bwueller.environment.protocol.StopSound.StopSoundResponse.class, de.bwueller.environment.protocol.StopSound.StopSoundResponse.Builder.class);
     }
 
-    public static final int SOUND_FIELD_NUMBER = 1;
+    public static final int USER_FIELD_NUMBER = 1;
+    private volatile java.lang.Object user_;
+    /**
+     * <code>optional string user = 1;</code>
+     */
+    public java.lang.String getUser() {
+      java.lang.Object ref = user_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        user_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string user = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getUserBytes() {
+      java.lang.Object ref = user_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        user_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int SOUND_FIELD_NUMBER = 2;
     private volatile java.lang.Object sound_;
     /**
-     * <code>optional string sound = 1;</code>
+     * <code>optional string sound = 2;</code>
      */
     public java.lang.String getSound() {
       java.lang.Object ref = sound_;
@@ -780,7 +970,7 @@ public final class StopSound {
       }
     }
     /**
-     * <code>optional string sound = 1;</code>
+     * <code>optional string sound = 2;</code>
      */
     public com.google.protobuf.ByteString
         getSoundBytes() {
@@ -808,8 +998,11 @@ public final class StopSound {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (!getUserBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, user_);
+      }
       if (!getSoundBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, sound_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, sound_);
       }
     }
 
@@ -818,8 +1011,11 @@ public final class StopSound {
       if (size != -1) return size;
 
       size = 0;
+      if (!getUserBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, user_);
+      }
       if (!getSoundBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, sound_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, sound_);
       }
       memoizedSize = size;
       return size;
@@ -837,6 +1033,8 @@ public final class StopSound {
       de.bwueller.environment.protocol.StopSound.StopSoundResponse other = (de.bwueller.environment.protocol.StopSound.StopSoundResponse) obj;
 
       boolean result = true;
+      result = result && getUser()
+          .equals(other.getUser());
       result = result && getSound()
           .equals(other.getSound());
       return result;
@@ -849,6 +1047,8 @@ public final class StopSound {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + USER_FIELD_NUMBER;
+      hash = (53 * hash) + getUser().hashCode();
       hash = (37 * hash) + SOUND_FIELD_NUMBER;
       hash = (53 * hash) + getSound().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -969,6 +1169,8 @@ public final class StopSound {
       }
       public Builder clear() {
         super.clear();
+        user_ = "";
+
         sound_ = "";
 
         return this;
@@ -993,6 +1195,7 @@ public final class StopSound {
 
       public de.bwueller.environment.protocol.StopSound.StopSoundResponse buildPartial() {
         de.bwueller.environment.protocol.StopSound.StopSoundResponse result = new de.bwueller.environment.protocol.StopSound.StopSoundResponse(this);
+        result.user_ = user_;
         result.sound_ = sound_;
         onBuilt();
         return result;
@@ -1035,6 +1238,10 @@ public final class StopSound {
 
       public Builder mergeFrom(de.bwueller.environment.protocol.StopSound.StopSoundResponse other) {
         if (other == de.bwueller.environment.protocol.StopSound.StopSoundResponse.getDefaultInstance()) return this;
+        if (!other.getUser().isEmpty()) {
+          user_ = other.user_;
+          onChanged();
+        }
         if (!other.getSound().isEmpty()) {
           sound_ = other.sound_;
           onChanged();
@@ -1065,9 +1272,78 @@ public final class StopSound {
         return this;
       }
 
+      private java.lang.Object user_ = "";
+      /**
+       * <code>optional string user = 1;</code>
+       */
+      public java.lang.String getUser() {
+        java.lang.Object ref = user_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          user_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string user = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getUserBytes() {
+        java.lang.Object ref = user_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          user_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string user = 1;</code>
+       */
+      public Builder setUser(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        user_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string user = 1;</code>
+       */
+      public Builder clearUser() {
+        
+        user_ = getDefaultInstance().getUser();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string user = 1;</code>
+       */
+      public Builder setUserBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        user_ = value;
+        onChanged();
+        return this;
+      }
+
       private java.lang.Object sound_ = "";
       /**
-       * <code>optional string sound = 1;</code>
+       * <code>optional string sound = 2;</code>
        */
       public java.lang.String getSound() {
         java.lang.Object ref = sound_;
@@ -1082,7 +1358,7 @@ public final class StopSound {
         }
       }
       /**
-       * <code>optional string sound = 1;</code>
+       * <code>optional string sound = 2;</code>
        */
       public com.google.protobuf.ByteString
           getSoundBytes() {
@@ -1098,7 +1374,7 @@ public final class StopSound {
         }
       }
       /**
-       * <code>optional string sound = 1;</code>
+       * <code>optional string sound = 2;</code>
        */
       public Builder setSound(
           java.lang.String value) {
@@ -1111,7 +1387,7 @@ public final class StopSound {
         return this;
       }
       /**
-       * <code>optional string sound = 1;</code>
+       * <code>optional string sound = 2;</code>
        */
       public Builder clearSound() {
         
@@ -1120,7 +1396,7 @@ public final class StopSound {
         return this;
       }
       /**
-       * <code>optional string sound = 1;</code>
+       * <code>optional string sound = 2;</code>
        */
       public Builder setSoundBytes(
           com.google.protobuf.ByteString value) {
@@ -1201,11 +1477,12 @@ public final class StopSound {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020stop_sound.proto\032\rgeneral.proto\"B\n\020Sto" +
-      "pSoundRequest\022\r\n\005sound\030\001 \001(\t\022\r\n\005delay\030\002 " +
-      "\001(\r\022\020\n\010duration\030\003 \001(\r\"\"\n\021StopSoundRespon" +
-      "se\022\r\n\005sound\030\001 \001(\tB\"\n de.bwueller.environ" +
-      "ment.protocolb\006proto3"
+      "\n\020stop_sound.proto\032\rgeneral.proto\"P\n\020Sto" +
+      "pSoundRequest\022\014\n\004user\030\001 \001(\t\022\r\n\005sound\030\002 \001" +
+      "(\t\022\r\n\005delay\030\003 \001(\004\022\020\n\010duration\030\004 \001(\004\"0\n\021S" +
+      "topSoundResponse\022\014\n\004user\030\001 \001(\t\022\r\n\005sound\030" +
+      "\002 \001(\tB\"\n de.bwueller.environment.protoco" +
+      "lb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1225,13 +1502,13 @@ public final class StopSound {
     internal_static_StopSoundRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_StopSoundRequest_descriptor,
-        new java.lang.String[] { "Sound", "Delay", "Duration", });
+        new java.lang.String[] { "User", "Sound", "Delay", "Duration", });
     internal_static_StopSoundResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_StopSoundResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_StopSoundResponse_descriptor,
-        new java.lang.String[] { "Sound", });
+        new java.lang.String[] { "User", "Sound", });
     de.bwueller.environment.protocol.General.getDescriptor();
   }
 
