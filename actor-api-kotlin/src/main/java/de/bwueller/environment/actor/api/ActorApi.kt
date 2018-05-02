@@ -85,5 +85,22 @@ class ActorApi {
 
     @JvmStatic
     fun isUserConnected(user: String) = userManager.isUserConnected(user)
+
+    @JvmStatic
+    fun main(args: Array<String>) {
+      addListener { connected ->
+        registerUser("Bw2801", { user, key ->
+          println("$user, $key")
+        }, { user, connected ->
+          if (connected) {
+            val sound = Sound(null, "mac_leod.frozen_star", 0.0)
+            sound.play(user)
+
+            Thread.sleep(2000)
+            sound.fadeToVolume(1.0, 2000)
+          }
+        })
+      }
+    }
   }
 }
