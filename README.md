@@ -30,7 +30,7 @@ Defines the software processing sound and update requests sent by the actor and 
 
 ### Update protocol for JavaScript
 
-1. `protoc -I=protocol --js_out=library=environment_protocol,binary:. protocol/*proto`
+1. `cp -r protocol/*.proto example-client-js/public/protocol`
 
 ### Build actor api for Kotlin
 
