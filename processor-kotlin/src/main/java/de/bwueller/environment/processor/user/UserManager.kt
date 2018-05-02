@@ -65,6 +65,8 @@ class UserManager {
     user.actor.socket.send(serializePacket(actorBuilder.build()))
 
     tryRemoveUser(user)
+
+    println("User ${user.name} has disconnected.")
   }
 
   /**
@@ -102,10 +104,14 @@ class UserManager {
           builder.status = ConnectUser.ConnectUserResponse.Status.ERR_ALREADY_CONNECTED
         }
       } else {
+        println("${user.key}, $key")
+
         // The key is incorrect. Set error status.
         builder.status = ConnectUser.ConnectUserResponse.Status.ERR_NOT_FOUND
       }
     } else {
+      println("User not found")
+
       // The user could not be found. Set error status.
       builder.status = ConnectUser.ConnectUserResponse.Status.ERR_NOT_FOUND
     }
@@ -133,6 +139,7 @@ class UserManager {
       // Save the user to the new actor.
       users[userName] = user
       user.actor = actor
+      user.actor.users.add(user)
 
       // Send response
       val builder = RegisterActorUser.RegisterActorUserResponse.newBuilder()
