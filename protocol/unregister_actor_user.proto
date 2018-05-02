@@ -2,8 +2,6 @@ syntax = "proto3";
 
 option java_package = "de.bwueller.environment.protocol";
 
-import "general.proto";
-
 message UnregisterActorUserRequest {
   string user = 1; // Unique user identifier.
 }

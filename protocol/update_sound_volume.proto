@@ -2,8 +2,6 @@ syntax = "proto3";
 
 option java_package = "de.bwueller.environment.protocol";
 
-import "general.proto";
-
 message UpdateSoundVolumeRequest {
   string sound = 2; // Sound identifier.
   double volume = 3;
