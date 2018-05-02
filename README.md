@@ -1,4 +1,5 @@
 # environment
+
 Modular sound system based on WebSockets using the user's browser as audio player.
 
 
@@ -21,11 +22,25 @@ Defines the software processing sound and update requests sent by the actor and 
 
 ## Build
 
-### Update protocol for kotlin
+### Update protocol for Kotlin
 
 1. `protoc -I=protocol --java_out=protocol-kotlin:/src/main/java protocol/*.proto`
-2. `cd protocol-java`
+2. `cd protocol-kotlin`
 3. `mvn clean install`
+
+### Update protocol for JavaScript
+
+1. `protoc -I=protocol --js_out=library=environment_protocol,binary:. protocol/*proto`
+
+### Build actor api for Kotlin
+
+1. `cd actor-api-kotlin`
+2. `mvn clean install`
+
+### Build processor for Kotlin
+
+1. `cd processor-kotlin`
+2. `mvn clean install`
 
 
 ## License
