@@ -5,8 +5,15 @@ export default {
   packets: {},
 
   packetIds: {
+    'RegisterActorRequest': 0,
+    'RegisterActorResponse': 1,
+    'RegisterActorUserRequest': 2,
+    'RegisterActorUserResponse': 3,
+    'UnregisterActorUserRequest': 4,
     'ConnectUserRequest': 5,
     'ConnectUserResponse': 6,
+    'UpdateUserStatusRequest': 7,
+    'UpdateActorUserMetaRequest': 8,
     'PlaySoundRequest': 9,
     'PlaySoundResponse': 10,
     'StopSoundRequest': 11,
@@ -19,9 +26,26 @@ export default {
     const protobuf = require("protobufjs")
 
     const packetTypes = {
+      'register_actor': [
+        'RegisterActorRequest',
+        'RegisterActorResponse'
+      ],
+      'register_actor_user': [
+        'RegisterActorUserRequest',
+        'RegisterActorUserResponse'
+      ],
+      'unregister_actor_user': [
+        'UnregisterActorUserRequest'
+      ],
       'connect_user': [
         'ConnectUserRequest',
         'ConnectUserResponse'
+      ],
+      'update_user_status': [
+        'UpdateUserStatusRequest'
+      ],
+      'update_actor_user_meta': [
+        'UpdateActorUserMetaRequest'
       ],
       'play_sound': [
         'PlaySoundRequest',
