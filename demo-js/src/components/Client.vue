@@ -8,9 +8,7 @@
             <div class="is-pulled-right">
               <span style="font-weight: 500;">CLIENT</span>
               &nbsp;
-              <a href=""><span style="font-weight: 200;">ACTOR</span></a>
-              &nbsp;
-              <a href=""><span style="font-weight: 200;">DOCS</span></a>
+              <router-link to="/actor"><span style="font-weight: 200;">ACTOR</span></router-link>
             </div>
           </h1>
         </div>
