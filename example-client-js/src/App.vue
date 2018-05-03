@@ -20,8 +20,8 @@
     <section class="section">
       <div class="container">
         <b-notification v-if="connectErrorCode === -1" type="is-info" :closable="false">
-          Go to the <a href="">Actor</a> and create a new temporary user to test
-          the all the features of environment.
+          Go to the <a href="">Demo Actor</a> and create a new temporary demo user to test
+          all the features of environment.
         </b-notification>
 
         <b-notification v-if="connectErrorCode === 0" type="is-success" :closable="false">
@@ -99,6 +99,14 @@
           obj.howl.fade(obj.howl.volume(), volume, duration)
         })
 
+        Client.setUpdateRateCallback((identifier, rate) => {
+          const obj = this.sounds.filter((item) => {
+            return item.id === identifier
+          })[0]
+
+          obj.howl.rate(rate)
+        })
+
         Client.setPlaySoundCallback((user, identifier, introSound, mainSound, volume, rate, loop) => {
           let sound = null
 
@@ -129,6 +137,17 @@
               Client.handleSoundStopped(user, identifier)
             })
           })
+        })
+
+        Client.setStopSoundCallback((user, identifier, delay, duration) => {
+          const obj = this.sounds.filter((item) => {
+            return item.id === identifier
+          })[0]
+
+          obj.howl.loop(false)
+          setTimeout(() => {
+            obj.howl.fade(obj.howl.volume(), 0, duration)
+          }, delay)
         })
 
         Client.connect(this.user, this.secret, (connected, code) => {

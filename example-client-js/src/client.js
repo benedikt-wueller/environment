@@ -5,8 +5,17 @@ socket.binaryType = 'arraybuffer'
 
 let connectCallback = null
 let playSoundCallback = null
+let stopSoundCallback = null
 let updateVolumeCallback = null
 let updateRateCallback = null
+
+function doubleValue(value) {
+  return value === undefined ? 0.0 : value
+}
+
+function intValue(value) {
+  return value === undefined ? 0 : value
+}
 
 const Client = {
   connected: false,
@@ -35,6 +44,10 @@ const Client = {
     updateRateCallback = callback
   },
 
+  setStopSoundCallback(callback) {
+    stopSoundCallback = callback
+  },
+
   handleSoundStarted(user, sound) {
     const data = Protocol.serialize('PlaySoundResponse', {user: user, sound: sound})
     socket.send(data)
@@ -60,20 +73,22 @@ socket.onmessage = (message) => {
   if (packet.type === 'PlaySoundRequest' && playSoundCallback !== null) {
     playSoundCallback(packet.payload.user, packet.payload.identifier,
         packet.payload.introSound, packet.payload.mainSound,
-        packet.payload.volume === undefined ? 0.0 : packet.payload.volume,
-        packet.payload.rate === undefined ? 0.0 : packet.payload.rate,
+        doubleValue(packet.payload.volume), doubleValue(packet.payload.rate),
         packet.payload.loop)
+  }
+
+  if (packet.type === 'StopSoundRequest' && stopSoundCallback !== null) {
+    stopSoundCallback(packet.payload.user, packet.payload.sound,
+        intValue(packet.payload.delay), intValue(packet.payload.duration))
   }
 
   if (packet.type === 'UpdateSoundVolumeRequest' && updateVolumeCallback !== null) {
     updateVolumeCallback(packet.payload.sound,
-        packet.payload.volume === undefined ? 0.0 : packet.payload.volume,
-        packet.payload.duration === undefined ? 0 : packet.payload.duration)
+        doubleValue(packet.payload.volume), intValue(packet.payload.duration))
   }
 
   if (packet.type === 'UpdateSoundrateRequest' && updateRateCallback !== null) {
-    updateRateCallback(packet.payload.sound,
-        packet.payload.rate === undefined ? 0.0 : packet.payload.rate)
+    updateRateCallback(packet.payload.sound, doubleValue(packet.payload.rate))
   }
 }
 
