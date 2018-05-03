@@ -6,9 +6,7 @@
           <h1 class="title">
             <small style="font-weight: 200">demo.</small>ENVIRONMENT
             <div class="is-pulled-right">
-              <span style="font-weight: 500;">CLIENT</span>
-              &nbsp;
-              <router-link to="/actor"><span style="font-weight: 200;">ACTOR</span></router-link>
+              <span style="font-weight: 200">CLIENT</span>
             </div>
           </h1>
         </div>
@@ -17,10 +15,6 @@
 
     <section class="section">
       <div class="container">
-        <b-notification v-if="connectErrorCode >= 0 && hasOpener" type="is-warning">
-          The client should have been opened in a separate window for full functionality.
-        </b-notification>
-
         <b-notification v-if="connectErrorCode === -1" type="is-info" :closable="false">
           Go to the <router-link to="/actor">Demo Actor</router-link> and create a new temporary demo user to test
           all the features of environment.
@@ -39,21 +33,21 @@
         </b-notification>
 
         <b-notification v-if="connectErrorCode === 3" type="is-danger" :closable="false">
-          Something went wrong. Please try again by reloading this page.
+          The processor could not be reached or the connection has been cancelled.
         </b-notification>
 
         <div class="columns is-multiline">
           <div v-for="sound in sounds" v-bind:key="sound.id" class="column is-half-tablet">
-            <div :class="{message: true, 'is-success': sound.howl.playing(), 'is-warning': !sound.howl.playing()}">
+            <div :class="{message: true, 'is-success': sound.isPlaying(), 'is-warning': !sound.isPlaying()}">
               <div class="message-body">
                 <div class="is-clearfix">
                   <b>{{ sound.name }}</b>
                   <div class="is-pulled-right">
-                    <span class="tag"><b>Rate:</b>&nbsp;{{ Math.ceil(sound.howl.rate() * 100) }}%</span>&nbsp;<span class="tag"><b>Volume:</b>&nbsp;{{ Math.ceil(sound.howl.volume() * 100) }}%</span>
+                    <span class="tag"><b>Rate:</b>&nbsp;{{ Math.ceil(sound.getRate() * 100) }}%</span>&nbsp;<span class="tag"><b>Volume:</b>&nbsp;{{ Math.ceil(sound.getVolume() * 100) }}%</span>
                   </div>
                 </div>
                 <small><small>{{ sound.id }}</small></small><br/>
-                <small><small>{{ sound.license }}</small></small>
+                <small><small>{{ sound.licenses.join(' &mdash; ') }}</small></small>
               </div>
             </div>
           </div>
@@ -74,8 +68,6 @@
     name: 'client',
 
     props: {
-      hasOpener: false,
-
       connected: false,
       connectErrorCode: -1,
 
@@ -86,8 +78,6 @@
     },
 
     mounted() {
-      this.hasOpener = !!window.opener
-
       this.user = this.$route.params['user']
       this.secret = this.$route.params['key']
 
@@ -96,13 +86,14 @@
         return
       }
 
-      Client.init(() => {
+      Client.initialize(() => {
         Client.setUpdateVolumeCallback((identifier, volume, duration) => {
           const obj = this.sounds.filter((item) => {
             return item.id === identifier
           })[0]
 
-          obj.howl.fade(obj.howl.volume(), volume, duration)
+          if (obj.introHowl !== undefined) obj.introHowl.fade(obj.introHowl.volume(), volume, duration)
+          obj.mainHowl.fade(obj.mainHowl.volume(), volume, duration)
         })
 
         Client.setUpdateRateCallback((identifier, rate) => {
@@ -110,40 +101,76 @@
             return item.id === identifier
           })[0]
 
-          obj.howl.rate(rate)
+          if (obj.introHowl !== undefined) obj.introHowl.rate(rate)
+          obj.mainHowl.rate(rate)
         })
 
         Client.setPlaySoundCallback((user, identifier, introSound, mainSound, volume, rate, loop) => {
-          let sound = null
-
-          this.$http.get('/sounds/' + mainSound.split('.').join('/') + '.json').then((data) => {
-            sound = new Howl({
-              src: data.body.sources,
-              loop: loop,
-              volume: volume,
-              rate: rate,
-              onend() {
-                if (!sound.loop()) {
-                  Client.handleSoundStopped(user, identifier)
+          if (introSound !== undefined) {
+            this.loadSound(introSound, volume, rate, false, (introConfig, introHowl) => {
+              this.loadSound(mainSound, volume, rate, loop, (mainConfig, mainHowl) => {
+                const obj = {
+                  id: identifier,
+                  name: (introSound === undefined ? '' : (introSound + ' / ')) + mainSound,
+                  licenses: [introConfig.license, mainConfig.license],
+                  introHowl: introHowl,
+                  mainHowl: mainHowl,
+                  isPlaying() {
+                    return introHowl.playing() || mainHowl.playing()
+                  },
+                  getRate() {
+                    return introHowl.playing() ? introHowl.rate() : mainHowl.rate()
+                  },
+                  getVolume() {
+                    return introHowl.playing() ? introHowl.volume() : mainHowl.volume()
+                  }
                 }
-              }
-            });
 
-            sound.once('load', () => {
-              sound.play()
-              Client.handleSoundStarted(user, identifier)
+                introHowl.on('end', () => {
+                  mainHowl.play()
+                  console.log('play main')
+                })
 
+                mainHowl.on('end', () => {
+                  if (!loop) {
+                    Client.handleSoundStopped(user, identifier)
+                  }
+                })
+
+                introHowl.play()
+                Client.handleSoundStarted(user, identifier)
+                this.sounds.push(obj)
+              })
+            })
+          } else {
+            this.loadSound(mainSound, volume, rate, loop, (mainConfig, mainHowl) => {
               const obj = {
                 id: identifier,
-                name: (introSound === undefined ? '' : (introSound + '/')) + mainSound,
-                license: data.body.license,
-                howl: sound,
-                status: 'playing'
+                name: mainSound,
+                licenses: [mainConfig.license],
+                mainHowl: mainHowl,
+                isPlaying() {
+                  return mainHowl.playing()
+                },
+                getRate() {
+                  return mainHowl.rate()
+                },
+                getVolume() {
+                  return mainHowl.volume()
+                }
               }
 
+              mainHowl.on('end', () => {
+                if (!loop) {
+                  Client.handleSoundStopped(user, identifier)
+                }
+              })
+
+              mainHowl.play()
+              Client.handleSoundStarted(user, identifier)
               this.sounds.push(obj)
             })
-          })
+          }
         })
 
         Client.setStopSoundCallback((user, identifier, delay, duration) => {
@@ -151,9 +178,15 @@
             return item.id === identifier
           })[0]
 
-          obj.howl.loop(false)
+          obj.mainHowl.loop(false)
           setTimeout(() => {
-            obj.howl.fade(obj.howl.volume(), 0, duration)
+            if (obj.introHowl !== undefined) obj.introHowl.fade(obj.introHowl.volume(), 0, duration)
+            obj.mainHowl.fade(obj.mainHowl.volume(), 0, duration)
+
+            setTimeout(() => {
+              if (obj.introHowl !== undefined) obj.introHowl.stop()
+              obj.mainHowl.stop()
+            }, duration + 100)
           }, delay)
         })
 
@@ -169,14 +202,19 @@
     },
 
     methods: {
-      findGetParameter(parameterName) {
-        let result = null, tmp = []
-        const items = location.search.substr(1).split("&");
-        for (let index = 0; index < items.length; index++) {
-          tmp = items[index].split("=");
-          if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
-        }
-        return result;
+      loadSound(name, volume, rate, loop, callback) {
+        this.$http.get('/sounds/' + name.split('.').join('/') + '.json').then((data) => {
+          const sound = new Howl({
+            src: data.body.sources,
+            loop: loop,
+            volume: volume,
+            rate: rate
+          });
+
+          sound.once('load', () => {
+            callback(data.body, sound)
+          })
+        })
       }
     }
   }

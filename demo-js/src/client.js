@@ -19,7 +19,7 @@ function intValue(value) {
 const Client = {
   connected: false,
 
-  init(callback) {
+  initialize(callback) {
     socket = new WebSocket('ws://localhost:24500')
     socket.binaryType = 'arraybuffer'
 
@@ -89,7 +89,7 @@ const Client = {
   },
 
   handleSoundStarted(user, sound) {
-    const data = Protocol.serialize('PlaySoundResponse', {user: user, sound: sound})
+    const data = Protocol.serialize('PlaySoundResponse', {user: user, identifier: sound})
     socket.send(data)
   },
 

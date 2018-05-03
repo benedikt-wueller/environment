@@ -34,8 +34,10 @@ class SoundManager {
             requestBuilder.sound = entry.key
             user.socket?.send(serializePacket(requestBuilder.build()))
 
-            responseBuilder.sound = entry.key
-            user.actor.socket.send(serializePacket(responseBuilder.build()))
+            if (user.actor.socket.isOpen) {
+              responseBuilder.sound = entry.key
+              user.actor.socket.send(serializePacket(responseBuilder.build()))
+            }
           }
         }
   }

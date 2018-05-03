@@ -18,10 +18,11 @@ class UserManager {
    */
   @Synchronized
   fun unregisterUser(user: User) {
-    user.actor.users.remove(user)
-
     // Stop any currently playing sounds.
     soundManager.stopAllSounds(user)
+
+    user.socket?.close()
+    user.actor.users.remove(user)
 
     println("User ${user.name} has been unregistered from actor ${user.actor.name}.")
 
@@ -62,7 +63,10 @@ class UserManager {
     val actorBuilder = UpdateUserStatus.UpdateUserStatusRequest.newBuilder()
     actorBuilder.user = user.name
     actorBuilder.status = UpdateUserStatus.UpdateUserStatusRequest.Status.DISCONNECTED
-    user.actor.socket.send(serializePacket(actorBuilder.build()))
+
+    if (user.actor.socket.isOpen) {
+      user.actor.socket.send(serializePacket(actorBuilder.build()))
+    }
 
     tryRemoveUser(user)
 

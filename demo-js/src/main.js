@@ -2,6 +2,7 @@ import Vue from 'vue'
 
 import App from './App.vue'
 import Client from './components/Client.vue'
+import Actor from './components/Actor.vue'
 
 import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'
@@ -34,6 +35,10 @@ const router = new VueRouter({
         {
           path: '/client/:user/:key',
           component: Client
+        },
+        {
+          path: '/actor',
+          component: Actor
         }
       ]
     }
