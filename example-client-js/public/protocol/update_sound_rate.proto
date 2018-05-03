@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "de.bwueller.environment.protocol";
+
+message UpdateSoundRateRequest {
+  string sound = 2; // Sound identifier.
+  double rate = 3;
+}

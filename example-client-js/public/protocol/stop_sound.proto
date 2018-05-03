@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "de.bwueller.environment.protocol";
+
+message StopSoundRequest {
+  string user = 1;
+  string sound = 2; // Sound identifier.
+  uint64 delay = 3;
+  uint64 duration = 4;
+}
+
+message StopSoundResponse {
+  string user = 1;
+  string sound = 2;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "de.bwueller.environment.protocol";
+
+import "general.proto";
+
+message UpdateActorUserMetaRequest {
+  string user = 1;
+  repeated Meta meta = 2;
+}

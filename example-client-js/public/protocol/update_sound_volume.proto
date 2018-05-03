@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "de.bwueller.environment.protocol";
+
+message UpdateSoundVolumeRequest {
+  string sound = 2; // Sound identifier.
+  double volume = 3;
+  uint64 duration = 4;
+}

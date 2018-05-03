@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "de.bwueller.environment.protocol";
+
+message UpdateUserStatusRequest {
+  string user = 1;
+  string identifier = 2;
+  Status status = 3;
+
+  enum Status {
+    CONNECTED = 0;
+    DISCONNECTED = 1;
+  }
+}

@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "de.bwueller.environment.protocol";
+
+message Meta {
+  int32 identifier = 1;
+  string value = 2;
+}
