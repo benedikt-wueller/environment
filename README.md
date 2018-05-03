@@ -30,7 +30,7 @@ Defines the software processing sound and update requests sent by the actor and 
 
 ### Update protocol for JavaScript
 
-1. `cp -r protocol/*.proto example-client-js/public/protocol`
+1. `cp -r protocol/*.proto demo-js/public/protocol`
 
 ### Build actor api for Kotlin
 
