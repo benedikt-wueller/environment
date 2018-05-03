@@ -75,7 +75,7 @@
       this.secret = this.findGetParameter('key')
 
       if (this.user === null || this.secret === null) {
-        
+
         return
       }
 
