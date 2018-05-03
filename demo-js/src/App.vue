@@ -19,6 +19,10 @@
 
     <section class="section">
       <div class="container">
+        <b-notification v-if="connectErrorCode >= 0 && hasOpener" type="is-warning">
+          The client should have been opened in a separate window for full functionality.
+        </b-notification>
+
         <b-notification v-if="connectErrorCode === -1" type="is-info" :closable="false">
           Go to the <a href="">Demo Actor</a> and create a new temporary demo user to test
           all the features of environment.
@@ -72,6 +76,8 @@
     name: 'app',
 
     props: {
+      hasOpener: false,
+
       connected: false,
       connectErrorCode: -1,
 
@@ -82,6 +88,9 @@
     },
 
     mounted() {
+      this.hasOpener = !!window.opener
+      console.log(window.opener)
+
       this.user = this.findGetParameter('user')
       this.secret = this.findGetParameter('key')
 
@@ -115,7 +124,12 @@
               src: data.body.sources,
               loop: loop,
               volume: volume,
-              rate: rate
+              rate: rate,
+              onend() {
+                if (!sound.loop()) {
+                  Client.handleSoundStopped(user, identifier)
+                }
+              }
             });
 
             sound.once('load', () => {
@@ -131,10 +145,6 @@
               }
 
               this.sounds.push(obj)
-            })
-
-            sound.once('end', () => {
-              Client.handleSoundStopped(user, identifier)
             })
           })
         })
