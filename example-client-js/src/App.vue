@@ -5,7 +5,13 @@
         <div class="container">
           <h1 class="title">
             <small style="font-weight: 200">demo.</small>ENVIRONMENT
-            <span class="is-pulled-right" style="font-weight: 200;">CLIENT</span>
+            <div class="is-pulled-right">
+              <span style="font-weight: 500;">CLIENT</span>
+              &nbsp;
+              <a href=""><span style="font-weight: 200;">ACTOR</span></a>
+              &nbsp;
+              <a href=""><span style="font-weight: 200;">DOCS</span></a>
+            </div>
           </h1>
         </div>
       </div>
@@ -13,6 +19,11 @@
 
     <section class="section">
       <div class="container">
+        <b-notification v-if="connectErrorCode === -1" type="is-info" :closable="false">
+          Go to the <a href="">Actor</a> and create a new temporary user to test
+          the all the features of environment.
+        </b-notification>
+
         <b-notification v-if="connectErrorCode === 0" type="is-success" :closable="false">
           You are connected as <b>{{ user }}</b>.
         </b-notification>
@@ -25,8 +36,8 @@
           The user <b>{{ user }}</b> could not be found or the key is incorrect.
         </b-notification>
 
-        <b-notification v-if="connectErrorCode === 3" type="is-success" :closable="false">
-          You are connected as {{ user }}
+        <b-notification v-if="connectErrorCode === 3" type="is-danger" :closable="false">
+          Something went wrong. Please try again by reloading this page.
         </b-notification>
 
         <div class="columns is-multiline">
@@ -75,7 +86,7 @@
       this.secret = this.findGetParameter('key')
 
       if (this.user === null || this.secret === null) {
-
+        this.connectErrorCode = -1
         return
       }
 
