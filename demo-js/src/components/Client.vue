@@ -22,7 +22,7 @@
         </b-notification>
 
         <b-notification v-if="connectErrorCode === -1" type="is-info" :closable="false">
-          Go to the <a href="">Demo Actor</a> and create a new temporary demo user to test
+          Go to the <router-link to="/actor">Demo Actor</router-link> and create a new temporary demo user to test
           all the features of environment.
         </b-notification>
 
@@ -88,10 +88,10 @@
     mounted() {
       this.hasOpener = !!window.opener
 
-      this.user = this.findGetParameter('user')
-      this.secret = this.findGetParameter('key')
+      this.user = this.$route.params['user']
+      this.secret = this.$route.params['key']
 
-      if (this.user === null || this.secret === null) {
+      if (this.user === undefined || this.secret === undefined) {
         this.connectErrorCode = -1
         return
       }

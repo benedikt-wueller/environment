@@ -66,11 +66,7 @@ export default {
     const packets = {}
 
     for (let i = 0; i < Object.keys(packetTypes).length; i++) {
-      let done = false
-
-      protobuf.load('protocol/' + Object.keys(packetTypes)[i] + '.proto', (err, root) => {
-        done = true
-
+      protobuf.load('/protocol/' + Object.keys(packetTypes)[i] + '.proto', (err, root) => {
         const types = packetTypes[Object.keys(packetTypes)[i]]
         for (let j = 0; j < types.length; j++) {
           packets[types[j]] = root.lookupType(types[j])

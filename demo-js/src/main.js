@@ -26,6 +26,14 @@ const router = new VueRouter({
         {
           path: '/client',
           component: Client
+        },
+        {
+          path: '/client/:user',
+          component: Client
+        },
+        {
+          path: '/client/:user/:key',
+          component: Client
         }
       ]
     }
