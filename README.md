@@ -42,6 +42,11 @@ Defines the software processing sound and update requests sent by the actor and 
 1. `cd processor-kotlin`
 2. `mvn clean install`
 
+### Build demo application for JavaScript
+
+1. `npm install`
+2. `npm run build`
+
 
 ## License
 
