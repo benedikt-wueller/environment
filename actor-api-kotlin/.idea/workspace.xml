@@ -51,7 +51,11 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/de/bwueller/environment/actor/api/ActorApi.kt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="144">
+<<<<<<< HEAD
               <caret line="77" column="5" lean-forward="false" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
+=======
+              <caret line="77" column="5" lean-forward="true" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
+>>>>>>> b2188e50824de1d374a8a7cc68b955cbfd3945d2
               <folding>
                 <element signature="e#43#81#0" expanded="true" />
               </folding>
@@ -62,8 +66,13 @@
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="221">
               <caret line="58" column="52" lean-forward="false" selection-start-line="58" selection-start-column="52" selection-end-line="58" selection-end-column="52" />
+=======
+            <state relative-caret-position="135">
+              <caret line="9" column="12" lean-forward="false" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+>>>>>>> b2188e50824de1d374a8a7cc68b955cbfd3945d2
               <folding />
             </state>
           </provider>
@@ -105,7 +114,11 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/de/bwueller/environment/actor/api/Sound.kt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
+<<<<<<< HEAD
               <caret line="18" column="32" lean-forward="false" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+=======
+              <caret line="18" column="32" lean-forward="true" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+>>>>>>> b2188e50824de1d374a8a7cc68b955cbfd3945d2
               <folding />
             </state>
           </provider>
@@ -115,7 +128,11 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/de/bwueller/environment/actor/api/SoundManager.kt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
+<<<<<<< HEAD
               <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+=======
+              <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+>>>>>>> b2188e50824de1d374a8a7cc68b955cbfd3945d2
               <folding />
             </state>
           </provider>
@@ -131,11 +148,14 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="FindInProjectRecents">
     <findStrings>
       <find>node</find>
     </findStrings>
   </component>
+=======
+>>>>>>> b2188e50824de1d374a8a7cc68b955cbfd3945d2
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
       <projects_view />
@@ -414,7 +434,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="23392000" />
+=======
+    <option name="totallyTimeSpent" value="23171000" />
+>>>>>>> b2188e50824de1d374a8a7cc68b955cbfd3945d2
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -731,7 +755,11 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/de/bwueller/environment/actor/api/Sound.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
+<<<<<<< HEAD
           <caret line="18" column="32" lean-forward="false" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+=======
+          <caret line="18" column="32" lean-forward="true" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+>>>>>>> b2188e50824de1d374a8a7cc68b955cbfd3945d2
           <folding />
         </state>
       </provider>
@@ -739,7 +767,11 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/de/bwueller/environment/actor/api/SoundManager.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
+<<<<<<< HEAD
           <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+=======
+          <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+>>>>>>> b2188e50824de1d374a8a7cc68b955cbfd3945d2
           <folding />
         </state>
       </provider>
@@ -747,7 +779,11 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/de/bwueller/environment/actor/api/ActorApi.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
+<<<<<<< HEAD
           <caret line="77" column="5" lean-forward="false" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
+=======
+          <caret line="77" column="5" lean-forward="true" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
+>>>>>>> b2188e50824de1d374a8a7cc68b955cbfd3945d2
           <folding>
             <element signature="e#43#81#0" expanded="true" />
           </folding>
@@ -756,8 +792,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="221">
           <caret line="58" column="52" lean-forward="false" selection-start-line="58" selection-start-column="52" selection-end-line="58" selection-end-column="52" />
+=======
+        <state relative-caret-position="135">
+          <caret line="9" column="12" lean-forward="false" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+>>>>>>> b2188e50824de1d374a8a7cc68b955cbfd3945d2
           <folding />
         </state>
       </provider>
