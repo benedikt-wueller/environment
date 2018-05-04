@@ -143,7 +143,7 @@
                         &nbsp;
                         <button v-if="sound.confirmed && !sound.stopping" class="button is-info is-small is-info" @click="() => requestUpdateVolumeModal(sound.identifier)">Update Volume</button>
                         &nbsp;
-                        <button v-if="sound.confirmed && !sound.stopping" class="button is-info is-small is-info">Update Rate</button>
+                        <button v-if="sound.confirmed && !sound.stopping" class="button is-info is-small is-info" @click="() => requestUpdateRateModal(sound.identifier)">Update Rate</button>
                       </p>
                     </div>
                   </div>
@@ -257,6 +257,26 @@
         </div>
       </div>
     </b-modal>
+
+    <b-modal :active="showUpdateRateModal" :has-modal-card="false" @close="() => {this.showUpdateRateModal = false}">
+      <div v-if="updateSound !== null" class="modal-card">
+        <div class="modal-card-head">
+          <span class="modal-card-title">Update rate for <b>{{ updateSound.name }}</b></span>
+        </div>
+        <div class="modal-card-body">
+          <div class="columns">
+            <div class="column is-full">
+              <b-field label="Playback Rate (%)" :message="'Rate Factor: ' + updatedRate">
+                <input class="input" type="number" min="50" max="400" step="1" v-model="updateRatePercentage" />
+              </b-field>
+            </div>
+          </div>
+        </div>
+        <div class="modal-card-foot">
+          <button class="button is-info" @click="updateRate()">Update Rate</button>
+        </div>
+      </div>
+    </b-modal>
   </div>
 </template>
 
@@ -338,6 +358,9 @@
       },
       updatedVolume() {
         return this.updateVolumePercentage / 100.0
+      },
+      updatedRate() {
+        return this.updateRatePercentage / 100.0
       }
     },
 
@@ -461,6 +484,24 @@
 
         Actor.updateVolume(this.updateSound.identifier, this.updateSound.volume, this.updateVolumeDuration)
       },
+
+      requestUpdateRateModal(identifier) {
+        const sound = this.sounds.filter((item) => {
+          return item.identifier === identifier
+        })[0]
+
+        this.updateSound = sound
+        this.updateRatePercentage = 100
+        this.showUpdateRateModal = true
+      },
+
+      updateRate() {
+        this.updateSound.rate = this.updatedRate
+        this.showUpdateRateModal = false
+
+        Actor.updateRate(this.updateSound.identifier, this.updateSound.rate)
+      },
+
 
       guid() {
         function s4() {

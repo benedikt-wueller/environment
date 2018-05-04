@@ -51,7 +51,7 @@ const Client = {
             doubleValue(packet.payload.volume), intValue(packet.payload.duration))
       }
 
-      if (packet.type === 'UpdateSoundrateRequest' && updateRateCallback !== null) {
+      if (packet.type === 'UpdateSoundRateRequest' && updateRateCallback !== null) {
         updateRateCallback(packet.payload.sound, doubleValue(packet.payload.rate))
       }
     }
