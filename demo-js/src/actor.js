@@ -8,6 +8,14 @@ let clientCallback = null
 let playSoundCallback = null
 let stopSoundCallback = null
 
+function getVolume(value) {
+  return Math.max(Math.min(value, 1.0), 0.0)
+}
+
+function getRate(value) {
+  return Math.max(Math.min(value, 4.0), 0.5)
+}
+
 function doubleValue(value) {
   return value === undefined ? 0.0 : value
 }
@@ -108,8 +116,8 @@ const Actor = {
       identifier: identifier,
       introSound: introSound,
       mainSound: mainSound,
-      volume: volume,
-      rate: rate,
+      volume: getVolume(volume),
+      rate: getRate(rate),
       loop: loop
     })
 
@@ -130,7 +138,7 @@ const Actor = {
   updateVolume(identifier, volume, duration) {
     const data = Protocol.serialize('UpdateSoundVolumeRequest', {
       sound: identifier,
-      volume: volume,
+      volume: getVolume(volume),
       duration: duration
     })
 
@@ -140,7 +148,7 @@ const Actor = {
   updateRate(identifier, rate) {
     const data = Protocol.serialize('UpdateSoundRateRequest', {
       sound: identifier,
-      rate: rate
+      rate: getRate(rate)
     })
 
     socket.send(data)

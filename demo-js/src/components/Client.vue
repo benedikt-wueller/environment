@@ -33,7 +33,7 @@
         </b-notification>
 
         <b-notification v-if="connectErrorCode === 3" type="is-danger" :closable="false">
-          The processor could not be reached or the connection has been cancelled.
+          The processor could not be reached or the connection has been cancelled. This page will close within 10 seconds.
         </b-notification>
 
         <div class="columns is-multiline">
@@ -75,6 +75,8 @@
       secret: null,
 
       sounds: [],
+
+      timeout: null,
     },
 
     mounted() {
@@ -92,8 +94,15 @@
             return item.id === identifier
           })[0]
 
-          if (obj.introHowl !== undefined) obj.introHowl.fade(obj.introHowl.volume(), volume, duration)
-          obj.mainHowl.fade(obj.mainHowl.volume(), volume, duration)
+          if (obj.getVolume() === volume) return
+
+          if (duration <= 0) {
+            if (obj.introHowl !== undefined) obj.introHowl.volume(volume)
+            obj.mainHowl.volume(volume)
+          } else {
+            if (obj.introHowl !== undefined) obj.introHowl.fade(obj.introHowl.volume(), volume, duration)
+            obj.mainHowl.fade(obj.mainHowl.volume(), volume, duration)
+          }
         })
 
         Client.setUpdateRateCallback((identifier, rate) => {
@@ -106,8 +115,6 @@
         })
 
         Client.setPlaySoundCallback((user, identifier, introSound, mainSound, volume, rate, loop) => {
-          console.log(identifier)
-
           if (introSound !== undefined) {
             this.loadSound(introSound, volume, rate, false, (introConfig, introHowl) => {
               this.loadSound(mainSound, volume, rate, loop, (mainConfig, mainHowl) => {
@@ -131,7 +138,6 @@
 
                 introHowl.on('end', () => {
                   mainHowl.play()
-                  console.log('play main')
                 })
 
                 mainHowl.on('end', () => {
@@ -209,8 +215,17 @@
             this.sounds = []
           }
 
+          if (this.timeout !== null) {
+            clearTimeout(this.timeout)
+            this.timeout = null
+          }
+
           this.connectErrorCode = code
           this.connected = connected
+
+          if (code === 3) {
+            this.timeout = setTimeout(() => window.close(), 10000)
+          }
         })
       })
     },

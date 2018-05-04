@@ -98,7 +98,8 @@
                 connect to the processor using a client (e.g. via a website) which identifies as the
                 user using the given credentials. The actor will be notified when the client connects to
                 or disconnects from the processor. <b>Open the <a @click="openClient()">Demo Client</a>
-                to simulate this behaviour.</b>
+                to simulate this behaviour.</b> It should open in a new window. If it just opens in a
+                new tab, the functionality could be delayed but should work just fine.
               </p>
             </div>
           </div>
@@ -108,7 +109,7 @@
             <h4 class="subtitle is-5">Execute sound actions</h4>
 
             <div class="content">
-              <p class="has-text-justified">
+              <p class="has-text-justified" v-if="!hasRequested">
                 With the registered user connected you can now execute sound actions such as playing
                 and stopping sounds and changing their volume and playback rate. After requesting a
                 sound it will be highlighted in red until it has been confirmed by the client. After
@@ -117,7 +118,9 @@
               </p>
             </div>
 
-            <button class="button is-info" @click="requestPlaySoundModal()">Play Sound</button>
+            <div class="content">
+              <button class="button is-info" @click="requestPlaySoundModal()">Play Sound</button>
+            </div>
 
             <div class="content">
               <div class="columns is-multiline">
@@ -130,10 +133,17 @@
                           <span class="tag"><b>Rate:</b>&nbsp;{{ Math.ceil(sound.rate * 100) }}%</span>&nbsp;<span class="tag"><b>Volume:</b>&nbsp;{{ Math.ceil(sound.volume * 100) }}%</span>
                         </div>
                       </div>
-                      <small><small>{{ sound.identifier }}</small></small>
+
+                      <div class="content">
+                        <small><small>{{ sound.identifier }}</small></small>
+                      </div>
 
                       <p>
                         <button v-if="sound.confirmed && !sound.stopping" class="button is-info is-small is-danger" @click="() => requestStopSoundModal(sound.identifier)">Stop</button>
+                        &nbsp;
+                        <button v-if="sound.confirmed && !sound.stopping" class="button is-info is-small is-info" @click="() => requestUpdateVolumeModal(sound.identifier)">Update Volume</button>
+                        &nbsp;
+                        <button v-if="sound.confirmed && !sound.stopping" class="button is-info is-small is-info">Update Rate</button>
                       </p>
                     </div>
                   </div>
@@ -144,32 +154,6 @@
         </div>
       </div>
     </section>
-
-    <b-modal :active="showStopSoundModal" :has-modal-card="false" @close="() => {this.showStopSoundModal = false}">
-      <div v-if="stoppingSound" class="modal-card">
-        <div class="modal-card-head">
-          <span class="modal-card-title">Stop sound: <b>{{ stoppingSound.name }}</b></span>
-        </div>
-        <div class="modal-card-body">
-          <div class="columns">
-            <div class="column is-half">
-              <b-field label="Delay" message="Stop after the given time in milliseconds.">
-                <input class="input" type="number" min="0" step="1" v-model="stopDelay">
-              </b-field>
-            </div>
-
-            <div class="column is-half">
-              <b-field label="Fade Duration" message="Fade out the sound after the given delay.">
-                <input class="input" type="number" min="0" step="1" v-model="stopDuration">
-              </b-field>
-            </div>
-          </div>
-        </div>
-        <div class="modal-card-foot">
-          <button class="button is-danger" @click="stopSound()">Stop Sound</button>
-        </div>
-      </div>
-    </b-modal>
 
     <b-modal :active="showPlaySoundModal" :has-modal-card="false" @close="() => {this.showPlaySoundModal = false}">
       <div class="modal-card">
@@ -221,6 +205,58 @@
         </div>
       </div>
     </b-modal>
+
+    <b-modal :active="showStopSoundModal" :has-modal-card="false" @close="() => {this.showStopSoundModal = false}">
+      <div v-if="stoppingSound" class="modal-card">
+        <div class="modal-card-head">
+          <span class="modal-card-title">Stop sound: <b>{{ stoppingSound.name }}</b></span>
+        </div>
+        <div class="modal-card-body">
+          <div class="columns">
+            <div class="column is-half">
+              <b-field label="Delay" message="Stop after the given time in milliseconds.">
+                <input class="input" type="number" min="0" step="1" v-model="stopDelay">
+              </b-field>
+            </div>
+
+            <div class="column is-half">
+              <b-field label="Fade Duration" message="Fade out the sound after the given delay.">
+                <input class="input" type="number" min="0" step="1" v-model="stopDuration">
+              </b-field>
+            </div>
+          </div>
+        </div>
+        <div class="modal-card-foot">
+          <button class="button is-danger" @click="stopSound()">Stop Sound</button>
+        </div>
+      </div>
+    </b-modal>
+
+    <b-modal :active="showUpdateVolumeModal" :has-modal-card="false" @close="() => {this.showUpdateVolumeModal = false}">
+      <div v-if="updateSound !== null" class="modal-card">
+        <div class="modal-card-head">
+          <span class="modal-card-title">Update volume for <b>{{ updateSound.name }}</b></span>
+        </div>
+        <div class="modal-card-body">
+          <div class="columns">
+            <div class="column is-half">
+              <b-field label="Volume (%)" :message="'Volume Factor: ' + updatedVolume">
+                <input class="input" type="number" min="0" max="100" step="1" v-model="updateVolumePercentage" />
+              </b-field>
+            </div>
+
+            <div class="column is-half">
+              <b-field label="Fade Duration"  message="Fade the sound in the given amount of time in milliseconds.">
+                <input class="input" type="number" min="0" step="1" v-model="updateVolumeDuration" />
+              </b-field>
+            </div>
+          </div>
+        </div>
+        <div class="modal-card-foot">
+          <button class="button is-info" @click="updateVolume()">Update Volume</button>
+        </div>
+      </div>
+    </b-modal>
   </div>
 </template>
 
@@ -251,6 +287,8 @@
           'soundbible.waterfall': 'Waterfall (Soundbible)'
         },
 
+        hasRequested: false,
+
         initialized: false,
         registered: false,
         connected: false,
@@ -279,6 +317,15 @@
         stoppingSound: null,
         stopDelay: 0,
         stopDuration: 0,
+
+        updateSound: null,
+
+        showUpdateVolumeModal: false,
+        updateVolumePercentage: 100,
+        updateVolumeDuration: 0,
+
+        showUpdateRateModal: false,
+        updateRatePercentage: 100,
       }
     },
 
@@ -288,6 +335,9 @@
       },
       rate() {
         return this.ratePercentage / 100.0
+      },
+      updatedVolume() {
+        return this.updateVolumePercentage / 100.0
       }
     },
 
@@ -328,8 +378,6 @@
         })
 
         Actor.setStopSoundCallback((user, identifier) => {
-          console.log(user, identifier)
-
           const sound = this.sounds.filter((item) => {
             return item.identifier === identifier
           })[0]
@@ -362,6 +410,7 @@
 
       playSound() {
         this.showPlaySoundModal = false
+        this.hasRequested = true
 
         const sound = {
           identifier: this.guid(),
@@ -393,6 +442,24 @@
         this.stoppingSound.stopping = true
 
         Actor.stopSound(this.username, this.stoppingSound.identifier, this.stopDelay, this.stopDuration)
+      },
+
+      requestUpdateVolumeModal(identifier) {
+        const sound = this.sounds.filter((item) => {
+          return item.identifier === identifier
+        })[0]
+
+        this.updateSound = sound
+        this.updateVolumePercentage = 100
+        this.updateVolumeDuration = 0
+        this.showUpdateVolumeModal = true
+      },
+
+      updateVolume() {
+        this.updateSound.volume = this.updatedVolume
+        this.showUpdateVolumeModal = false
+
+        Actor.updateVolume(this.updateSound.identifier, this.updateSound.volume, this.updateVolumeDuration)
       },
 
       guid() {
