@@ -28,10 +28,11 @@
               <p class="has-text-justified">
                 To test any of the features you have to connect the actor to the processor. Normally the
                 internal processor port <code>24499</code> would be blocked for any non-owned actors
-                (i.e. using firewalls). In this case, the processor is open to use. However, it has been
-                modified to only allow specific actions performed by the registered actors. Feel free to
-                create custom actors and test them against the demo processor <code>ws://localhost:24499</code>.
-                <b>Select a name for this demo actor and connect it to the processor.</b>
+                (i.e. using firewalls). In this case, the processor is open to use. However, it is not
+                recommended for use in a production environment as it is subject to constant change
+                and unexpected downtime. Feel free to create custom actors and clients and test them
+                against the demo processor <code>ws://localhost:24499</code>. <b>Select a name for this
+                demo actor and connect it to the processor.</b>
               </p>
             </div>
 
