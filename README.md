@@ -20,6 +20,11 @@ Defines the software sending sounds to be played and updates to be executed to t
 Defines the software processing sound and update requests sent by the actor and forwarding them to the user. It provides two WebSocket servers. One for internal communication and the other for external communication.
 
 
+## Live Demo
+
+Navigate to the [Demo Actor](https://demo.environment.dev-ware.de/actor) and follow the steps to check out some of the basic functionality **environment** provides.
+
+
 ## Build
 
 ### Update protocol for Kotlin
@@ -42,7 +47,7 @@ Defines the software processing sound and update requests sent by the actor and 
 1. `cd processor-kotlin`
 2. `mvn clean install`
 
-### Build demo application for JavaScript
+### Build JavaScript demo application
 
 1. `npm install`
 2. `npm run build`

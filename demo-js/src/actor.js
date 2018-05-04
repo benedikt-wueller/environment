@@ -16,10 +16,6 @@ function getRate(value) {
   return Math.max(Math.min(value, 4.0), 0.5)
 }
 
-function doubleValue(value) {
-  return value === undefined ? 0.0 : value
-}
-
 function intValue(value) {
   return value === undefined ? 0 : value
 }
