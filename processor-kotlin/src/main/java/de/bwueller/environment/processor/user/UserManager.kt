@@ -108,14 +108,10 @@ class UserManager {
           builder.status = ConnectUser.ConnectUserResponse.Status.ERR_ALREADY_CONNECTED
         }
       } else {
-        println("${user.key}, $key")
-
         // The key is incorrect. Set error status.
         builder.status = ConnectUser.ConnectUserResponse.Status.ERR_NOT_FOUND
       }
     } else {
-      println("User not found")
-
       // The user could not be found. Set error status.
       builder.status = ConnectUser.ConnectUserResponse.Status.ERR_NOT_FOUND
     }

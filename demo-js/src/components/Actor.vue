@@ -39,14 +39,14 @@
               The actor could not be connected to the processor. It is offline or unreachable. Please try again later by refreshing this page.
             </b-notification>
 
-            <div class="field is-grouped" v-if="initialized && connected">
+            <b-field :grouped="true" v-if="initialized && connected">
               <p class="control is-expanded">
                 <input class="input" :disabled="registered" type="text" v-model="name" placeholder="Name your actor">
               </p>
               <p class="control">
                 <button class="button is-info" :disabled="name.length <= 0 || !connected || registered" @click="connect()">Connect</button>
               </p>
-            </div>
+            </b-field>
           </div>
 
           <div class="column is-full" v-if="registered">
@@ -67,7 +67,7 @@
               </p>
             </div>
 
-            <div class="field is-grouped">
+            <b-field :grouped="true">
               <p class="control is-expanded">
                 <input class="input" :disabled="userRegistered" type="text" v-model="username" placeholder="Name your actor">
               </p>
@@ -77,7 +77,7 @@
               <p class="control">
                 <button class="button is-info" :disabled="!userRegistered" @click="unregisterUser()">Unregister</button>
               </p>
-            </div>
+            </b-field>
           </div>
 
           <div class="column is-full" v-if="userRegistered">
@@ -108,17 +108,33 @@
             <h4 class="subtitle is-5">Execute sound actions</h4>
 
             <div class="content">
+              <p class="has-text-justified">
+                With the registered user connected you can now execute sound actions such as playing
+                and stopping sounds and changing their volume and playback rate. After requesting a
+                sound it will be highlighted in red until it has been confirmed by the client. After
+                stopping a sound it will no longer be shown. <b>Request a sound and see the action
+                happen!</b>
+              </p>
+            </div>
+
+            <button class="button is-info" @click="requestPlaySoundModal()">Play Sound</button>
+
+            <div class="content">
               <div class="columns is-multiline">
                 <div v-for="sound in sounds" v-bind:key="sound.identifier" class="column is-half-tablet">
                   <div :class="{message: true, 'is-success': sound.confirmed, 'is-danger': !sound.confirmed}">
                     <div class="message-body">
                       <div class="is-clearfix">
-                        <b>{{ sound.mainSound }}</b>
+                        <b>{{ sound.name }}</b>
                         <div class="is-pulled-right">
                           <span class="tag"><b>Rate:</b>&nbsp;{{ Math.ceil(sound.rate * 100) }}%</span>&nbsp;<span class="tag"><b>Volume:</b>&nbsp;{{ Math.ceil(sound.volume * 100) }}%</span>
                         </div>
                       </div>
                       <small><small>{{ sound.identifier }}</small></small>
+
+                      <p>
+                        <button v-if="sound.confirmed && !sound.stopping" class="button is-info is-small is-danger" @click="() => requestStopSoundModal(sound.identifier)">Stop</button>
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -128,19 +144,113 @@
         </div>
       </div>
     </section>
+
+    <b-modal :active="showStopSoundModal" :has-modal-card="false" @close="() => {this.showStopSoundModal = false}">
+      <div v-if="stoppingSound" class="modal-card">
+        <div class="modal-card-head">
+          <span class="modal-card-title">Stop sound: <b>{{ stoppingSound.name }}</b></span>
+        </div>
+        <div class="modal-card-body">
+          <div class="columns">
+            <div class="column is-half">
+              <b-field label="Delay" message="Stop after the given time in milliseconds.">
+                <input class="input" type="number" min="0" step="1" v-model="stopDelay">
+              </b-field>
+            </div>
+
+            <div class="column is-half">
+              <b-field label="Fade Duration" message="Fade out the sound after the given delay.">
+                <input class="input" type="number" min="0" step="1" v-model="stopDuration">
+              </b-field>
+            </div>
+          </div>
+        </div>
+        <div class="modal-card-foot">
+          <button class="button is-danger" @click="stopSound()">Stop Sound</button>
+        </div>
+      </div>
+    </b-modal>
+
+    <b-modal :active="showPlaySoundModal" :has-modal-card="false" @close="() => {this.showPlaySoundModal = false}">
+      <div class="modal-card">
+        <div class="modal-card-head">
+          <span class="modal-card-title">Play a new sound</span>
+        </div>
+        <div class="modal-card-body">
+          <div class="columns">
+            <div class="column is-half">
+              <b-field label="Intro Sound">
+                <b-select v-model="introSound">
+                  <option :value="null">No Intro</option>
+                  <option v-for="sound in Object.keys(availableSounds)" :value="sound">{{ availableSounds[sound] }}</option>
+                </b-select>
+              </b-field>
+            </div>
+
+            <div class="column is-half">
+              <b-field label="Main Sound">
+                <b-select v-model="mainSound">
+                  <option v-for="sound in Object.keys(availableSounds)" :value="sound">{{ availableSounds[sound] }}</option>
+                </b-select>
+              </b-field>
+            </div>
+          </div>
+
+          <div class="columns">
+            <div class="column is-one-third">
+              <b-field label="Initial Volume (%)" :message="'Volume Factor: ' + volume">
+                <input class="input" type="number" min="0" max="100" step="1" v-model="volumePercentage" />
+              </b-field>
+            </div>
+
+            <div class="column is-one-third">
+              <b-field label="Initial Rate (%)" :message="'Rate Factor: ' + rate">
+                <input class="input" type="number" min="50" max="400" step="1" v-model="ratePercentage" />
+              </b-field>
+            </div>
+
+            <div class="column is-one-third">
+              <b-field label="Repeating">
+                <b-checkbox v-model="looping">Loop sound</b-checkbox>
+              </b-field>
+            </div>
+          </div>
+        </div>
+        <div class="modal-card-foot">
+          <button class="button is-info" @click="playSound()">Play Sound</button>
+        </div>
+      </div>
+    </b-modal>
   </div>
 </template>
 
 <script>
   import BNotification from "buefy/src/components/notification/Notification";
   import Actor from "../actor";
+  import BModal from "buefy/src/components/modal/Modal";
+  import BSelect from "buefy/src/components/select/Select";
+  import BField from "buefy/src/components/field/Field";
+  import BInput from "buefy/src/components/input/Input";
+  import BCheckbox from "buefy/src/components/checkbox/Checkbox";
 
   export default {
-    components: {BNotification},
+    components: {
+      BCheckbox,
+      BInput,
+      BField,
+      BSelect,
+      BModal,
+      BNotification},
     name: "actor",
 
     data() {
       return {
+        availableSounds: {
+          'mac_leod.frozen_star': 'Frozen Star (Kevin MacLeod)',
+          'soundbible.sawing': 'Sawing (Soundbible)',
+          'soundbible.waterfall': 'Waterfall (Soundbible)'
+        },
+
         initialized: false,
         registered: false,
         connected: false,
@@ -157,6 +267,27 @@
         sounds: [],
 
         clientWindow: null,
+
+        showPlaySoundModal: false,
+        introSound: null,
+        mainSound: 'mac_leod.frozen_star',
+        volumePercentage: 100,
+        ratePercentage: 100,
+        looping: false,
+
+        showStopSoundModal: false,
+        stoppingSound: null,
+        stopDelay: 0,
+        stopDuration: 0,
+      }
+    },
+
+    computed: {
+      volume() {
+        return this.volumePercentage / 100.0
+      },
+      rate() {
+        return this.ratePercentage / 100.0
       }
     },
 
@@ -184,8 +315,7 @@
 
           if (!connected) {
             this.sounds = []
-          } else {
-            this.playSound(user, this.guid(), null, 'soundbible.sawing', 0.0, 1.0, false)
+            this.showPlaySoundModal = false;
           }
         })
 
@@ -195,10 +325,11 @@
           })[0]
 
           sound.confirmed = true
-          Actor.updateVolume(sound.identifier, 1.0, 2500)
         })
 
         Actor.setStopSoundCallback((user, identifier) => {
+          console.log(user, identifier)
+
           const sound = this.sounds.filter((item) => {
             return item.identifier === identifier
           })[0]
@@ -225,18 +356,43 @@
         this.clientWindow = window.open('/client/' + this.username + '/' + this.secret, '_blank', 'toolbar=0,location=0,menubar=0')
       },
 
-      playSound(user, identifier, introSound, mainSound, volume, rate, loop) {
+      requestPlaySoundModal() {
+        this.showPlaySoundModal = true
+      },
+
+      playSound() {
+        this.showPlaySoundModal = false
+
         const sound = {
-          identifier: identifier,
-          name: (introSound === undefined ? '' : (introSound + ' / ')) + mainSound,
-          volume: volume,
-          rate: rate,
+          identifier: this.guid(),
+          name: (this.introSound === null ? '' : (this.introSound + ' / ')) + this.mainSound,
+          volume: this.volume,
+          rate: this.rate,
           confirmed: false,
+          stopping: false,
         }
 
         this.sounds.push(sound);
-        Actor.playSound(user, identifier, introSound, mainSound, volume, rate, loop)
+        Actor.playSound(this.username, sound.identifier, this.introSound, this.mainSound, sound.volume, sound.rate, this.looping)
         return sound.identifier
+      },
+
+      requestStopSoundModal(identifier) {
+        const sound = this.sounds.filter((item) => {
+          return item.identifier === identifier
+        })[0]
+
+        this.stoppingSound = sound
+        this.stopDelay = 0
+        this.stopDuration = 0
+        this.showStopSoundModal = true
+      },
+
+      stopSound() {
+        this.showStopSoundModal = false
+        this.stoppingSound.stopping = true
+
+        Actor.stopSound(this.username, this.stoppingSound.identifier, this.stopDelay, this.stopDuration)
       },
 
       guid() {

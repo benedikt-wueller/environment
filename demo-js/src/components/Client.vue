@@ -38,7 +38,7 @@
 
         <div class="columns is-multiline">
           <div v-for="sound in sounds" v-bind:key="sound.id" class="column is-half-tablet">
-            <div :class="{message: true, 'is-success': sound.isPlaying(), 'is-warning': !sound.isPlaying()}">
+            <div :class="{message: true, 'is-success': sound.isPlaying(), 'is-warning': sound.stopping, 'is-danger': !sound.isPlaying()}">
               <div class="message-body">
                 <div class="is-clearfix">
                   <b>{{ sound.name }}</b>
@@ -106,6 +106,8 @@
         })
 
         Client.setPlaySoundCallback((user, identifier, introSound, mainSound, volume, rate, loop) => {
+          console.log(identifier)
+
           if (introSound !== undefined) {
             this.loadSound(introSound, volume, rate, false, (introConfig, introHowl) => {
               this.loadSound(mainSound, volume, rate, loop, (mainConfig, mainHowl) => {
@@ -115,6 +117,7 @@
                   licenses: [introConfig.license, mainConfig.license],
                   introHowl: introHowl,
                   mainHowl: mainHowl,
+                  stopping: false,
                   isPlaying() {
                     return introHowl.playing() || mainHowl.playing()
                   },
@@ -132,9 +135,13 @@
                 })
 
                 mainHowl.on('end', () => {
-                  if (!loop) {
+                  if (!mainHowl.loop()) {
                     Client.handleSoundStopped(user, identifier)
                   }
+                })
+
+                mainHowl.on('stop', () => {
+                  Client.handleSoundStopped(user, identifier)
                 })
 
                 introHowl.play()
@@ -149,6 +156,7 @@
                 name: mainSound,
                 licenses: [mainConfig.license],
                 mainHowl: mainHowl,
+                stopping: false,
                 isPlaying() {
                   return mainHowl.playing()
                 },
@@ -161,9 +169,13 @@
               }
 
               mainHowl.on('end', () => {
-                if (!loop) {
+                if (!mainHowl.loop()) {
                   Client.handleSoundStopped(user, identifier)
                 }
+              })
+
+              mainHowl.on('stop', () => {
+                Client.handleSoundStopped(user, identifier)
               })
 
               mainHowl.play()
@@ -177,6 +189,8 @@
           const obj = this.sounds.filter((item) => {
             return item.id === identifier
           })[0]
+
+          obj.stopping = true
 
           obj.mainHowl.loop(false)
           setTimeout(() => {
@@ -211,9 +225,13 @@
             rate: rate
           });
 
-          sound.once('load', () => {
+          if (sound.state() === 'loaded') {
             callback(data.body, sound)
-          })
+          } else {
+            sound.on('load', () => {
+              callback(data.body, sound)
+            })
+          }
         })
       }
     }
