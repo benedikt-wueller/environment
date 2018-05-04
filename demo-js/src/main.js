@@ -21,26 +21,20 @@ const router = new VueRouter({
   mode: 'history',
   routes: [
     {
-      path: '/',
-      component: App,
-      children: [
-        {
-          path: '/client',
-          component: Client
-        },
-        {
-          path: '/client/:user',
-          component: Client
-        },
-        {
-          path: '/client/:user/:key',
-          component: Client
-        },
-        {
-          path: '/actor',
-          component: Actor
-        }
-      ]
+      path: '/client',
+      component: Client
+    },
+    {
+      path: '/client/:user',
+      component: Client
+    },
+    {
+      path: '/client/:user/:key',
+      component: Client
+    },
+    {
+      path: '/actor',
+      component: Actor
     }
   ]
 })

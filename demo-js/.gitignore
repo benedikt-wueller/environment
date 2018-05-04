@@ -69,6 +69,8 @@ fabric.properties
 #!! ERROR: jetbrains npm is undefined. Use list command to see defined gitignore types !!#
 
 ### Node ###
+dist/
+
 # Logs
 logs
 *.log
