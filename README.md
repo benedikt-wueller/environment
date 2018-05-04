@@ -22,7 +22,7 @@ Defines the software processing sound and update requests sent by the actor and 
 
 ## Live Demo
 
-Navigate to the [Demo Actor](https://demo.environment.dev-ware.de/actor) and follow the steps to check out some of the basic functionality **environment** provides.
+Navigate to the [Demo Actor](http://demo.environment.dev-ware.de/actor) and follow the steps to check out some of the basic functionality **environment** provides.
 
 
 ## Build
