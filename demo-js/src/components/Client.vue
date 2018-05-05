@@ -88,7 +88,9 @@
         return
       }
 
-      Client.initialize(() => {
+      Client.initialize((connected) => {
+        if (!connected) return;
+
         Client.setUpdateVolumeCallback((identifier, volume, duration) => {
           const obj = this.sounds.filter((item) => {
             return item.id === identifier

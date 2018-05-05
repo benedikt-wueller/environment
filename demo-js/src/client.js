@@ -56,12 +56,16 @@ const Client = {
       }
     }
 
+    socket.onopen = () => {
+      Protocol.init(() => callback(true))
+    }
+
     socket.onclose = () => {
+      callback(false)
+
       Client.connected = false
       if (connectCallback !== null) connectCallback(false, 3)
     }
-
-    Protocol.init(callback)
   },
 
   connect(user, key, callback) {
