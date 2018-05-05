@@ -25,7 +25,7 @@ const Actor = {
   registered: false,
 
   initialize(callback) {
-    socket = new WebSocket('ws://localhost:24499')
+    socket = new WebSocket('ws://root.bwueller.de:24499')
     socket.binaryType = 'arraybuffer'
 
     socket.onmessage = (message) => {

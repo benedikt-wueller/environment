@@ -31,7 +31,7 @@
                 (i.e. using firewalls). In this case, the processor is open to use. However, it is not
                 recommended for use in a production environment as it is subject to constant change
                 and unexpected downtime. Feel free to create custom actors and clients and test them
-                against the demo processor <code>ws://localhost:24499</code>. <b>Select a name for this
+                against the demo processor <code>ws://root.bwueller.de:24499</code>. <b>Select a name for this
                 demo actor and connect it to the processor.</b>
               </p>
             </div>

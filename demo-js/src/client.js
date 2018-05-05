@@ -20,7 +20,7 @@ const Client = {
   connected: false,
 
   initialize(callback) {
-    socket = new WebSocket('ws://localhost:24500')
+    socket = new WebSocket('ws://root.bwueller.de:24500')
     socket.binaryType = 'arraybuffer'
 
     socket.onmessage = (message) => {
