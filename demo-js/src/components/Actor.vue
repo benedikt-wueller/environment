@@ -64,7 +64,8 @@
                 processor will generate a unique key and send it back to the actor. The actor will
                 forward the key to the user (and only this user) for him to use it to connect to the
                 processor (using the client). This ensures that only the privileged user is able to
-                identify as himself. <b>Select a username and register him to the processor.</b>
+                identify as himself. <b>Select a username and register him to the processor.</b> Choose
+                a custom name as the same username can only be registered by one actor at a time.
               </p>
             </div>
 
@@ -73,7 +74,7 @@
                 <input class="input" :disabled="userRegistered" type="text" v-model="username" placeholder="Name your actor">
               </p>
               <p class="control">
-                <button class="button is-info" :disabled="userRegistered" @click="registerUser()">Register</button>
+                <button class="button is-info" :disabled="username.length === 0 || userRegistered" @click="registerUser()">Register</button>
               </p>
               <p class="control">
                 <button class="button is-info" :disabled="!userRegistered" @click="unregisterUser()">Unregister</button>
@@ -319,7 +320,7 @@
         name: '',
         id: '',
 
-        username: 'Username',
+        username: '',
         userRegistered: false,
         userConnected: false,
         secret: null,
