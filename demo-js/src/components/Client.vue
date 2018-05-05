@@ -243,13 +243,7 @@
             html5: true
           });
 
-          if (sound.state() === 'loaded') {
-            callback(data.body, sound)
-          } else {
-            sound.on('load', () => {
-              callback(data.body, sound)
-            })
-          }
+          callback(data.body, sound)
         })
       }
     }
