@@ -239,7 +239,8 @@
             src: data.body.sources,
             loop: loop,
             volume: volume,
-            rate: rate
+            rate: rate,
+            html5: true
           });
 
           if (sound.state() === 'loaded') {
