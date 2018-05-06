@@ -57,7 +57,7 @@ const Client = {
     }
 
     socket.onopen = () => {
-      Protocol.init(() => callback(true))
+      Protocol.initialize(() => callback(true))
     }
 
     socket.onclose = () => {

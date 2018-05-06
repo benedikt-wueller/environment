@@ -22,7 +22,7 @@ export default {
     'UpdateSoundRateRequest': 14
   },
 
-  init (callback) {
+  initialize (callback) {
     const protobuf = require("protobufjs")
 
     const packetTypes = {
@@ -64,6 +64,7 @@ export default {
     }
 
     const packets = {}
+    let toBeLoaded = Object.keys(packetTypes).length
 
     for (let i = 0; i < Object.keys(packetTypes).length; i++) {
       protobuf.load('/protocol/' + Object.keys(packetTypes)[i] + '.proto', (err, root) => {
@@ -72,7 +73,8 @@ export default {
           packets[types[j]] = root.lookupType(types[j])
         }
 
-        if (i === Object.keys(packetTypes).length - 1) {
+        toBeLoaded--;
+        if (toBeLoaded <= 0) {
           this.packets = packets
           this.initialized = true
           callback()

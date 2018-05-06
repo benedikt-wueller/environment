@@ -57,7 +57,7 @@ const Actor = {
     socket.onopen = () => {
       Actor.connected = true
 
-      Protocol.init(() => {
+      Protocol.initialize(() => {
         callback(true)
       })
     }
