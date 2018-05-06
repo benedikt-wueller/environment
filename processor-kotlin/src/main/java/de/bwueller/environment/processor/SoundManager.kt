@@ -42,8 +42,9 @@ class SoundManager {
         }
   }
 
-  fun handlePlaySoundRequest(packet: PlaySound.PlaySoundRequest) {
+  fun handlePlaySoundRequest(packet: PlaySound.PlaySoundRequest, socket: WebSocket) {
     val user = userManager.getUser(packet.user) ?: return
+    if (socket !== user.actor.socket) return
 
     soundUsers.putIfAbsent(packet.identifier, mutableListOf())
     soundUsers[packet.identifier]!!.add(user)
@@ -51,18 +52,25 @@ class SoundManager {
     forwardPacketToUser(packet, user)
   }
 
-  fun handleUpdateVolumeRequest(packet: UpdateSoundVolume.UpdateSoundVolumeRequest) {
+  fun handleUpdateVolumeRequest(packet: UpdateSoundVolume.UpdateSoundVolumeRequest, socket: WebSocket) {
     val users = soundUsers[packet.sound] ?: return
-    users.forEach { user -> forwardPacketToUser(packet, user) }
+    users.forEach {
+      if (socket !== it.actor.socket) return@forEach
+      forwardPacketToUser(packet, it)
+    }
   }
 
-  fun handleUpdateRateRequest(packet: UpdateSoundRate.UpdateSoundRateRequest) {
+  fun handleUpdateRateRequest(packet: UpdateSoundRate.UpdateSoundRateRequest, socket: WebSocket) {
     val users = soundUsers[packet.sound] ?: return
-    users.forEach { user -> forwardPacketToUser(packet, user) }
+    users.forEach {
+      if (socket !== it.actor.socket) return@forEach
+      forwardPacketToUser(packet, it)
+    }
   }
 
-  fun handleStopSoundRequest(packet: StopSound.StopSoundRequest) {
+  fun handleStopSoundRequest(packet: StopSound.StopSoundRequest, socket: WebSocket) {
     val user = userManager.getUser(packet.user) ?: return
+    if (user.actor.socket !== socket) return
 
     if (soundUsers.containsKey(packet.sound)) {
       soundUsers[packet.sound]!!.remove(user)

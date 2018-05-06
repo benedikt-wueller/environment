@@ -32,10 +32,10 @@ class InternalWebsocketServer(private val serverPort: Int) : WebSocketServer(Ine
       is RegisterActor.RegisterActorRequest -> actorManager.handleRegisterActorRequest(packet, socket)
       is RegisterActorUser.RegisterActorUserRequest -> userManager.handleRegisterUserRequest(packet, socket)
       is UnregisterActorUser.UnregisterActorUserRequest -> userManager.handleUnregisterUserRequest(packet, socket)
-      is PlaySound.PlaySoundRequest -> soundManager.handlePlaySoundRequest(packet)
-      is StopSound.StopSoundRequest -> soundManager.handleStopSoundRequest(packet)
-      is UpdateSoundVolume.UpdateSoundVolumeRequest -> soundManager.handleUpdateVolumeRequest(packet)
-      is UpdateSoundRate.UpdateSoundRateRequest -> soundManager.handleUpdateRateRequest(packet)
+      is PlaySound.PlaySoundRequest -> soundManager.handlePlaySoundRequest(packet, socket)
+      is StopSound.StopSoundRequest -> soundManager.handleStopSoundRequest(packet, socket)
+      is UpdateSoundVolume.UpdateSoundVolumeRequest -> soundManager.handleUpdateVolumeRequest(packet, socket)
+      is UpdateSoundRate.UpdateSoundRateRequest -> soundManager.handleUpdateRateRequest(packet, socket)
     }
   }
 
