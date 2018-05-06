@@ -31,7 +31,7 @@
                 (i.e. using firewalls). In this case, the processor is open to use. However, it is not
                 recommended for use in a production environment as it is subject to constant change
                 and unexpected downtime. Feel free to create custom actors and clients and test them
-                against the demo processor <code>ws://root.bwueller.de:24499</code>. <b>Select a name for this
+                against the demo processor <code>ws://root.bwueller.de:24499</code>. <b>Select a unique name for this
                 demo actor and connect it to the processor.</b>
               </p>
             </div>
@@ -168,7 +168,7 @@
               <b-field label="Intro Sound">
                 <b-select v-model="introSound">
                   <option :value="null">No Intro</option>
-                  <option v-for="sound in Object.keys(availableSounds)" :value="sound">{{ availableSounds[sound] }}</option>
+                  <option v-for="sound in Object.keys(availableSounds)" v-bind:key="'intro_' + sound" :value="sound">{{ availableSounds[sound] }}</option>
                 </b-select>
               </b-field>
             </div>
@@ -176,7 +176,7 @@
             <div class="column is-half">
               <b-field label="Main Sound">
                 <b-select v-model="mainSound">
-                  <option v-for="sound in Object.keys(availableSounds)" :value="sound">{{ availableSounds[sound] }}</option>
+                  <option v-for="sound in Object.keys(availableSounds)" v-bind:key="'main_' + sound" :value="sound">{{ availableSounds[sound] }}</option>
                 </b-select>
               </b-field>
             </div>
@@ -368,7 +368,6 @@
 
     mounted() {
       Actor.initialize((connected) => {
-        this.name = btoa(this.guid())
         this.connected = connected
         this.registered = false
         this.initialized = true

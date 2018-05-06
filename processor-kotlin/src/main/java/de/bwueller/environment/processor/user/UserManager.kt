@@ -135,6 +135,12 @@ class UserManager {
     synchronized(user) {
       // Remove the user from the actor he is currently connected to.
       user.actor.users.remove(user)
+      user.actor.socket.send(serializePacket(
+          UpdateUserStatus.UpdateUserStatusRequest.newBuilder()
+          .setIdentifier(user.name)
+          .setStatus(UpdateUserStatus.UpdateUserStatusRequest.Status.DISCONNECTED)
+          .build()
+      ))
 
       // Save the user to the new actor.
       users[userName] = user
