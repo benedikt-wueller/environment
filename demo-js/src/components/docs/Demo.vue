@@ -26,7 +26,8 @@
       </ul>
 
       To test the implemented functionality, open the <a href="/actor" target="_blank">Demo Actor</a>
-      and follow the given instructions.
+      and follow the given instructions. The live demo uses <a target="_blank" href="https://howlerjs.com">howljer.js</a>
+      to play and update the sounds.
     </div>
   </div>
 </template>

@@ -35,6 +35,7 @@
   import Terms from './docs/Terms'
   import License from './docs/License'
   import Demo from './docs/Demo'
+  import GettingStarted from './docs/GettingStarted'
 
   import BNotification from "buefy/src/components/notification/Notification";
 
@@ -63,7 +64,8 @@
                 component: License
               },
               'start': {
-                name: {en: 'Getting Started'}
+                name: {en: 'Getting Started'},
+                component: GettingStarted
               },
               'demo': {
                 name: {en: 'Live Demonstration'},
