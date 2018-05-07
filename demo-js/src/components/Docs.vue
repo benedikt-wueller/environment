@@ -6,18 +6,18 @@
       <div class="container is-fullhd">
         <div class="columns">
           <div class="column is-one-quarter-desktop is-half-tablet is-hidden-mobile">
-            <env-menu :groups="menuGroups" :active-group="activeMenuGroup"
+            <env-menu :lang="language" :groups="menuGroups" :active-group="activeMenuGroup"
                       :active-item="activeMenuItem" :active-sub-item="activeMenuSubItem"
                       @select="selectItem"></env-menu>
           </div>
 
           <div class="column">
-            <h1 class="title">{{ activeItem.name }}</h1>
-            <h2 class="subtitle" v-if="activeItem.parent">{{ activeItem.parent.name }}</h2>
+            <h1 class="title">{{ activeItem.name[language] }}</h1>
+            <h2 class="subtitle" v-if="activeItem.parent">{{ activeItem.parent.name[language] }}</h2>
 
             <hr/>
 
-            <component v-if="activeItem.component" :is="activeItem.component"></component>
+            <component v-if="activeItem.component" :is="activeItem.component" :lang="language"></component>
 
             <b-notification v-if="!activeItem.component" type="is-danger" :closable="false">
               This page's content is missing.
@@ -45,81 +45,81 @@
       return {
         menuGroups: {
           'introduction': {
-            name: 'Introduction',
+            name: {en: 'Introduction'},
             items: {
               'intro': {
-                name: 'Introduction'
+                name: {en: 'Introduction'}
               },
               'terms': {
-                name: 'Definitions and Terms',
+                name: {en: 'Definitions and Terms'},
                 component: Terms
               },
               'how-it-works': {
-                name: 'How it works'
+                name: {en: 'How it works'}
               },
               'license': {
-                name: 'License',
+                name: {en: 'License'},
                 component: License
               },
               'start': {
-                name: 'Getting Started'
+                name: {en: 'Getting Started'}
               },
               'demo': {
-                name: 'Live Demonstration'
+                name: {en: 'Live Demonstration'}
               },
             }
           },
           'protocol': {
-            name: 'Protocol',
+            name: {en: 'Protocol'},
             items: {
               'info': {
-                name: 'Information'
+                name: {en: 'Information'}
               },
               'actors': {
-                name: 'Manage Actors',
+                name: {en: 'Manage Actors'},
                 items: {
                   'register': {
-                    name: 'Register Actor'
+                    name: {en: 'Register Actor'}
                   },
                   'unregister': {
-                    name: 'Unregister Actor'
+                    name: {en: 'Unregister Actor'}
                   },
                 }
               },
               'users': {
-                name: 'Manage Users',
+                name: {en: 'Manage Users'},
                 items: {
                   'register': {
-                    name: 'Register User'
+                    name: {en: 'Register User'}
                   },
                   'unregister': {
-                    name: 'Unregister User'
+                    name: {en: 'Unregister User'}
                   },
                   'connect': {
-                    name: 'Connect User'
+                    name: {en: 'Connect User'}
                   },
                   'disconnect': {
-                    name: 'Disconnect User'
+                    name: {en: 'Disconnect User'}
                   },
                   'meta': {
-                    name: 'Update Meta Data'
+                    name: {en: 'Update Meta Data'}
                   }
                 }
               },
               'sounds': {
-                name: 'Manage Sounds',
+                name: {en: 'Manage Sounds'},
                 items: {
                   'start': {
-                    name: 'Play Sound'
+                    name: {en: 'Play Sound'}
                   },
                   'stop': {
-                    name: 'Stop Sound'
+                    name: {en: 'Stop Sound'}
                   },
                   'volume': {
-                    name: 'Change Volume'
+                    name: {en: 'Change Volume'}
                   },
                   'rate': {
-                    name: 'Change Playback Rate'
+                    name: {en: 'Change Playback Rate'}
                   }
                 }
               },
@@ -159,15 +159,19 @@
         } else {
           return item
         }
+      },
+
+      language() {
+        return this.$route.params['lang']
       }
     },
 
     methods: {
       selectItem(group, item, subItem) {
         if (subItem === null) {
-          this.$router.push({name: 'docs.item', params: {group: group, item: item}})
+          this.$router.push({name: 'docs.item', params: {lang: this.language, group: group, item: item}})
         } else {
-          this.$router.push({name: 'docs.sub_item', params: {group: group, item: item, subItem: subItem}})
+          this.$router.push({name: 'docs.sub_item', params: {lang: this.language, group: group, item: item, subItem: subItem}})
         }
       }
     }

@@ -31,20 +31,24 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
-      redirect: '/docs'
+      redirect: '/docs/en'
     },
     {
       path: '/docs',
+      redirect: '/docs/en'
+    },
+    {
+      path: '/docs/:lang',
       component: Docs
     },
     {
       name: 'docs.item',
-      path: '/docs/:group/:item',
+      path: '/docs/:lang/:group/:item',
       component: Docs
     },
     {
       name: 'docs.sub_item',
-      path: '/docs/:group/:item/:subItem',
+      path: '/docs/:lang/:group/:item/:subItem',
       component: Docs
     },
     {

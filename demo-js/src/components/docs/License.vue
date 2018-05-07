@@ -12,7 +12,8 @@
 
 <script>
   export default {
-    name: "terms"
+    name: "terms",
+    props: ['lang']
   }
 </script>
 
