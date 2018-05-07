@@ -1,152 +1,143 @@
 <template>
   <div id="actor">
-    <section class="hero is-dark">
-      <div class="hero-body">
+    <div style="flex: 1">
+      <env-header part="ACTOR"></env-header>
+
+      <section class="section">
         <div class="container">
-          <h1 class="title">
-            <small style="font-weight: 200">demo.</small>ENVIRONMENT
-            <div class="is-pulled-right">
-              <span style="font-weight: 200">ACTOR</span>
-            </div>
-          </h1>
-        </div>
-      </div>
-    </section>
+          <div class="columns is-multiline">
+            <div class="column is-full">
+              <h3 class="title is-3">First step</h3>
+              <h4 class="subtitle is-5">Connect the actor</h4>
 
-    <section class="section">
-      <div class="container">
-        <div class="columns is-multiline">
-          <div class="column is-full">
-            <h3 class="title is-3">First step</h3>
-            <h4 class="subtitle is-5">Connect the actor</h4>
+              <b-notification v-if="registered" type="is-success" :closable="false">
+                The actor has successfully been connected with the id <b>{{ id }}</b>.
+              </b-notification>
 
-            <b-notification v-if="registered" type="is-success" :closable="false">
-              The actor has successfully been connected with the id <b>{{ id }}</b>.
-            </b-notification>
+              <div class="content" v-if="!registered">
+                <p class="has-text-justified">
+                  To test any of the features you have to connect the actor to the processor. Normally the
+                  internal processor port <code>24499</code> would be blocked for any non-owned actors
+                  (i.e. using firewalls). In this case, the processor is open to use. However, it is not
+                  recommended for use in a production environment as it is subject to constant change
+                  and unexpected downtime. Feel free to create custom actors and clients and test them
+                  against the demo processor <code>ws://root.bwueller.de:24499</code>. <b>Select a unique name for this
+                  demo actor and connect it to the processor.</b>
+                </p>
+              </div>
 
-            <div class="content" v-if="!registered">
-              <p class="has-text-justified">
-                To test any of the features you have to connect the actor to the processor. Normally the
-                internal processor port <code>24499</code> would be blocked for any non-owned actors
-                (i.e. using firewalls). In this case, the processor is open to use. However, it is not
-                recommended for use in a production environment as it is subject to constant change
-                and unexpected downtime. Feel free to create custom actors and clients and test them
-                against the demo processor <code>ws://root.bwueller.de:24499</code>. <b>Select a unique name for this
-                demo actor and connect it to the processor.</b>
-              </p>
-            </div>
+              <b-notification v-if="initialized && !connected" type="is-danger" :closable="false">
+                The actor could not be connected to the processor. It is offline or unreachable. Please try again later by refreshing this page.
+              </b-notification>
 
-            <b-notification v-if="initialized && !connected" type="is-danger" :closable="false">
-              The actor could not be connected to the processor. It is offline or unreachable. Please try again later by refreshing this page.
-            </b-notification>
-
-            <b-field :grouped="true" v-if="initialized && connected">
-              <p class="control is-expanded">
-                <input class="input" :disabled="registered" type="text" v-model="name" placeholder="Name your actor">
-              </p>
-              <p class="control">
-                <button class="button is-info" :disabled="name.length <= 0 || !connected || registered" @click="connect()">Connect</button>
-              </p>
-            </b-field>
-          </div>
-
-          <div class="column is-full" v-if="registered">
-            <h3 class="title is-3">Second step</h3>
-            <h4 class="subtitle is-5">Register a user</h4>
-
-            <b-notification v-if="userRegistered" type="is-success" :closable="false">
-              The user <b>{{ username }}</b> has been registered with the key <b>{{ secret }}</b>.
-            </b-notification>
-
-            <div class="content" v-if="!userRegistered">
-              <p class="has-text-justified">
-                An actor is responsible for registering users to play sounds and send sound updates. The
-                processor will generate a unique key and send it back to the actor. The actor will
-                forward the key to the user (and only this user) for him to use it to connect to the
-                processor (using the client). This ensures that only the privileged user is able to
-                identify as himself. <b>Select a username and register him to the processor.</b> Choose
-                a custom name as the same username can only be registered by one actor at a time.
-              </p>
+              <b-field :grouped="true" v-if="initialized && connected">
+                <p class="control is-expanded">
+                  <input class="input" :disabled="registered" type="text" v-model="name" placeholder="Name your actor">
+                </p>
+                <p class="control">
+                  <button class="button is-info" :disabled="name.length <= 0 || !connected || registered" @click="connect()">Connect</button>
+                </p>
+              </b-field>
             </div>
 
-            <b-field :grouped="true">
-              <p class="control is-expanded">
-                <input class="input" :disabled="userRegistered" type="text" v-model="username" placeholder="Name your actor">
-              </p>
-              <p class="control">
-                <button class="button is-info" :disabled="username.length === 0 || userRegistered" @click="registerUser()">Register</button>
-              </p>
-              <p class="control">
-                <button class="button is-info" :disabled="!userRegistered" @click="unregisterUser()">Unregister</button>
-              </p>
-            </b-field>
-          </div>
+            <div class="column is-full" v-if="registered">
+              <h3 class="title is-3">Second step</h3>
+              <h4 class="subtitle is-5">Register a user</h4>
 
-          <div class="column is-full" v-if="userRegistered">
-            <h3 class="title is-3">Third step</h3>
-            <h4 class="subtitle is-5">Connect user to processor</h4>
+              <b-notification v-if="userRegistered" type="is-success" :closable="false">
+                The user <b>{{ username }}</b> has been registered with the key <b>{{ secret }}</b>.
+              </b-notification>
 
-            <b-notification v-if="userConnected" type="is-success" :closable="false">
-              The client is connected.
-            </b-notification>
+              <div class="content" v-if="!userRegistered">
+                <p class="has-text-justified">
+                  An actor is responsible for registering users to play sounds and send sound updates. The
+                  processor will generate a unique key and send it back to the actor. The actor will
+                  forward the key to the user (and only this user) for him to use it to connect to the
+                  processor (using the client). This ensures that only the privileged user is able to
+                  identify as himself. <b>Select a username and register him to the processor.</b> Choose
+                  a custom name as the same username can only be registered by one actor at a time.
+                </p>
+              </div>
 
-            <b-notification v-if="!userConnected" type="is-danger" :closable="false">
-              The client is not connected.
-            </b-notification>
-
-            <div class="content" v-if="!userConnected">
-              <p class="has-text-justified">
-                Normally the actor would forward the username and key to the user. The user would then
-                connect to the processor using a client (e.g. via a website) which identifies as the
-                user using the given credentials. The actor will be notified when the client connects to
-                or disconnects from the processor. <b>Open the <a @click="openClient()">Demo Client</a>
-                to simulate this behaviour.</b> It should open in a new window. If it just opens in a
-                new tab, the functionality could be delayed but should work just fine.
-              </p>
-            </div>
-          </div>
-
-          <div class="column is-full" v-if="userConnected">
-            <h3 class="title is-3">Fourth step</h3>
-            <h4 class="subtitle is-5">Execute sound actions</h4>
-
-            <div class="content">
-              <p class="has-text-justified" v-if="!hasRequested">
-                With the registered user connected you can now execute sound actions such as playing
-                and stopping sounds and changing their volume and playback rate. After requesting a
-                sound it will be highlighted in red until it has been confirmed by the client. After
-                stopping a sound it will no longer be shown. <b>Request a sound and see the action
-                happen!</b>
-              </p>
+              <b-field :grouped="true">
+                <p class="control is-expanded">
+                  <input class="input" :disabled="userRegistered" type="text" v-model="username" placeholder="Name your actor">
+                </p>
+                <p class="control">
+                  <button class="button is-info" :disabled="username.length === 0 || userRegistered" @click="registerUser()">Register</button>
+                </p>
+                <p class="control">
+                  <button class="button is-info" :disabled="!userRegistered" @click="unregisterUser()">Unregister</button>
+                </p>
+              </b-field>
             </div>
 
-            <div class="content">
-              <button class="button is-info" @click="requestPlaySoundModal()">Play Sound</button>
+            <div class="column is-full" v-if="userRegistered">
+              <h3 class="title is-3">Third step</h3>
+              <h4 class="subtitle is-5">Connect user to processor</h4>
+
+              <b-notification v-if="userConnected" type="is-success" :closable="false">
+                The client is connected.
+              </b-notification>
+
+              <b-notification v-if="!userConnected" type="is-danger" :closable="false">
+                The client is not connected.
+              </b-notification>
+
+              <div class="content" v-if="!userConnected">
+                <p class="has-text-justified">
+                  Normally the actor would forward the username and key to the user. The user would then
+                  connect to the processor using a client (e.g. via a website) which identifies as the
+                  user using the given credentials. The actor will be notified when the client connects to
+                  or disconnects from the processor. <b>Open the <a @click="openClient()">Demo Client</a>
+                  to simulate this behaviour.</b> It should open in a new window. If it just opens in a
+                  new tab, the functionality could be delayed but should work just fine.
+                </p>
+              </div>
             </div>
 
-            <div class="content">
-              <div class="columns is-multiline">
-                <div v-for="sound in sounds" v-bind:key="sound.identifier" class="column is-half-tablet">
-                  <div :class="{message: true, 'is-success': sound.confirmed, 'is-danger': !sound.confirmed}">
-                    <div class="message-body">
-                      <div class="is-clearfix">
-                        <b>{{ sound.name }}</b>
-                        <div class="is-pulled-right">
-                          <span class="tag"><b>Rate:</b>&nbsp;{{ Math.ceil(sound.rate * 100) }}%</span>&nbsp;<span class="tag"><b>Volume:</b>&nbsp;{{ Math.ceil(sound.volume * 100) }}%</span>
+            <div class="column is-full" v-if="userConnected">
+              <h3 class="title is-3">Fourth step</h3>
+              <h4 class="subtitle is-5">Execute sound actions</h4>
+
+              <div class="content">
+                <p class="has-text-justified" v-if="!hasRequested">
+                  With the registered user connected you can now execute sound actions such as playing
+                  and stopping sounds and changing their volume and playback rate. After requesting a
+                  sound it will be highlighted in red until it has been confirmed by the client. After
+                  stopping a sound it will no longer be shown. <b>Request a sound and see the action
+                  happen!</b>
+                </p>
+              </div>
+
+              <div class="content">
+                <button class="button is-info" @click="requestPlaySoundModal()">Play Sound</button>
+              </div>
+
+              <div class="content">
+                <div class="columns is-multiline">
+                  <div v-for="sound in sounds" v-bind:key="sound.identifier" class="column is-half-tablet">
+                    <div :class="{message: true, 'is-success': sound.confirmed, 'is-danger': !sound.confirmed}">
+                      <div class="message-body">
+                        <div class="is-clearfix">
+                          <b>{{ sound.name }}</b>
+                          <div class="is-pulled-right">
+                            <span class="tag"><b>Rate:</b>&nbsp;{{ Math.ceil(sound.rate * 100) }}%</span>&nbsp;<span class="tag"><b>Volume:</b>&nbsp;{{ Math.ceil(sound.volume * 100) }}%</span>
+                          </div>
                         </div>
-                      </div>
 
-                      <div class="content">
-                        <small><small>{{ sound.identifier }}</small></small>
-                      </div>
+                        <div class="content">
+                          <small><small>{{ sound.identifier }}</small></small>
+                        </div>
 
-                      <p>
-                        <button v-if="sound.confirmed && !sound.stopping" class="button is-info is-small is-danger" @click="() => requestStopSoundModal(sound.identifier)">Stop</button>
-                        &nbsp;
-                        <button v-if="sound.confirmed && !sound.stopping" class="button is-info is-small is-info" @click="() => requestUpdateVolumeModal(sound.identifier)">Update Volume</button>
-                        &nbsp;
-                        <button v-if="sound.confirmed && !sound.stopping" class="button is-info is-small is-info" @click="() => requestUpdateRateModal(sound.identifier)">Update Rate</button>
-                      </p>
+                        <p>
+                          <button v-if="sound.confirmed && !sound.stopping" class="button is-info is-small is-danger" @click="() => requestStopSoundModal(sound.identifier)">Stop</button>
+                          &nbsp;
+                          <button v-if="sound.confirmed && !sound.stopping" class="button is-info is-small is-info" @click="() => requestUpdateVolumeModal(sound.identifier)">Update Volume</button>
+                          &nbsp;
+                          <button v-if="sound.confirmed && !sound.stopping" class="button is-info is-small is-info" @click="() => requestUpdateRateModal(sound.identifier)">Update Rate</button>
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -154,131 +145,133 @@
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <b-modal :active="showPlaySoundModal" :has-modal-card="false" @close="() => {this.showPlaySoundModal = false}">
-      <div class="modal-card">
-        <div class="modal-card-head">
-          <span class="modal-card-title">Play a new sound</span>
-        </div>
-        <div class="modal-card-body">
-          <div class="columns">
-            <div class="column is-half">
-              <b-field label="Intro Sound">
-                <b-select v-model="introSound">
-                  <option :value="null">No Intro</option>
-                  <option v-for="sound in Object.keys(availableSounds)" v-bind:key="'intro_' + sound" :value="sound">{{ availableSounds[sound] }}</option>
-                </b-select>
-              </b-field>
+      <b-modal :active="showPlaySoundModal" :has-modal-card="false" @close="() => {this.showPlaySoundModal = false}">
+        <div class="modal-card">
+          <div class="modal-card-head">
+            <span class="modal-card-title">Play a new sound</span>
+          </div>
+          <div class="modal-card-body">
+            <div class="columns">
+              <div class="column is-half">
+                <b-field label="Intro Sound">
+                  <b-select v-model="introSound">
+                    <option :value="null">No Intro</option>
+                    <option v-for="sound in Object.keys(availableSounds)" v-bind:key="'intro_' + sound" :value="sound">{{ availableSounds[sound] }}</option>
+                  </b-select>
+                </b-field>
+              </div>
+
+              <div class="column is-half">
+                <b-field label="Main Sound">
+                  <b-select v-model="mainSound">
+                    <option v-for="sound in Object.keys(availableSounds)" v-bind:key="'main_' + sound" :value="sound">{{ availableSounds[sound] }}</option>
+                  </b-select>
+                </b-field>
+              </div>
             </div>
 
-            <div class="column is-half">
-              <b-field label="Main Sound">
-                <b-select v-model="mainSound">
-                  <option v-for="sound in Object.keys(availableSounds)" v-bind:key="'main_' + sound" :value="sound">{{ availableSounds[sound] }}</option>
-                </b-select>
-              </b-field>
+            <div class="columns">
+              <div class="column is-one-third">
+                <b-field label="Initial Volume (%)" :message="'Volume Factor: ' + volume">
+                  <input class="input" type="number" min="0" max="100" step="1" v-model="volumePercentage" />
+                </b-field>
+              </div>
+
+              <div class="column is-one-third">
+                <b-field label="Initial Rate (%)" :message="'Rate Factor: ' + rate">
+                  <input class="input" type="number" min="50" max="400" step="1" v-model="ratePercentage" />
+                </b-field>
+              </div>
+
+              <div class="column is-one-third">
+                <b-field label="Repeating">
+                  <b-checkbox v-model="looping">Loop sound</b-checkbox>
+                </b-field>
+              </div>
             </div>
           </div>
-
-          <div class="columns">
-            <div class="column is-one-third">
-              <b-field label="Initial Volume (%)" :message="'Volume Factor: ' + volume">
-                <input class="input" type="number" min="0" max="100" step="1" v-model="volumePercentage" />
-              </b-field>
-            </div>
-
-            <div class="column is-one-third">
-              <b-field label="Initial Rate (%)" :message="'Rate Factor: ' + rate">
-                <input class="input" type="number" min="50" max="400" step="1" v-model="ratePercentage" />
-              </b-field>
-            </div>
-
-            <div class="column is-one-third">
-              <b-field label="Repeating">
-                <b-checkbox v-model="looping">Loop sound</b-checkbox>
-              </b-field>
-            </div>
+          <div class="modal-card-foot">
+            <button class="button is-info" @click="playSound()">Play Sound</button>
           </div>
         </div>
-        <div class="modal-card-foot">
-          <button class="button is-info" @click="playSound()">Play Sound</button>
-        </div>
-      </div>
-    </b-modal>
+      </b-modal>
 
-    <b-modal :active="showStopSoundModal" :has-modal-card="false" @close="() => {this.showStopSoundModal = false}">
-      <div v-if="stoppingSound" class="modal-card">
-        <div class="modal-card-head">
-          <span class="modal-card-title">Stop sound: <b>{{ stoppingSound.name }}</b></span>
-        </div>
-        <div class="modal-card-body">
-          <div class="columns">
-            <div class="column is-half">
-              <b-field label="Delay" message="Stop after the given time in milliseconds.">
-                <input class="input" type="number" min="0" step="1" v-model="stopDelay">
-              </b-field>
-            </div>
+      <b-modal :active="showStopSoundModal" :has-modal-card="false" @close="() => {this.showStopSoundModal = false}">
+        <div v-if="stoppingSound" class="modal-card">
+          <div class="modal-card-head">
+            <span class="modal-card-title">Stop sound: <b>{{ stoppingSound.name }}</b></span>
+          </div>
+          <div class="modal-card-body">
+            <div class="columns">
+              <div class="column is-half">
+                <b-field label="Delay" message="Stop after the given time in milliseconds.">
+                  <input class="input" type="number" min="0" step="1" v-model="stopDelay">
+                </b-field>
+              </div>
 
-            <div class="column is-half">
-              <b-field label="Fade Duration" message="Fade out the sound after the given delay.">
-                <input class="input" type="number" min="0" step="1" v-model="stopDuration">
-              </b-field>
+              <div class="column is-half">
+                <b-field label="Fade Duration" message="Fade out the sound after the given delay.">
+                  <input class="input" type="number" min="0" step="1" v-model="stopDuration">
+                </b-field>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="modal-card-foot">
-          <button class="button is-danger" @click="stopSound()">Stop Sound</button>
-        </div>
-      </div>
-    </b-modal>
-
-    <b-modal :active="showUpdateVolumeModal" :has-modal-card="false" @close="() => {this.showUpdateVolumeModal = false}">
-      <div v-if="updateSound !== null" class="modal-card">
-        <div class="modal-card-head">
-          <span class="modal-card-title">Update volume for <b>{{ updateSound.name }}</b></span>
-        </div>
-        <div class="modal-card-body">
-          <div class="columns">
-            <div class="column is-half">
-              <b-field label="Volume (%)" :message="'Volume Factor: ' + updatedVolume">
-                <input class="input" type="number" min="0" max="100" step="1" v-model="updateVolumePercentage" />
-              </b-field>
-            </div>
-
-            <div class="column is-half">
-              <b-field label="Fade Duration"  message="Fade the sound in the given amount of time in milliseconds.">
-                <input class="input" type="number" min="0" step="1" v-model="updateVolumeDuration" />
-              </b-field>
-            </div>
+          <div class="modal-card-foot">
+            <button class="button is-danger" @click="stopSound()">Stop Sound</button>
           </div>
         </div>
-        <div class="modal-card-foot">
-          <button class="button is-info" @click="updateVolume()">Update Volume</button>
-        </div>
-      </div>
-    </b-modal>
+      </b-modal>
 
-    <b-modal :active="showUpdateRateModal" :has-modal-card="false" @close="() => {this.showUpdateRateModal = false}">
-      <div v-if="updateSound !== null" class="modal-card">
-        <div class="modal-card-head">
-          <span class="modal-card-title">Update rate for <b>{{ updateSound.name }}</b></span>
-        </div>
-        <div class="modal-card-body">
-          <div class="columns">
-            <div class="column is-full">
-              <b-field label="Playback Rate (%)" :message="'Rate Factor: ' + updatedRate">
-                <input class="input" type="number" min="50" max="400" step="1" v-model="updateRatePercentage" />
-              </b-field>
+      <b-modal :active="showUpdateVolumeModal" :has-modal-card="false" @close="() => {this.showUpdateVolumeModal = false}">
+        <div v-if="updateSound !== null" class="modal-card">
+          <div class="modal-card-head">
+            <span class="modal-card-title">Update volume for <b>{{ updateSound.name }}</b></span>
+          </div>
+          <div class="modal-card-body">
+            <div class="columns">
+              <div class="column is-half">
+                <b-field label="Volume (%)" :message="'Volume Factor: ' + updatedVolume">
+                  <input class="input" type="number" min="0" max="100" step="1" v-model="updateVolumePercentage" />
+                </b-field>
+              </div>
+
+              <div class="column is-half">
+                <b-field label="Fade Duration"  message="Fade the sound in the given amount of time in milliseconds.">
+                  <input class="input" type="number" min="0" step="1" v-model="updateVolumeDuration" />
+                </b-field>
+              </div>
             </div>
           </div>
+          <div class="modal-card-foot">
+            <button class="button is-info" @click="updateVolume()">Update Volume</button>
+          </div>
         </div>
-        <div class="modal-card-foot">
-          <button class="button is-info" @click="updateRate()">Update Rate</button>
+      </b-modal>
+
+      <b-modal :active="showUpdateRateModal" :has-modal-card="false" @close="() => {this.showUpdateRateModal = false}">
+        <div v-if="updateSound !== null" class="modal-card">
+          <div class="modal-card-head">
+            <span class="modal-card-title">Update rate for <b>{{ updateSound.name }}</b></span>
+          </div>
+          <div class="modal-card-body">
+            <div class="columns">
+              <div class="column is-full">
+                <b-field label="Playback Rate (%)" :message="'Rate Factor: ' + updatedRate">
+                  <input class="input" type="number" min="50" max="400" step="1" v-model="updateRatePercentage" />
+                </b-field>
+              </div>
+            </div>
+          </div>
+          <div class="modal-card-foot">
+            <button class="button is-info" @click="updateRate()">Update Rate</button>
+          </div>
         </div>
-      </div>
-    </b-modal>
+      </b-modal>
+    </div>
+
+    <env-footer></env-footer>
   </div>
 </template>
 

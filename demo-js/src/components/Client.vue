@@ -1,59 +1,52 @@
 <template>
   <div id="client">
-    <section class="hero is-dark">
-      <div class="hero-body">
+    <div style="flex: 1">
+      <env-header part="CLIENT"></env-header>
+
+      <section class="section">
         <div class="container">
-          <h1 class="title">
-            <small style="font-weight: 200">demo.</small>ENVIRONMENT
-            <div class="is-pulled-right">
-              <span style="font-weight: 200">CLIENT</span>
-            </div>
-          </h1>
-        </div>
-      </div>
-    </section>
+          <b-notification v-if="connectErrorCode === -1" type="is-info" :closable="false">
+            Go to the <router-link to="/actor">Demo Actor</router-link> and create a new temporary demo user to test
+            all the features of environment.
+          </b-notification>
 
-    <section class="section">
-      <div class="container">
-        <b-notification v-if="connectErrorCode === -1" type="is-info" :closable="false">
-          Go to the <router-link to="/actor">Demo Actor</router-link> and create a new temporary demo user to test
-          all the features of environment.
-        </b-notification>
+          <b-notification v-if="connectErrorCode === 0" type="is-success" :closable="false">
+            You are connected as <b>{{ user }}</b>.
+          </b-notification>
 
-        <b-notification v-if="connectErrorCode === 0" type="is-success" :closable="false">
-          You are connected as <b>{{ user }}</b>.
-        </b-notification>
+          <b-notification v-if="connectErrorCode === 1" type="is-danger" :closable="false">
+            The given user is already connected to the processor.
+          </b-notification>
 
-        <b-notification v-if="connectErrorCode === 1" type="is-danger" :closable="false">
-          The given user is already connected to the processor.
-        </b-notification>
+          <b-notification v-if="connectErrorCode === 2" type="is-danger" :closable="false">
+            The user <b>{{ user }}</b> could not be found or the key is incorrect.
+          </b-notification>
 
-        <b-notification v-if="connectErrorCode === 2" type="is-danger" :closable="false">
-          The user <b>{{ user }}</b> could not be found or the key is incorrect.
-        </b-notification>
+          <b-notification v-if="connectErrorCode === 3" type="is-danger" :closable="false">
+            The processor could not be reached or the connection has been cancelled. This page will close within 10 seconds.
+          </b-notification>
 
-        <b-notification v-if="connectErrorCode === 3" type="is-danger" :closable="false">
-          The processor could not be reached or the connection has been cancelled. This page will close within 10 seconds.
-        </b-notification>
-
-        <div class="columns is-multiline">
-          <div v-for="sound in sounds" v-bind:key="sound.id" class="column is-half-tablet">
-            <div :class="{message: true, 'is-success': sound.isPlaying(), 'is-warning': sound.stopping, 'is-danger': !sound.isPlaying()}">
-              <div class="message-body">
-                <div class="is-clearfix">
-                  <b>{{ sound.name }}</b>
-                  <div class="is-pulled-right">
-                    <span class="tag"><b>Rate:</b>&nbsp;{{ Math.ceil(sound.getRate() * 100) }}%</span>&nbsp;<span class="tag"><b>Volume:</b>&nbsp;{{ Math.ceil(sound.getVolume() * 100) }}%</span>
+          <div class="columns is-multiline">
+            <div v-for="sound in sounds" v-bind:key="sound.id" class="column is-half-tablet">
+              <div :class="{message: true, 'is-success': sound.isPlaying(), 'is-warning': sound.stopping, 'is-danger': !sound.isPlaying()}">
+                <div class="message-body">
+                  <div class="is-clearfix">
+                    <b>{{ sound.name }}</b>
+                    <div class="is-pulled-right">
+                      <span class="tag"><b>Rate:</b>&nbsp;{{ Math.ceil(sound.getRate() * 100) }}%</span>&nbsp;<span class="tag"><b>Volume:</b>&nbsp;{{ Math.ceil(sound.getVolume() * 100) }}%</span>
+                    </div>
                   </div>
+                  <small><small>{{ sound.id }}</small></small><br/>
+                  <small><small>{{ sound.licenses.join(' &mdash; ') }}</small></small>
                 </div>
-                <small><small>{{ sound.id }}</small></small><br/>
-                <small><small>{{ sound.licenses.join(' &mdash; ') }}</small></small>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
+
+    <env-footer></env-footer>
   </div>
 </template>
 

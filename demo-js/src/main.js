@@ -3,6 +3,11 @@ import Vue from 'vue'
 import App from './App.vue'
 import Client from './components/Client.vue'
 import Actor from './components/Actor.vue'
+import Docs from './components/Docs.vue'
+
+import Header from './components/layout/Header.vue'
+import Footer from './components/layout/Footer.vue'
+import Menu from './components/layout/Menu.vue'
 
 import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'
@@ -17,9 +22,31 @@ Vue.use(Buefy)
 Vue.use(VueResource)
 Vue.use(VueRouter)
 
+Vue.component('env-header', Header)
+Vue.component('env-footer', Footer)
+Vue.component('env-menu', Menu)
+
 const router = new VueRouter({
   mode: 'history',
   routes: [
+    {
+      path: '/',
+      redirect: '/docs'
+    },
+    {
+      path: '/docs',
+      component: Docs
+    },
+    {
+      name: 'docs.item',
+      path: '/docs/:group/:item',
+      component: Docs
+    },
+    {
+      name: 'docs.sub_item',
+      path: '/docs/:group/:item/:subItem',
+      component: Docs
+    },
     {
       path: '/client',
       component: Client
