@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import Vue from '../node_modules/vue/dist/vue.common'
 
 import App from './App.vue'
 import Client from './components/Client.vue'
