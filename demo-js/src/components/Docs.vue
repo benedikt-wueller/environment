@@ -32,6 +32,8 @@
 </template>
 
 <script>
+  import Terms from './docs/Terms'
+
   import BNotification from "buefy/src/components/notification/Notification";
 
   export default {
@@ -48,7 +50,8 @@
                 name: 'Introduction'
               },
               'terms': {
-                name: 'Definitions and Terms'
+                name: 'Definitions and Terms',
+                component: Terms
               },
               'demo': {
                 name: 'Live Demonstration'
