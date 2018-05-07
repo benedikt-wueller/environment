@@ -33,6 +33,7 @@
 
 <script>
   import Terms from './docs/Terms'
+  import License from './docs/License'
 
   import BNotification from "buefy/src/components/notification/Notification";
 
@@ -57,7 +58,8 @@
                 name: 'How it works'
               },
               'license': {
-                name: 'License'
+                name: 'License',
+                component: License
               },
               'start': {
                 name: 'Getting Started'
