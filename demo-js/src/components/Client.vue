@@ -46,7 +46,7 @@
       </section>
     </div>
 
-    <env-footer></env-footer>
+    <env-footer additional='<a href="https://github.com/goldfire/howler.js">howlerjs</a> Copyright (c) 2013-2018 James Simpson and GoldFire Studios, Inc.'></env-footer>
   </div>
 </template>
 

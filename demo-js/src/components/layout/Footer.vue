@@ -7,6 +7,9 @@
           <a href="https://opensource.org/licenses/Apache-2.0">Apache 2.0</a>. The website content
           is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
         </p>
+
+        <p v-if="additional" v-html="additional">
+        </p>
       </div>
     </div>
   </footer>
@@ -14,7 +17,8 @@
 
 <script>
   export default {
-    name: "env-footer"
+    name: "env-footer",
+    props: ['additional']
   }
 </script>
 
