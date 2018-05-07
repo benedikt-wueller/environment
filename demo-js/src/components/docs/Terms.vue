@@ -1,7 +1,8 @@
 <template>
   <div class="has-text-justified">
     <p class="content">
-      This documentation uses specific wording to describe the functionality of Environment.
+      This documentation uses specific wording to describe the functionality of Environment. These
+      are described on this section.
     </p>
 
     <div class="content">

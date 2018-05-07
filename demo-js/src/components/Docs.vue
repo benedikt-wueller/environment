@@ -53,12 +53,18 @@
                 name: 'Definitions and Terms',
                 component: Terms
               },
-              'demo': {
-                name: 'Live Demonstration'
+              'how-it-works': {
+                name: 'How it works'
+              },
+              'license': {
+                name: 'License'
               },
               'start': {
                 name: 'Getting Started'
-              }
+              },
+              'demo': {
+                name: 'Live Demonstration'
+              },
             }
           },
           'protocol': {
