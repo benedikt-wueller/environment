@@ -3,7 +3,7 @@
     <p class="content">
       This guide will lead to running the processor written in Java/Kotlin and the live demo (client
       and actor) written in JavaScript. If you want to run software written in another language, see
-      the <router-link :to="{name: 'docs.item', params: {group: 'custom', item: 'info'}}">Custom Software</router-link> section.
+      the <router-link :to="{name: 'docs.item', params: {group: 'customize', item: 'info'}}">Custom Software</router-link> section.
     </p>
 
     <p class="content">
@@ -55,7 +55,7 @@ npm run serve</pre>
 
     <p class="content">
       You can now start to modify or build your custom Environment components. See the section
-      <router-link :to="{name: 'docs.item', params: {group: 'custom', item: 'info'}}">Custom Software</router-link>.
+      <router-link :to="{name: 'docs.item', params: {group: 'customize', item: 'info'}}">Custom Software</router-link>.
     </p>
   </div>
 </template>
