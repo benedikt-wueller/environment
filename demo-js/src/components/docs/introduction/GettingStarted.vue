@@ -54,9 +54,10 @@ npm run serve</pre>
     <pre class="content">npm run build</pre>
 
     <p class="content">
-      If you are running Environment in a production environment, make sure only your servers are
-      allowed to communicate with the processor on port <code>24499</code>. Port <code>24500</code>
-      however should be open to the public.
+      If you are running Environment in a production environment and <b>not</b> using a client side
+      actor (the live demo is a client side actor), make sure only your servers are allowed to
+      communicate with the processor on port <code>24499</code>. Port <code>24500</code> however
+      should be open to the public.
     </p>
 
     <p class="content">
