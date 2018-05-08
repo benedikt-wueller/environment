@@ -1,4 +1,4 @@
-import Protocol from './protobuf'
+import Protocol from './protobuf-helper'
 
 let socket = null
 

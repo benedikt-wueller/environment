@@ -63,9 +63,6 @@
                 name: {en: 'Definitions and Terms', de: 'Begrifflichkeiten (TODO)'},
                 component: IntroTerms
               },
-              'how-it-works': {
-                name: {en: 'How it works (TODO)', de: 'Funktionsweise (TODO)'}
-              },
               'license': {
                 name: {en: 'License', de: 'Lizenz (TODO)'},
                 component: IntroLicense
@@ -101,9 +98,6 @@
           'protocol': {
             name: {en: 'Protocol', de: 'Protokoll'},
             items: {
-              'info': {
-                name: {en: 'Information (TODO)', de: 'Informationen (TODO)'}
-              },
               'actors': {
                 name: {en: 'Manage Actors (TODO)', de: 'Aktoren verwalten (TODO)'},
                 items: {

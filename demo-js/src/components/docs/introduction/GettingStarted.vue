@@ -54,6 +54,12 @@ npm run serve</pre>
     <pre class="content">npm run build</pre>
 
     <p class="content">
+      If you are running Environment in a production environment, make sure only your servers are
+      allowed to communicate with the processor on port <code>24499</code>. Port <code>24500</code>
+      however should be open to the public.
+    </p>
+
+    <p class="content">
       You can now start to modify or build your custom Environment components. See the section
       <router-link :to="{name: 'docs.item', params: {group: 'customize', item: 'info'}}">Custom Software</router-link>.
     </p>
