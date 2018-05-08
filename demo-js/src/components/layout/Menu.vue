@@ -1,5 +1,16 @@
 <template>
   <aside class="menu" style="margin-right: 2em">
+    <div style="margin-bottom: 2.5rem">
+      <p class="menu-label">Switch Language</p>
+
+      <div class="field is-fullwidth">
+        <b-select :value="lang" @input="(value) => this.$emit('selectLanguage', value)">
+          <option value="en">English</option>
+          <option value="de">Deutsch</option>
+        </b-select>
+      </div>
+    </div>
+
     <div v-for="(group, groupIndex) in groups" v-bind:key="'group_menu_' + groupIndex">
       <p class="menu-label">{{ group.name[lang] }}</p>
 
@@ -26,7 +37,10 @@
 </template>
 
 <script>
+  import BSelect from "buefy/src/components/select/Select";
+
   export default {
+    components: {BSelect},
     name: "env-menu",
 
     props: {

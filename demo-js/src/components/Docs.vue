@@ -8,7 +8,7 @@
           <div class="column is-one-quarter-desktop is-half-tablet is-hidden-mobile">
             <env-menu :lang="language" :groups="menuGroups" :active-group="activeMenuGroup"
                       :active-item="activeMenuItem" :active-sub-item="activeMenuSubItem"
-                      @select="selectItem"></env-menu>
+                      @select="selectItem" @selectLanguage="setLanguage"></env-menu>
           </div>
 
           <div class="column">
@@ -197,10 +197,28 @@
 
     methods: {
       selectItem(group, item, subItem) {
-        if (subItem === null) {
-          this.$router.push({name: 'docs.item', params: {lang: this.language, group: group, item: item}})
-        } else {
+        if (subItem) {
           this.$router.push({name: 'docs.sub_item', params: {lang: this.language, group: group, item: item, subItem: subItem}})
+        } else {
+          this.$router.push({name: 'docs.item', params: {lang: this.language, group: group, item: item}})
+        }
+      },
+
+      setLanguage(language) {
+        this.$route.params['lang'] = language
+
+        let group = this.$route.params['group']
+        if (!group) group = Object.keys(this.menuGroups)[0]
+
+        let item = this.$route.params['item']
+        if (!item) item = Object.keys(this.menuGroups[group].items)[0]
+
+        const subItem = this.$route.params['subItem']
+
+        if (subItem) {
+          window.location.href = '/docs/' + language + '/' + group + '/' + item + '/' + subItem
+        } else {
+          window.location.href = '/docs/' + language + '/' + group + '/' + item
         }
       }
     }
