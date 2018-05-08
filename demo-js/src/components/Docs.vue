@@ -43,6 +43,7 @@
   import IntroGettingStarted from './docs/introduction/GettingStarted'
 
   import CustomInfo from './docs/customize/Information'
+  import CustomJava from './docs/customize/Java'
 
   import BNotification from "buefy/src/components/notification/Notification";
 
@@ -85,7 +86,8 @@
                 component: CustomInfo
               },
               'java': {
-                name: {en: 'Java / Kotlin (TODO)', de: 'Java / Kotlin (TODO)'}
+                name: {en: 'Java / Kotlin', de: 'Java / Kotlin (TODO)'},
+                component: CustomJava
               },
               'js': {
                 name: {en: 'JavaScript (TODO)', de: 'JavaScript (TODO)'}
