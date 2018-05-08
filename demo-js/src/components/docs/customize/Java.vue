@@ -74,7 +74,7 @@ mvn clean install</pre>
     <div class="content">
       The actor api provides a lot of functionality. See the tables below for more information. It
       will connect to the processor automatically using the config provided. By default, the api
-      will look for a <code>config.json</code> in it's running directory. To change this, you have
+      will look for a <code>config.json</code> in its running directory. To change this, you have
       to edit the resource <code>config.properties</code>.
     </div>
 
@@ -118,7 +118,7 @@ ActorApi.<b>removeListener(listener)</b></pre>
         <td>Register a user</td>
         <td><pre>ActorApi.<b>registerUser(user, registerListener, connectListener)</b></pre></td>
         <td>
-          The <code>registerCallback</code> will be invoked when the user has successfully been
+          The <code>registerListener</code> will be invoked when the user has successfully been
           registered to the processor. It returns the key to be used by the user to connect to the
           processor using the client. The <code>connectListener</code> will be called when the user
           connects to or disconnects from the processor.

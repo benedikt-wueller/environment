@@ -6,7 +6,7 @@
       <div class="field is-fullwidth">
         <b-select :value="lang" @input="(value) => this.$emit('selectLanguage', value)">
           <option value="en">English</option>
-          <option value="de">Deutsch</option>
+          <!--option value="de">Deutsch</option-->
         </b-select>
       </div>
     </div>

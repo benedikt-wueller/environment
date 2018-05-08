@@ -44,6 +44,7 @@
 
   import CustomInfo from './docs/customize/Information'
   import CustomJava from './docs/customize/Java'
+  import CustomJavaScript from './docs/customize/JavaScript'
 
   import BNotification from "buefy/src/components/notification/Notification";
 
@@ -90,7 +91,8 @@
                 component: CustomJava
               },
               'js': {
-                name: {en: 'JavaScript (TODO)', de: 'JavaScript (TODO)'}
+                name: {en: 'JavaScript (TODO)', de: 'JavaScript (TODO)'},
+                component: CustomJavaScript
               },
               'other': {
                 name: {en: 'Other Languages (TODO)', de: 'Weitere Sprachen (TODO)'}
