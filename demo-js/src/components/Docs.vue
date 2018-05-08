@@ -50,14 +50,14 @@
             name: {en: 'Introduction'},
             items: {
               'intro': {
-                name: {en: 'Introduction'}
+                name: {en: 'Introduction (TODO)'}
               },
               'terms': {
                 name: {en: 'Definitions and Terms'},
                 component: Terms
               },
               'how-it-works': {
-                name: {en: 'How it works'}
+                name: {en: 'How it works (TODO)'}
               },
               'license': {
                 name: {en: 'License'},
@@ -73,14 +73,31 @@
               },
             }
           },
+          'custom': {
+            name: {en: 'Custom Software'},
+            items: {
+              'info': {
+                name: {en: 'Information (TODO)'}
+              },
+              'java': {
+                name: {en: 'Java / Kotlin (TODO)'}
+              },
+              'js': {
+                name: {en: 'JavaScript (TODO)'}
+              },
+              'other': {
+                name: {en: 'Other Languages (TODO)'}
+              }
+            }
+          },
           'protocol': {
             name: {en: 'Protocol'},
             items: {
               'info': {
-                name: {en: 'Information'}
+                name: {en: 'Information (TODO)'}
               },
               'actors': {
-                name: {en: 'Manage Actors'},
+                name: {en: 'Manage Actors (TODO)'},
                 items: {
                   'register': {
                     name: {en: 'Register Actor'}
@@ -91,7 +108,7 @@
                 }
               },
               'users': {
-                name: {en: 'Manage Users'},
+                name: {en: 'Manage Users (TODO)'},
                 items: {
                   'register': {
                     name: {en: 'Register User'}
@@ -111,7 +128,7 @@
                 }
               },
               'sounds': {
-                name: {en: 'Manage Sounds'},
+                name: {en: 'Manage Sounds (TODO)'},
                 items: {
                   'start': {
                     name: {en: 'Play Sound'}
